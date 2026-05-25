@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Probability & Statistics Foundations Notes | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    .formula {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+      font-family: var(--font-code);
+      color: #38bdf8;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--secondary);
+      border-radius: 4px;
+      color: var(--secondary);
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Study Notes</span>
+    <h1>Probability & Statistics Foundations</h1>
+    <p>Core probability theories, random variables, sample statistics, distributions, and hypothesis testing equations needed for data science interviews and model building.</p>
+
+    <div class="card">
+      <h3>1. Bayes' Theorem</h3>
+      <p>Bayes' Theorem updates the probability of a hypothesis (A) based on new evidence (B).</p>
+      <div class="formula">
+        P(A|B) = [ P(B|A) * P(A) ] / P(B)
+      </div>
+      <ul>
+        <li><strong>P(A|B)</strong>: Posterior probability (probability of A given B).</li>
+        <li><strong>P(B|A)</strong>: Likelihood (probability of B given A).</li>
+        <li><strong>P(A)</strong>: Prior probability of A.</li>
+        <li><strong>P(B)</strong>: Marginal probability of evidence B.</li>
+      </ul>
+    </div>
+
+    <h2>2. Descriptive Metrics</h2>
+    <p>The statistical signals representing distribution shapes:</p>
+    
+    <h3>Mean (Expected Value)</h3>
+    <div class="formula">
+      &mu; = E[X] = &Sigma; (x_i * P(X = x_i))
+    </div>
+
+    <h3>Variance (&sigma;&sup2;)</h3>
+    <p>Measures dispersion around the mean.</p>
+    <div class="formula">
+      Var(X) = E[(X - &mu;)&sup2;] = &Sigma; ((x_i - &mu;)&sup2; * P(X = x_i))
+    </div>
+
+    <h2>3. The Central Limit Theorem (CLT)</h2>
+    <p>Regardless of the population's distribution, the distribution of the sample mean (&bar;X) approaches a normal distribution as sample size (n) increases (usually n &ge; 30).</p>
+    <div class="formula">
+      &bar;X ~ N(&mu;, &sigma;&sup2;/n)
+    </div>
+    <p>Standard Error of the Mean (SE):</p>
+    <div class="formula">
+      SE = &sigma; / &radic;n
+    </div>
+
+    <h2>4. Hypothesis Testing Cheat Sheet</h2>
+    <div class="card" style="margin-top:16px;">
+      <h3>Confidence Intervals (CI)</h3>
+      <div class="formula">
+        CI = &bar;X &plusmn; Z* * (s / &radic;n)
+      </div>
+      <p>Standard Z-scores to memorize for two-tailed tests:</p>
+      <ul>
+        <li><strong>90% Confidence</strong>: Z* = 1.645</li>
+        <li><strong>95% Confidence</strong>: Z* = 1.96</li>
+        <li><strong>99% Confidence</strong>: Z* = 2.576</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

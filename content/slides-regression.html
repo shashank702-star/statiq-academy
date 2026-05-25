@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear Regression Slides | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--color-border);
+      background-color: rgba(11, 15, 25, 0.8);
+    }
+    .back-btn {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .presentation-container {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+    }
+    .slide {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      padding: 48px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .slide.active {
+      display: flex;
+    }
+    .slide h2 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    .slide p {
+      color: var(--text-main);
+      font-size: 1.25rem;
+      line-height: 1.6;
+    }
+    .slide-number {
+      position: absolute;
+      bottom: 24px;
+      right: 48px;
+      color: var(--text-muted);
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 24px;
+      border-top: 1px solid var(--color-border);
+      background-color: rgba(11, 15, 25, 0.8);
+    }
+    .btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--color-border);
+      color: var(--text-main);
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s ease-in-out;
+    }
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--primary);
+    }
+    .btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    .formula {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--secondary);
+      border-radius: 6px;
+      padding: 12px 20px;
+      margin: 20px 0;
+      font-family: var(--font-code);
+      font-size: 1.1rem;
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span style="font-weight: 700; font-size:1.1rem;">Slide Deck: Linear Regression</span>
+  </div>
+
+  <div class="presentation-container">
+    <!-- Slide 1 -->
+    <div class="slide active" id="slide-1">
+      <h2>Introduction to Linear Regression</h2>
+      <p>Linear Regression is one of the most fundamental algorithms in statistical machine learning. It models the linear relationship between a dependent variable (Y) and one or more independent variables (X).</p>
+      <p>Used for forecasting trends, sales predictions, and finding correlations.</p>
+      <span class="slide-number">1 / 4</span>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide" id="slide-2">
+      <h2>The Regression Line Equation</h2>
+      <p>We represent the simple linear model with the equation:</p>
+      <div class="formula">
+        Y = &beta;&beta; + &beta;&beta; * X + &epsilon;&epsilon;
+      </div>
+      <ul>
+        <li><strong>&beta;&beta; (Intercept)</strong>: The value of Y when X is 0.</li>
+        <li><strong>&beta;&beta; (Slope)</strong>: The rate of change of Y per unit change of X.</li>
+        <li><strong>&epsilon;&epsilon; (Error/Residual)</strong>: The difference between observed and predicted values.</li>
+      </ul>
+      <span class="slide-number">2 / 4</span>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" id="slide-3">
+      <h2>Ordinary Least Squares (OLS)</h2>
+      <p>To find the best fitting line, we minimize the sum of squared differences (residuals) between predicted points and actual points.</p>
+      <div class="formula">
+        Minimize RSS = &Sigma; (y_i - &ycirc;_i)&sup2;
+      </div>
+      <p>This is what the interactive regression plot on the StatIQ homepage lets you visualize!</p>
+      <span class="slide-number">3 / 4</span>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide" id="slide-4">
+      <h2>Evaluating Model Performance</h2>
+      <p>We evaluate our predictions using metrics like:</p>
+      <ul>
+        <li><strong>R&sup2; (Coefficient of Determination)</strong>: Represents the proportion of variance in Y explained by X (scale of 0 to 1).</li>
+        <li><strong>MSE (Mean Squared Error)</strong>: Average of the squared error terms.</li>
+      </ul>
+      <span class="slide-number">4 / 4</span>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="prev-btn" disabled>◀ Previous</button>
+    <button class="btn" id="next-btn">Next ▶</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let currentIdx = 0;
+
+    function updateSlides() {
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === currentIdx);
+      });
+      prevBtn.disabled = currentIdx === 0;
+      nextBtn.disabled = currentIdx === slides.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIdx > 0) {
+        currentIdx--;
+        updateSlides();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentIdx < slides.length - 1) {
+        currentIdx++;
+        updateSlides();
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && currentIdx < slides.length - 1) {
+        currentIdx++;
+        updateSlides();
+      } else if (e.key === 'ArrowLeft' && currentIdx > 0) {
+        currentIdx--;
+        updateSlides();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+customer_id,customer_name,tenure_months,monthly_charges,total_charges,churn_risk_score,support_tickets,active_users
+CS-1012,Alex Morgan,14,79.99,1119.86,0.12,1,5
+CS-1045,Jordan Vance,3,149.99,449.97,0.78,6,2
+CS-1089,Taylor Reid,24,99.99,2399.76,0.05,0,8
+CS-1122,Casey Quinn,8,49.99,399.92,0.45,3,3
+CS-1156,Sam Jenkins,1,79.99,79.99,0.89,4,1
+CS-1190,Jamie Patel,18,129.99,2339.82,0.22,2,4
+CS-1224,Morgan Bailey,6,99.99,599.94,0.61,5,2
+CS-1258,Robin Parker,36,149.99,5399.64,0.02,1,12
+CS-1292,Alex Mercer,11,49.99,549.89,0.34,2,3
+CS-1326,Devon Shaw,2,79.99,159.98,0.72,4,1
+CS-1360,Chris Kim,20,129.99,2599.80,0.15,1,6
+CS-1394,Avery Brooks,5,99.99,499.95,0.58,3,2
+CS-1428,Drew Miller,15,79.99,1199.85,0.28,2,4
+CS-1462,Pat Taylor,9,149.99,1349.91,0.51,4,3
+CS-1496,Sidney Davis,30,99.99,2999.70,0.08,0,10

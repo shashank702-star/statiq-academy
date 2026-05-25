@@ -446,12 +446,36 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "https://www.statlearning.com/"
     },
     {
+      title: "Probability & Statistics Foundations Notes",
+      category: "notes",
+      description: "Core probability theories, random variables, sample statistics, distributions, and hypothesis testing equations needed for data science.",
+      tags: ["Math", "Statistics", "Theory"],
+      downloadText: "Open Study Notes",
+      link: "content/notes-probability-reference.html"
+    },
+    {
+      title: "Interactive Linear Regression Lecture Slides",
+      category: "slides",
+      description: "A step-by-step presentation deck explaining intercept, slope, Ordinary Least Squares fitting, and coefficient definitions.",
+      tags: ["Regression", "Math", "Slides"],
+      downloadText: "Start Slideshow",
+      link: "content/slides-regression.html"
+    },
+    {
       title: "Modern SQL Optimization Cheatsheet",
       category: "cheatsheet",
       description: "High-speed analytical indexes, CTE structures, cohort partition layouts, and window aggregation formulas optimized for PostgreSQL and Snowflake.",
       tags: ["SQL", "Snowflake"],
       downloadText: "Get Cheatsheet",
       link: "content/sql-optimization.html"
+    },
+    {
+      title: "SaaS Customer Churn Practice Dataset",
+      category: "dataset",
+      description: "Clean sample CSV dataset containing subscriber records, active user counts, support ticket frequencies, and simulated churn probabilities.",
+      tags: ["CSV", "ML", "Churn"],
+      downloadText: "Download CSV",
+      link: "content/customer-churn-data.csv"
     },
     {
       title: "NYC Taxi & Limousine Dataset (2025)",
