@@ -454,12 +454,36 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "content/notes-probability-reference.html"
     },
     {
+      title: "Data Analysis Foundations Notes",
+      category: "notes",
+      description: "A detailed reference for data classification systems, handling missing values, statistical outlier detection, and associations mapping.",
+      tags: ["Data", "EDA", "Statistics"],
+      downloadText: "Open Study Notes",
+      link: "content/notes-data-analysis.html"
+    },
+    {
       title: "Interactive Linear Regression Lecture Slides",
       category: "slides",
       description: "A step-by-step presentation deck explaining intercept, slope, Ordinary Least Squares fitting, and coefficient definitions.",
       tags: ["Regression", "Math", "Slides"],
       downloadText: "Start Slideshow",
       link: "content/slides-regression.html"
+    },
+    {
+      title: "Data Analysis Lifecycle & Methods Slides",
+      category: "slides",
+      description: "An interactive presentation slide deck walking through the Ask, Prepare, Process, Analyze, Share, and Act workflow phases.",
+      tags: ["EDA", "Workflow", "Slides"],
+      downloadText: "Start Slideshow",
+      link: "content/slides-data-analysis.html"
+    },
+    {
+      title: "Retail Store Sales Practice Dataset",
+      category: "dataset",
+      description: "Clean sample CSV dataset containing customer segments, sales revenue, transaction quantities, discount, and profit metrics.",
+      tags: ["CSV", "Retail", "Sales"],
+      downloadText: "Download CSV",
+      link: "content/store-sales-data.csv"
     },
     {
       title: "Modern SQL Optimization Cheatsheet",

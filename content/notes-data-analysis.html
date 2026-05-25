@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Analysis Foundations Notes | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    .formula {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+      font-family: var(--font-code);
+      color: #38bdf8;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--secondary);
+      border-radius: 4px;
+      color: var(--secondary);
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      border: 1px solid var(--color-border);
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Study Notes</span>
+    <h1>Data Analysis Foundations & EDA</h1>
+    <p>A detailed reference for data classification systems, handling missing values, statistical outlier detection, and associations mapping.</p>
+
+    <!-- SECTION 1 -->
+    <h2>1. Understanding Data Types</h2>
+    <p>Before executing any statistical computations, you must classify your variables. Using incorrect metrics (e.g. calculating the average of zip codes) is a common analytical error.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Data Category</th>
+          <th>Subtype</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Qualitative (Categorical)</strong></td>
+          <td>Nominal</td>
+          <td>Categories with no intrinsic order or ranking.</td>
+          <td>Product Brand, Color, Country</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Ordinal</td>
+          <td>Categories with a clear, logical order.</td>
+          <td>Customer Satisfaction (Poor, OK, Good)</td>
+        </tr>
+        <tr>
+          <td><strong>Quantitative (Numerical)</strong></td>
+          <td>Discrete</td>
+          <td>Countable whole values (no decimals possible).</td>
+          <td>Website clicks, Support tickets, Orders count</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Continuous</td>
+          <td>Uncountable values within an interval (decimals).</td>
+          <td>Store Revenue, Temperature, Wait time in sec</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- SECTION 2 -->
+    <h2>2. Cleansing Missing Data (Imputation)</h2>
+    <p>Real-world datasets contain missing records. Cleanse them logically based on distribution shape:</p>
+    <ul>
+      <li><strong>Drop Missing Rows</strong>: Valid only if missingness is completely random (MCAR) and represents less than 5% of data.</li>
+      <li><strong>Mean Imputation</strong>: Fill missing rows with column mean. Best for normally distributed, symmetric columns.</li>
+      <li><strong>Median Imputation</strong>: Fill missing rows with column median. Best for highly skewed numeric data (e.g., Salaries, Transaction amounts) to avoid outlier bias.</li>
+      <li><strong>Mode Imputation</strong>: Fill missing rows with the most common category. Best for categorical fields.</li>
+    </ul>
+
+    <!-- SECTION 3 -->
+    <h2>3. Mathematical Outlier Detection (Tukey's IQR)</h2>
+    <p>Outliers distort statistical averages and predictive coefficients. Detect them systematically using Interquartile Range (IQR) fences.</p>
+    <div class="card">
+      <h3>The IQR Fences Equations</h3>
+      <p>Identify the 25th percentile ($Q_1$) and 75th percentile ($Q_3$). Calculate $IQR = Q_3 - Q_1$.</p>
+      <div class="formula">
+        Lower Boundary = Q1 - 1.5 * IQR
+        <br>Upper Boundary = Q3 + 1.5 * IQR
+      </div>
+      <p>Any values falling outside the interval <code>[Lower Boundary, Upper Boundary]</code> are flagged as outliers.</p>
+    </div>
+
+    <!-- SECTION 4 -->
+    <h2>4. Measuring Correlation (Pearson's r)</h2>
+    <p>Pearson's Correlation Coefficient ($r$) quantifies the strength and direction of the linear relationship between two variables, ranging from $-1.0$ (perfect negative correlation) to $+1.0$ (perfect positive correlation).</p>
+    <div class="formula">
+      r = Cov(X, Y) / ( &sigma;_X * &sigma;_Y )
+    </div>
+    <p>Remember: <strong>Correlation does not imply causation</strong>. Independent confounding factors (latent variables) must always be accounted for.</p>
+  </div>
+</body>
+</html>

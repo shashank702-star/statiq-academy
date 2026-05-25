@@ -1,0 +1,16 @@
+order_id,customer_segment,category,sales_usd,quantity,discount,profit_usd
+CA-2026-1011,Consumer,Technology,299.99,1,0.0,89.99
+CA-2026-1012,Consumer,Furniture,549.99,3,0.15,-45.50
+CA-2026-1013,Corporate,Office Supplies,45.60,4,0.0,18.24
+CA-2026-1014,Home Office,Office Supplies,120.00,2,0.20,38.40
+CA-2026-1015,Consumer,Furniture,189.99,1,0.0,37.99
+CA-2026-1016,Corporate,Technology,899.99,2,0.10,215.99
+CA-2026-1017,Consumer,Office Supplies,15.20,1,0.0,6.08
+CA-2026-1018,Home Office,Technology,1499.99,1,0.0,449.99
+CA-2026-1019,Consumer,Furniture,329.99,2,0.10,52.80
+CA-2026-1020,Corporate,Office Supplies,8.50,1,0.0,3.40
+CA-2026-1021,Consumer,Furniture,420.00,3,0.15,-12.60
+CA-2026-1022,Corporate,Technology,450.00,2,0.0,135.00
+CA-2026-1023,Home Office,Office Supplies,95.00,5,0.10,38.00
+CA-2026-1024,Consumer,Technology,129.99,1,0.0,45.49
+CA-2026-1025,Corporate,Furniture,680.00,4,0.20,81.60
