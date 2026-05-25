@@ -470,6 +470,22 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "content/sql-optimization.html"
     },
     {
+      title: "Advanced Excel Formulas & Analytics Guide",
+      category: "guide",
+      description: "A structured walkthrough of lookups (XLOOKUP, INDEX/MATCH), conditional sums (SUMIFS), Pivot Tables, and Power Query ETL pipelines.",
+      tags: ["Excel", "PowerQuery", "Formulas"],
+      downloadText: "Read Study Guide",
+      link: "content/excel-advanced-guide.html"
+    },
+    {
+      title: "Tableau Dashboard Design & Calculations Guide",
+      category: "guide",
+      description: "A masterclass reference covering calculated fields, Level of Detail (LOD) calculations, Parameter Actions, and dashboard visual layouts.",
+      tags: ["Tableau", "LOD", "Dashboards"],
+      downloadText: "Read Study Guide",
+      link: "content/tableau-dashboard-guide.html"
+    },
+    {
       title: "SaaS Customer Churn Practice Dataset",
       category: "dataset",
       description: "Clean sample CSV dataset containing subscriber records, active user counts, support ticket frequencies, and simulated churn probabilities.",
