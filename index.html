@@ -29,16 +29,14 @@
         <ul class="nav-links" id="nav-menu">
           <li><a href="#tracks">Learning Paths</a></li>
           <li><a href="#sandbox">Data Sandbox</a></li>
-          <li><a href="#calculator">ROI Calculator</a></li>
+          <li><a href="#calculator">Study Planner</a></li>
           <li><a href="#curriculum">Syllabus</a></li>
-          <li><a href="#pricing">Pricing</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </nav>
       
       <div class="nav-actions">
-        <a href="#pricing" class="btn btn-secondary">Sign In</a>
-        <button class="btn btn-primary enroll-trigger" id="btn-header-enroll">Enroll Now</button>
+        <a href="#tracks" class="btn btn-primary">Start Learning</a>
       </div>
 
       <button class="menu-toggle" aria-label="Toggle Navigation Menu">☰</button>
@@ -50,16 +48,16 @@
     <section class="hero" id="hero">
       <div class="container hero-grid">
         <div class="hero-content reveal">
-          <span class="badge badge-cyan">Specialized Career Accelerator</span>
+          <span class="badge badge-cyan">Open-Source Study Portal</span>
           <h1 class="hero-title">Master the <br><span class="gradient-text">Language of Data</span></h1>
 
           <p class="hero-subtitle">
-            Go from absolute beginner to senior-level practitioner. Build the mathematical core, program in Python & SQL, design dashboard structures, and implement production machine learning.
+            A fully free, self-paced study platform. Build your mathematical core, program in Python & SQL, master data warehouse structures, and implement production machine learning models.
           </p>
           
           <div class="hero-buttons">
-            <button class="btn btn-primary enroll-trigger" id="btn-hero-primary">Start Learning Free</button>
-            <a href="#tracks" class="btn btn-secondary" id="btn-hero-secondary">Explore Tracks</a>
+            <a href="#tracks" class="btn btn-primary" id="btn-hero-primary">Access Curriculum</a>
+            <a href="#resources" class="btn btn-secondary" id="btn-hero-secondary">Explore Resources</a>
           </div>
 
           <!-- Trust Indicators -->
@@ -112,18 +110,18 @@
 
           <!-- Floating Badges -->
           <div class="floating-overlay-card floating-1" id="float-badge-salary">
-            <div class="floating-card-icon">📈</div>
+            <div class="floating-card-icon">🎁</div>
             <div class="floating-card-text">
-              <h4>+40% Salary Hike</h4>
-              <p>Average graduate outcome</p>
+              <h4>100% Free</h4>
+              <p>Open source curriculum</p>
             </div>
           </div>
 
           <div class="floating-overlay-card floating-2" id="float-badge-grading">
-            <div class="floating-card-icon">🧠</div>
+            <div class="floating-card-icon">⏳</div>
             <div class="floating-card-text">
-              <h4>Real-time Feedback</h4>
-              <p>Visual testing sandbox</p>
+              <h4>Self-Paced</h4>
+              <p>No deadlines or fees</p>
             </div>
           </div>
         </div>
@@ -135,19 +133,19 @@
       <div class="container stats-grid">
         <div class="stat-item reveal" id="stat-students">
           <h3>10,000+</h3>
-          <p>Global Students</p>
+          <p>Active Self-Learners</p>
         </div>
         <div class="stat-item reveal" id="stat-placement">
-          <h3>93%</h3>
-          <p>Hire Rate within 180 Days</p>
+          <h3>300+ Hrs</h3>
+          <p>Of Structured Content</p>
         </div>
         <div class="stat-item reveal" id="stat-salary">
-          <h3>$28,500</h3>
-          <p>Median Salary Increase</p>
+          <h3>100%</h3>
+          <p>Free & Open Source</p>
         </div>
         <div class="stat-item reveal" id="stat-mentors">
-          <h3>250+</h3>
-          <p>Active Industry Mentors</p>
+          <h3>Discord</h3>
+          <p>Community Support</p>
         </div>
 
       </div>
@@ -229,7 +227,7 @@
                   <li>Build permutation tests to check biases.</li>
                   <li>Draft scientific briefs for review.</li>
                 </ul>
-                <button class="btn btn-secondary enroll-trigger" data-role-pref="statistics" id="btn-stats-project">Enroll in Path</button>
+                <a href="#curriculum" class="btn btn-secondary">Explore Syllabus</a>
               </div>
             </div>
           </div>
@@ -280,7 +278,7 @@
                   <li>Build cohort tables by retention month.</li>
                   <li>Synthesize insights in markdown files.</li>
                 </ul>
-                <button class="btn btn-secondary enroll-trigger" data-role-pref="data-analysis" id="btn-analysis-project">Enroll in Path</button>
+                <a href="#curriculum" class="btn btn-secondary">Explore Syllabus</a>
               </div>
             </div>
           </div>
@@ -331,7 +329,7 @@
                   <li>Mitigate class imbalance using SMOTE.</li>
                   <li>Create automated scoring pipelines.</li>
                 </ul>
-                <button class="btn btn-secondary enroll-trigger" data-role-pref="data-science" id="btn-ds-project">Enroll in Path</button>
+                <a href="#curriculum" class="btn btn-secondary">Explore Syllabus</a>
               </div>
             </div>
           </div>
@@ -382,7 +380,7 @@
                   <li>Implement drill-down matrix views.</li>
                   <li>Build automated scheduled email reports.</li>
                 </ul>
-                <button class="btn btn-secondary enroll-trigger" data-role-pref="business-intelligence" id="btn-bi-project">Enroll in Path</button>
+                <a href="#curriculum" class="btn btn-secondary">Explore Syllabus</a>
               </div>
             </div>
           </div>
@@ -475,35 +473,27 @@
       </div>
     </section>
 
-    <!-- CAREER ROI & TUITION CALCULATOR -->
+    <!-- STUDY PLANNER & TIMELINE CALCULATOR -->
     <section class="calculator" id="calculator">
       <div class="container">
         <div class="section-header reveal">
-          <span class="badge badge-cyan">ROI Assessment</span>
-          <h2>Calculate Your Career Upside</h2>
+          <span class="badge badge-cyan">Study Planner</span>
+          <h2>Calculate Your Study Timeline</h2>
 
-          <p>Invest in skills, calculate returns. Enter your salary profile to estimate program completion duration and post-graduation payoff.</p>
+          <p>Plan your learning path. Select your target curriculum track and weekly study hours to estimate your program completion timeline and recommended pace.</p>
         </div>
 
         <div class="glass-card calc-card reveal">
           <!-- Inputs panel -->
 
           <div class="calc-inputs">
-            <div class="control-group">
-              <div class="control-label">
-                <span>Current Annual Salary</span>
-                <span id="current-salary-val">$50,000</span>
-              </div>
-              <input type="range" class="control-slider" id="current-salary" min="30000" max="150000" step="5000" value="50000" aria-label="Current salary slider">
-            </div>
-
             <div class="calc-select-group">
-              <label for="target-role" style="font-size: 0.9rem; font-weight:600; margin-bottom:8px; display:block;">Target Role Path</label>
+              <label for="target-role" style="font-size: 0.9rem; font-weight:600; margin-bottom:8px; display:block;">Target Learning Path</label>
               <select id="target-role" class="calc-select">
-                <option value="data-analyst">Data Analyst (Avg Base: $78K)</option>
-                <option value="business-analyst">Business Analyst (Avg Base: $84K)</option>
-                <option value="bi-engineer">Business Intelligence Engineer (Avg Base: $96K)</option>
-                <option value="data-scientist" selected>Data Scientist (Avg Base: $120K)</option>
+                <option value="statistics">Statistics & Probability (100 hrs)</option>
+                <option value="data-analysis">Data Analysis Path (180 hrs)</option>
+                <option value="data-science" selected>Data Science & ML Path (300 hrs)</option>
+                <option value="business-intelligence">Business Intelligence Path (200 hrs)</option>
               </select>
             </div>
 
@@ -520,18 +510,18 @@
           <div class="calc-outputs">
             <div class="calc-output-item">
               <div class="calc-output-label">
-                <h4>Estimated Post-Program Salary</h4>
-                <p>Calculated based on target role + hours modifier</p>
+                <h4>Total Required Study Hours</h4>
+                <p>Course content + practice exercises</p>
               </div>
-              <span class="calc-output-value" id="expected-salary">$120,000</span>
+              <span class="calc-output-value" id="total-study-hours">300 Hrs</span>
             </div>
 
             <div class="calc-output-item">
               <div class="calc-output-label">
-                <h4>Annual Income Increase</h4>
-                <p>Expected change in yearly earnings</p>
+                <h4>Recommended Study Pace</h4>
+                <p>Optimized based on weekly commitment</p>
               </div>
-              <span class="calc-output-value" id="salary-increase">$70,000</span>
+              <span class="calc-output-value" id="recommended-pace">Moderate</span>
             </div>
 
             <div class="calc-output-item">
@@ -544,10 +534,10 @@
 
             <div class="calc-output-item">
               <div class="calc-output-label">
-                <h4>Tuition Payback Period</h4>
-                <p>Months to recoup program tuition cost</p>
+                <h4>Capstone Projects</h4>
+                <p>Core practical portfolio milestones</p>
               </div>
-              <span class="calc-output-value highlight-purple" id="payback-period">0.6 Months</span>
+              <span class="calc-output-value highlight-purple" id="project-milestones">4 Projects</span>
             </div>
           </div>
         </div>
@@ -848,113 +838,6 @@
       </div>
     </section>
 
-    <!-- PRICING TIERS -->
-    <section class="pricing" id="pricing">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="badge badge-cyan">Membership Options</span>
-
-          <h2>Clear Paths, Flat Tuition</h2>
-          <p>Select the program depth that matches your schedule. Save 30% by choosing annual enrollment.</p>
-        </div>
-
-        <!-- Monthly/Annual Toggle -->
-        <div class="pricing-toggle-container">
-          <span class="pricing-label active">Monthly Billing</span>
-          <label class="toggle-switch" for="billing-toggle">
-            <input type="checkbox" id="billing-toggle" aria-label="Toggle annual or monthly pricing switch">
-            <span class="slider-round"></span>
-          </label>
-          <span class="pricing-label">Annual Billing (Save 30%)</span>
-        </div>
-
-        <div class="pricing-grid">
-          
-          <!-- Plan 1: Self-Paced -->
-          <div class="glass-card pricing-card reveal" id="pricing-card-self">
-            <div class="pricing-plan-header">
-
-              <h3>Self-Paced</h3>
-              <p>Learn on your schedule, at your own speed.</p>
-            </div>
-            
-            <div class="pricing-price">
-              <span class="price-currency">$</span>
-              <span class="price-val" id="price-self" data-monthly="49" data-annual="39">49</span>
-              <span class="price-period">/mo</span>
-            </div>
-
-            <ul class="pricing-features">
-              <li>140+ HD Video Lessons</li>
-              <li>Interactive Code Sandboxes</li>
-              <li>Discord Student Channels</li>
-              <li>Verified Certificates</li>
-              <li class="disabled">Live Cohort Sessions</li>
-              <li class="disabled">1-on-1 Mentor Audits</li>
-              <li class="disabled">Job Placement Guarantee</li>
-            </ul>
-
-            <button class="btn btn-secondary enroll-trigger" data-role-pref="self-paced" id="btn-pricing-self">Get Started</button>
-          </div>
-
-          <!-- Plan 2: Cohort Based -->
-          <div class="glass-card pricing-card popular reveal" id="pricing-card-cohort">
-            <div class="pricing-plan-header">
-
-              <h3>Hybrid Cohort</h3>
-              <p>Weekly live classes, group projects, guided focus.</p>
-            </div>
-            
-            <div class="pricing-price">
-              <span class="price-currency">$</span>
-              <span class="price-val" id="price-cohort" data-monthly="149" data-annual="119">149</span>
-              <span class="price-period">/mo</span>
-            </div>
-
-            <ul class="pricing-features">
-              <li>All Self-Paced Access</li>
-              <li>Weekly Live Interactive Lectures</li>
-              <li>Syllabus capstone code reviews</li>
-              <li>Dedicated Group Projects</li>
-              <li>Active Slack Workspace</li>
-              <li class="disabled">1-on-1 Weekly Private Calls</li>
-              <li class="disabled">Resume & Portfolio Audit</li>
-            </ul>
-
-            <button class="btn btn-primary enroll-trigger" data-role-pref="hybrid-cohort" id="btn-pricing-cohort">Enroll in Cohort</button>
-          </div>
-
-          <!-- Plan 3: Mentor Led -->
-          <div class="glass-card pricing-card reveal" id="pricing-card-mentor">
-            <div class="pricing-plan-header">
-
-              <h3>1-on-1 Mentor Led</h3>
-              <p>Dedicated personal coach for complete career transition.</p>
-            </div>
-            
-            <div class="pricing-price">
-              <span class="price-currency">$</span>
-              <span class="price-val" id="price-mentor" data-monthly="299" data-annual="239">299</span>
-              <span class="price-period">/mo</span>
-            </div>
-
-            <ul class="pricing-features">
-              <li>All Hybrid Cohort Access</li>
-              <li>Weekly 45m private mentor calls</li>
-              <li>Unlimited asynchronous code review</li>
-              <li>Portfolio & Resume Audits</li>
-              <li>Mock Tech Interview Prep</li>
-              <li>Exclusive Recruiter Database</li>
-              <li>Job Placement Guarantee</li>
-            </ul>
-
-            <button class="btn btn-secondary enroll-trigger" data-role-pref="mentor-led" id="btn-pricing-mentor">Get 1-on-1 Coach</button>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
     <!-- FAQ SECTION -->
     <section class="faq" id="faq">
       <div class="container">
@@ -992,12 +875,12 @@
 
           <div class="faq-item">
             <div class="faq-header">
-              <h3>How does the job placement guarantee work?</h3>
+              <h3>Is this program really free?</h3>
               <span class="faq-icon">+</span>
             </div>
             <div class="faq-content">
               <div class="faq-body">
-                For students in the 1-on-1 Mentor-Led plan, if you do not receive an employment offer in a data-related field within 180 days of graduation, you will receive a 100% tuition refund. Certain application and networking activity metrics must be met to maintain eligibility.
+                Yes. StatIQ Data Academy is 100% free and open-source. There are no hidden subscription fees, paywalls, or upfront costs. All of our code tutorials, practice datasets, and structured syllabus modules are freely accessible to anyone wanting to learn data science.
               </div>
             </div>
           </div>
@@ -1034,8 +917,8 @@
         <h4>Academy</h4>
         <ul>
           <li><a href="#tracks">Learning Paths</a></li>
+          <li><a href="#calculator">Study Planner</a></li>
           <li><a href="#curriculum">Syllabus</a></li>
-          <li><a href="#pricing">Pricing Models</a></li>
           <li><a href="#faq">Student FAQ</a></li>
         </ul>
       </div>
@@ -1076,8 +959,8 @@
       <button class="modal-close" aria-label="Close registration modal">✕</button>
       
       <div class="modal-header">
-        <h3>Join StatIQ Academy</h3>
-        <p>Submit details below to check cohort availability and speak with an advisor.</p>
+        <h3>Join the Study Community</h3>
+        <p>Submit your details to join our student Discord, receive study guides, and get platform updates.</p>
       </div>
 
       <form class="modal-form" id="lead-form">
@@ -1098,13 +981,10 @@
             <option value="data-analysis">Data Analysis</option>
             <option value="data-science">Data Science & ML</option>
             <option value="business-intelligence">Business Intelligence</option>
-            <option value="self-paced">Self-Paced Program</option>
-            <option value="hybrid-cohort">Hybrid Cohort Program</option>
-            <option value="mentor-led">1-on-1 Mentor Led Program</option>
           </select>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Submit Enrollment Request</button>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Join Study Community</button>
       </form>
     </div>
   </div>
@@ -1114,8 +994,8 @@
     <div class="toast" id="success-toast">
       <span class="toast-icon">✓</span>
       <div>
-        <h4 style="font-size:0.95rem; font-weight:700;">Submission Received!</h4>
-        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Our academic advisors will reach out in 24 hours.</p>
+        <h4 style="font-size:0.95rem; font-weight:700;">Welcome to StatIQ!</h4>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Check your email for the community invite link.</p>
       </div>
     </div>
   </div>

@@ -151,87 +151,73 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // SALARY & ROI CALCULATOR
+  // STUDY PLANNER & TIMELINE CALCULATOR
   // ==========================================
-  const currentSalarySlider = document.getElementById('current-salary');
   const targetRoleSelect = document.getElementById('target-role');
   const studyHoursSlider = document.getElementById('study-hours');
-  
-  const currentSalaryVal = document.getElementById('current-salary-val');
   const studyHoursVal = document.getElementById('study-hours-val');
   
-  const expectedSalaryText = document.getElementById('expected-salary');
-  const salaryIncreaseText = document.getElementById('salary-increase');
+  const totalStudyHoursText = document.getElementById('total-study-hours');
+  const recommendedPaceText = document.getElementById('recommended-pace');
   const graduationTimeText = document.getElementById('graduation-time');
-  const paybackPeriodText = document.getElementById('payback-period');
+  const projectMilestonesText = document.getElementById('project-milestones');
 
-  const TUITION_COST = 3600; // Flat program cost for ROI calculations
-
-  function formatCurrency(num) {
-    return '$' + num.toLocaleString('en-US');
-  }
-
-  function calculateROI() {
-    const currentSalary = parseInt(currentSalarySlider.value);
-    const targetRole = targetRoleSelect.value;
+  function calculateStudyPlan() {
+    if (!targetRoleSelect || !studyHoursSlider) return;
+    
+    const track = targetRoleSelect.value;
     const studyHours = parseInt(studyHoursSlider.value);
 
-    // Dynamic output updates on labels
-    currentSalaryVal.textContent = formatCurrency(currentSalary);
-    studyHoursVal.textContent = `${studyHours} hrs`;
+    // Update study hours input label
+    studyHoursVal.textContent = `${studyHours} hrs/wk`;
 
-    // Baseline salary per career role
-    let baseTargetSalary = 75000;
-    switch (targetRole) {
-      case 'data-analyst':
-        baseTargetSalary = 78000;
+    // Total content hours and milestone counts based on track
+    let totalHours = 300;
+    let milestones = 4;
+    
+    switch (track) {
+      case 'statistics':
+        totalHours = 100;
+        milestones = 1;
         break;
-      case 'business-analyst':
-        baseTargetSalary = 84000;
+      case 'data-analysis':
+        totalHours = 180;
+        milestones = 2;
         break;
-      case 'bi-engineer':
-        baseTargetSalary = 96000;
+      case 'data-science':
+        totalHours = 300;
+        milestones = 4;
         break;
-      case 'data-scientist':
-        baseTargetSalary = 120000;
+      case 'business-intelligence':
+        totalHours = 200;
+        milestones = 4;
         break;
     }
 
-    // Adjust expected salary based on study commitment (higher hours/wk suggests faster/more intensive learning)
-    const hoursMultiplier = 1 + (studyHours - 5) * 0.005; 
-    let expectedSalary = Math.round(baseTargetSalary * hoursMultiplier);
+    const weeksToGrad = Math.ceil(totalHours / studyHours);
 
-    // Make sure expected salary is at least $12,000 higher than current salary (career pivot boost)
-    if (expectedSalary <= currentSalary) {
-      expectedSalary = currentSalary + 15000;
-    }
-
-    const salaryIncrease = expectedSalary - currentSalary;
-    
-    // Program has 300 core curriculum hours
-    const totalProgramHours = 300;
-    const weeksToGrad = Math.ceil(totalProgramHours / studyHours);
-
-    // Payback period (Months) = Tuition Cost / (Monthly Salary Increase)
-    const monthlyIncrease = salaryIncrease / 12;
-    const paybackMonths = TUITION_COST / monthlyIncrease;
-
-    // Render results with slight animation or counting values
-    animateValue(expectedSalaryText, expectedSalary, formatCurrency);
-    animateValue(salaryIncreaseText, salaryIncrease, formatCurrency);
-    graduationTimeText.textContent = `${weeksToGrad} Weeks`;
-    
-    if (paybackMonths < 1) {
-      paybackPeriodText.textContent = 'Immediate';
+    // Determine pacing label
+    let pace = 'Moderate';
+    if (studyHours < 10) {
+      pace = 'Slow / Self-Paced';
+    } else if (studyHours >= 10 && studyHours <= 20) {
+      pace = 'Moderate / Regular';
     } else {
-      paybackPeriodText.textContent = `${paybackMonths.toFixed(1)} Months`;
+      pace = 'Intensive / Fast-Track';
     }
+
+    // Render results dynamically
+    animateValue(totalStudyHoursText, totalHours, val => `${val} Hrs`);
+    recommendedPaceText.textContent = pace;
+    graduationTimeText.textContent = `${weeksToGrad} Weeks`;
+    animateValue(projectMilestonesText, milestones, val => `${val} Project${val > 1 ? 's' : ''}`);
   }
 
   // Simple numeric animation helper
   function animateValue(element, targetVal, formatter) {
-    const currentTextVal = element.textContent.replace(/[$,]/g, '');
-    const startVal = isNaN(currentTextVal) ? 0 : parseInt(currentTextVal);
+    if (!element) return;
+    const currentTextVal = element.textContent.replace(/[^0-9]/g, '');
+    const startVal = isNaN(currentTextVal) || currentTextVal === '' ? 0 : parseInt(currentTextVal);
     const duration = 250; // ms
     const startTime = performance.now();
 
@@ -248,13 +234,12 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(update);
   }
 
-  // Event Listeners for ROI Calculator
-  if (currentSalarySlider && targetRoleSelect && studyHoursSlider) {
-    currentSalarySlider.addEventListener('input', calculateROI);
-    targetRoleSelect.addEventListener('change', calculateROI);
-    studyHoursSlider.addEventListener('input', calculateROI);
+  // Event Listeners for Study Planner
+  if (targetRoleSelect && studyHoursSlider) {
+    targetRoleSelect.addEventListener('change', calculateStudyPlan);
+    studyHoursSlider.addEventListener('input', calculateStudyPlan);
     // Initial run
-    calculateROI();
+    calculateStudyPlan();
   }
 
   // ==========================================
@@ -365,37 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dotsContainer.addEventListener('click', resetAutoplay);
   }
 
-  // ==========================================
-  // PRICING ANNUALLY / MONTHLY TOGGLE
-  // ==========================================
-  const pricingToggle = document.getElementById('billing-toggle');
-  const pricingLabels = document.querySelectorAll('.pricing-label');
-  const priceValues = document.querySelectorAll('.price-val');
-  const pricePeriods = document.querySelectorAll('.price-period');
 
-  if (pricingToggle) {
-    pricingToggle.addEventListener('change', () => {
-      const isAnnual = pricingToggle.checked;
-      
-      pricingLabels[0].classList.toggle('active', !isAnnual);
-      pricingLabels[1].classList.toggle('active', isAnnual);
-
-      priceValues.forEach(priceEl => {
-        const baseMonthlyVal = parseInt(priceEl.getAttribute('data-monthly'));
-        const baseAnnualVal = parseInt(priceEl.getAttribute('data-annual'));
-        
-        if (isAnnual) {
-          animateValue(priceEl, baseAnnualVal, val => val.toString());
-        } else {
-          animateValue(priceEl, baseMonthlyVal, val => val.toString());
-        }
-      });
-
-      pricePeriods.forEach(periodEl => {
-        periodEl.textContent = isAnnual ? '/yr' : '/mo';
-      });
-    });
-  }
 
   // ==========================================
   // LEAD GENERATION MODAL
