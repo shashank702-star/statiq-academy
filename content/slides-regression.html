@@ -57,8 +57,8 @@
       border-radius: 12px;
       width: 100%;
       max-width: 800px;
-      height: 450px;
-      padding: 48px;
+      height: 480px;
+      padding: 40px 48px;
       display: none;
       flex-direction: column;
       justify-content: center;
@@ -71,12 +71,14 @@
     .slide h2 {
       font-size: 2.2rem;
       color: var(--primary);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      margin-top: 0;
     }
     .slide p {
       color: var(--text-main);
-      font-size: 1.25rem;
-      line-height: 1.6;
+      font-size: 1.15rem;
+      line-height: 1.5;
+      margin-bottom: 16px;
     }
     .slide-number {
       position: absolute;
@@ -119,11 +121,24 @@
       border: 1px solid var(--color-border);
       border-left: 4px solid var(--secondary);
       border-radius: 6px;
-      padding: 12px 20px;
-      margin: 20px 0;
+      padding: 10px 20px;
+      margin: 12px 0;
       font-family: var(--font-code);
       font-size: 1.1rem;
       color: #38bdf8;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 14px;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      color: #f472b6;
     }
   </style>
 </head>
@@ -138,8 +153,8 @@
     <div class="slide active" id="slide-1">
       <h2>Introduction to Linear Regression</h2>
       <p>Linear Regression is one of the most fundamental algorithms in statistical machine learning. It models the linear relationship between a dependent variable (Y) and one or more independent variables (X).</p>
-      <p>Used for forecasting trends, sales predictions, and finding correlations.</p>
-      <span class="slide-number">1 / 4</span>
+      <p>Commonly used for forecasting trends, revenue projections, and uncovering mathematical correlations between features.</p>
+      <span class="slide-number">1 / 6</span>
     </div>
 
     <!-- Slide 2 -->
@@ -152,9 +167,9 @@
       <ul>
         <li><strong>&beta;&beta; (Intercept)</strong>: The value of Y when X is 0.</li>
         <li><strong>&beta;&beta; (Slope)</strong>: The rate of change of Y per unit change of X.</li>
-        <li><strong>&epsilon;&epsilon; (Error/Residual)</strong>: The difference between observed and predicted values.</li>
+        <li><strong>&epsilon;&epsilon; (Error/Residual)</strong>: The random variation not captured by the line.</li>
       </ul>
-      <span class="slide-number">2 / 4</span>
+      <span class="slide-number">2 / 6</span>
     </div>
 
     <!-- Slide 3 -->
@@ -164,8 +179,8 @@
       <div class="formula">
         Minimize RSS = &Sigma; (y_i - &ycirc;_i)&sup2;
       </div>
-      <p>This is what the interactive regression plot on the StatIQ homepage lets you visualize!</p>
-      <span class="slide-number">3 / 4</span>
+      <p>This is what the interactive regression plot on the StatIQ homepage lets you visualize! By adjusting the sliders, you manually solve OLS.</p>
+      <span class="slide-number">3 / 6</span>
     </div>
 
     <!-- Slide 4 -->
@@ -174,9 +189,41 @@
       <p>We evaluate our predictions using metrics like:</p>
       <ul>
         <li><strong>R&sup2; (Coefficient of Determination)</strong>: Represents the proportion of variance in Y explained by X (scale of 0 to 1).</li>
-        <li><strong>MSE (Mean Squared Error)</strong>: Average of the squared error terms.</li>
+        <li><strong>MSE (Mean Squared Error)</strong>: Average of the squared error terms. Bigger errors are penalized heavier.</li>
       </ul>
-      <span class="slide-number">4 / 4</span>
+      <span class="slide-number">4 / 6</span>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide" id="slide-5">
+      <h2>Practical Python Code Guide</h2>
+      <p>Implement Simple Linear Regression using Scikit-Learn:</p>
+      <pre><code><span style="color: #6b7280; font-style: italic;"># Fit linear model using Python</span>
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
+X = np.array([[10], [15], [20], [30]]) # Study Hours
+y = np.array([55, 68, 75, 89])        # Score
+
+model = LinearRegression()
+model.fit(X, y)
+
+print(f"Slope (m): {model.coef_[0]:.2f}")
+print(f"Intercept (c): {model.intercept_:.2f}")</code></pre>
+      <span class="slide-number">5 / 6</span>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide" id="slide-6">
+      <h2>Core Assumptions of OLS</h2>
+      <p>For OLS estimates to be the Best Linear Unbiased Estimator (BLUE), the model must satisfy these assumptions:</p>
+      <ul>
+        <li><strong>Linearity</strong>: The relationship between X and Y must be linear.</li>
+        <li><strong>Independence</strong>: Residuals must be independent of each other.</li>
+        <li><strong>Homoscedasticity</strong>: Residuals must have constant variance at every level of X.</li>
+        <li><strong>Normality</strong>: Residuals must be normally distributed.</li>
+      </ul>
+      <span class="slide-number">6 / 6</span>
     </div>
   </div>
 

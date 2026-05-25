@@ -83,17 +83,28 @@
       font-size: 0.8rem;
       margin-bottom: 12px;
     }
+    .guide-step {
+      border-left: 2px solid var(--color-border);
+      padding-left: 20px;
+      margin-left: 10px;
+      margin-bottom: 24px;
+    }
+    .guide-step h4 {
+      margin-top: 0;
+      color: #e5e7eb;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
-    <span class="badge">Study Notes</span>
+    <span class="badge">Study Notes & Guided Lessons</span>
     <h1>Probability & Statistics Foundations</h1>
-    <p>Core probability theories, random variables, sample statistics, distributions, and hypothesis testing equations needed for data science interviews and model building.</p>
+    <p>Core probability theories, distributions, and hypothesis testing equations coupled with detailed, step-by-step guided lessons.</p>
 
+    <!-- SECTION 1 -->
+    <h2>1. Bayes' Theorem</h2>
     <div class="card">
-      <h3>1. Bayes' Theorem</h3>
       <p>Bayes' Theorem updates the probability of a hypothesis (A) based on new evidence (B).</p>
       <div class="formula">
         P(A|B) = [ P(B|A) * P(A) ] / P(B)
@@ -106,42 +117,86 @@
       </ul>
     </div>
 
-    <h2>2. Descriptive Metrics</h2>
-    <p>The statistical signals representing distribution shapes:</p>
+    <h3>📖 Guided Lesson: The Medical Test Paradox</h3>
+    <p>Let's walk through a classic interview question using Bayes' Theorem: <em>If a medical test for a disease has a 99% accuracy rate, and you test positive, what is the probability that you actually have the disease?</em></p>
     
-    <h3>Mean (Expected Value)</h3>
-    <div class="formula">
-      &mu; = E[X] = &Sigma; (x_i * P(X = x_i))
+    <div class="guide-step">
+      <h4>Step 1: Set the Prior Probabilities</h4>
+      <p>Suppose the disease is rare, affecting only <strong>0.1%</strong> of the population.
+      <br><code>P(Disease) = 0.001</code>
+      <br><code>P(No Disease) = 0.999</code></p>
     </div>
 
-    <h3>Variance (&sigma;&sup2;)</h3>
-    <p>Measures dispersion around the mean.</p>
-    <div class="formula">
-      Var(X) = E[(X - &mu;)&sup2;] = &Sigma; ((x_i - &mu;)&sup2; * P(X = x_i))
-    </div>
-
-    <h2>3. The Central Limit Theorem (CLT)</h2>
-    <p>Regardless of the population's distribution, the distribution of the sample mean (&bar;X) approaches a normal distribution as sample size (n) increases (usually n &ge; 30).</p>
-    <div class="formula">
-      &bar;X ~ N(&mu;, &sigma;&sup2;/n)
-    </div>
-    <p>Standard Error of the Mean (SE):</p>
-    <div class="formula">
-      SE = &sigma; / &radic;n
-    </div>
-
-    <h2>4. Hypothesis Testing Cheat Sheet</h2>
-    <div class="card" style="margin-top:16px;">
-      <h3>Confidence Intervals (CI)</h3>
-      <div class="formula">
-        CI = &bar;X &plusmn; Z* * (s / &radic;n)
-      </div>
-      <p>Standard Z-scores to memorize for two-tailed tests:</p>
+    <div class="guide-step">
+      <h4>Step 2: Define Test Accuracy (Likelihoods)</h4>
+      <p>A 99% accuracy rate means:
       <ul>
-        <li><strong>90% Confidence</strong>: Z* = 1.645</li>
-        <li><strong>95% Confidence</strong>: Z* = 1.96</li>
-        <li><strong>99% Confidence</strong>: Z* = 2.576</li>
+        <li>99% probability of testing positive if you have the disease: <code>P(Positive | Disease) = 0.99</code></li>
+        <li>1% false positive rate (testing positive when you don't have the disease): <code>P(Positive | No Disease) = 0.01</code></li>
       </ul>
+      </p>
+    </div>
+
+    <div class="guide-step">
+      <h4>Step 3: Calculate Marginal Probability P(Positive)</h4>
+      <p>This is the sum of testing positive under all states:
+      <br><code>P(Positive) = [P(Pos|Disease) * P(Disease)] + [P(Pos|No Disease) * P(No Disease)]</code>
+      <br><code>P(Positive) = [0.99 * 0.001] + [0.01 * 0.999] = 0.00099 + 0.00999 = 0.01098</code> (approx. 1.1%)</p>
+    </div>
+
+    <div class="guide-step">
+      <h4>Step 4: Solve for P(Disease | Positive)</h4>
+      <p>Apply Bayes' Theorem:
+      <br><code>P(Disease | Positive) = [0.99 * 0.001] / 0.01098 = 0.00099 / 0.01098 = 0.0901</code></p>
+      <p><strong>Result:</strong> Despite the test being 99% accurate, you only have a <strong>9.01% chance</strong> of actually having the disease! This is because the disease is extremely rare, making false positives far more common than true positives.</p>
+    </div>
+
+    <!-- SECTION 2 -->
+    <h2>2. A/B Testing Significance</h2>
+    <p>A/B testing is statistical hypothesis testing applied to business decisions (e.g. testing conversion rates of two site layouts).</p>
+
+    <div class="card">
+      <h3>Two-Sample Z-Test for Proportions Formula</h3>
+      <div class="formula">
+        Z = (p_A - p_B) / sqrt( p * (1 - p) * (1/n_A + 1/n_B) )
+      </div>
+      <p>Where <code>p</code> is the pooled conversion rate: <code>p = (x_A + x_B) / (n_A + n_B)</code></p>
+    </div>
+
+    <h3>📖 Guided Lesson: Page Layout A vs. B Conversion Test</h3>
+    <p>Let's walk through determining if a new checkout button color significantly increased conversions.</p>
+
+    <div class="guide-step">
+      <h4>Step 1: Set Hypotheses</h4>
+      <p>
+        - **Null Hypothesis ($H_0$)**: No difference in conversion rates ($p_A = p_B$).
+        <br>- **Alternative Hypothesis ($H_1$)**: Layout B has a different conversion rate ($p_A &ne; p_B$).
+      </p>
+    </div>
+
+    <div class="guide-step">
+      <h4>Step 2: Collect Sample Data</h4>
+      <ul>
+        <li>Layout A (Control): $n_A = 10,000$ visitors, $x_A = 400$ conversions ($p_A = 4.0\%$)</li>
+        <li>Layout B (Variant): $n_B = 10,000$ visitors, $x_B = 460$ conversions ($p_B = 4.6\%$)</li>
+      </ul>
+    </div>
+
+    <div class="guide-step">
+      <h4>Step 3: Calculate the Pooled Rate (p) and Standard Error</h4>
+      <p>
+        <code>p = (400 + 460) / (10,000 + 10,000) = 860 / 20,000 = 0.043</code> (4.3%)
+        <br>Standard Error (SE) = <code>sqrt( 0.043 * (1 - 0.043) * (1/10,000 + 1/10,000) ) = 0.00287</code>
+      </p>
+    </div>
+
+    <div class="guide-step">
+      <h4>Step 4: Calculate the Z-Statistic and Compare to Alpha (5%)</h4>
+      <p>
+        <code>Z = (0.040 - 0.046) / 0.00287 = -0.006 / 0.00287 = -2.09</code>
+        <br>Taking the absolute value, $|Z| = 2.09$.
+      </p>
+      <p>Since $2.09$ is greater than the critical value $1.96$ (corresponding to a 95% confidence standard threshold $\alpha = 0.05$), we <strong>reject the null hypothesis</strong>. The 15% increase in conversion rate (from 4.0% to 4.6%) is statistically significant!</p>
     </div>
   </div>
 </body>

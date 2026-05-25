@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaaS Churn Analysis & Classifier Guide | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+      color: #f472b6;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--secondary);
+      border-radius: 4px;
+      color: var(--secondary);
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+    .step-list {
+      margin-top: 20px;
+    }
+    .step-list li {
+      margin-bottom: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Guided Practice & Coding Lesson</span>
+    <h1>SaaS Churn Analysis & Classifier Guide</h1>
+    <p>A step-by-step practical coding lesson using Python, Pandas, and Scikit-Learn to load the cohort dataset, analyze indicators, and train a predictive Logistic Regression model.</p>
+
+    <div class="card">
+      <h3>🎯 Learning Objective</h3>
+      <p>Use the provided <code>customer-churn-data.csv</code> dataset to predict whether a customer is at risk of churning (defined as a <code>churn_risk_score &gt; 0.5</code>).</p>
+      <ul class="step-list">
+        <li><strong>Step 1</strong>: Load and parse variables using Pandas DataFrames.</li>
+        <li><strong>Step 2</strong>: Conduct Exploratory Analysis to identify correlation vectors.</li>
+        <li><strong>Step 3</strong>: Clean features, construct metrics, and split data into train/test arrays.</li>
+        <li><strong>Step 4</strong>: Fit a classifier and measure predictions.</li>
+      </ul>
+    </div>
+
+    <h2>Step 1: Load the Dataset</h2>
+    <p>Read the CSV file from the academy data endpoint. Double check column definitions.</p>
+    <pre><code>import pandas as pd
+
+# Load practice dataset
+df = pd.read_csv("content/customer-churn-data.csv")
+
+# View dataset overview
+print(df.info())
+print(df.head(3))</code></pre>
+
+    <h2>Step 2: Exploratory Data Analysis (EDA)</h2>
+    <p>Let's find the factors most strongly correlated with high churn risk. Customers with high support ticket counts or low active user login counts typically show higher scores.</p>
+    <pre><code># Check correlation matrix for numeric columns
+numeric_cols = ["tenure_months", "monthly_charges", "total_charges", "churn_risk_score", "support_tickets", "active_users"]
+corr_matrix = df[numeric_cols].corr()
+
+# Check correlations specifically against Churn Risk
+print(corr_matrix["churn_risk_score"].sort_values(ascending=False))</code></pre>
+
+    <h2>Step 3: Define Target Variable & Feature Vectors</h2>
+    <p>Convert the continuous <code>churn_risk_score</code> into a binary classification label: <code>is_churn_risk</code> (1 if score &gt; 0.5, else 0).</p>
+    <pre><code>from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# Construct target label
+df["is_churn_risk"] = (df["churn_risk_score"] > 0.5).astype(int)
+
+# Select feature columns (omit customer id/name)
+features = ["tenure_months", "monthly_charges", "support_tickets", "active_users"]
+X = df[features]
+y = df["is_churn_risk"]
+
+# Split dataset (80% train, 20% test)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Scale inputs
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)</code></pre>
+
+    <h2>Step 4: Train & Evaluate Logistic Regression</h2>
+    <p>Fit the classifier and evaluate model accuracy and recall metrics.</p>
+    <pre><code>from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, accuracy_score
+
+# Initialize & fit model
+clf = LogisticRegression()
+clf.fit(X_train_scaled, y_train)
+
+# Predict test set
+y_pred = clf.predict(X_test_scaled)
+
+print(f"Classification Accuracy: {accuracy_score(y_test, y_pred) * 100:.1f}%")
+print("\nClassification Report:\n", classification_report(y_test, y_pred))</code></pre>
+  </div>
+</body>
+</html>

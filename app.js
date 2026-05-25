@@ -478,6 +478,14 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "content/customer-churn-data.csv"
     },
     {
+      title: "SaaS Churn Analysis & Classifier Guide",
+      category: "guide",
+      description: "A step-by-step practical coding lesson using Python, Pandas, and Scikit-Learn to load the cohort dataset, analyze indicators, and train a predictive classifier.",
+      tags: ["Python", "Pandas", "Scikit-Learn"],
+      downloadText: "Read Study Guide",
+      link: "content/customer-churn-guide.html"
+    },
+    {
       title: "NYC Taxi & Limousine Dataset (2025)",
       category: "dataset",
       description: "A cleaned, highly-optimized dataset containing 12 million trips in Parquet format, perfect for local regression modeling, geospatial analysis, and performance tests.",
