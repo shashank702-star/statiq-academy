@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern SQL Optimization Cheatsheet | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+      color: #f472b6;
+    }
+    .sql-kw { color: #f472b6; font-weight: bold; }
+    .sql-fn { color: #60a5fa; }
+    .sql-str { color: #34d399; }
+    .sql-comment { color: #6b7280; font-style: italic; }
+    
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .tip-box {
+      background-color: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid var(--primary);
+      padding: 16px;
+      border-radius: 4px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-btn">← Back to StatIQ Academy</a>
+    <h1>Modern SQL Optimization Cheatsheet</h1>
+    <p>A reference guide for high-speed database transformations, cohort layouts, recursive queries, and query performance optimizations on modern column-oriented engines (Snowflake, BigQuery, DuckDB) and transactional engines (PostgreSQL).</p>
+
+    <h2>1. Window Functions & Custom Frames</h2>
+    <p>Window functions allow row transformations relative to partition segments without grouping rows. Understanding the exact sliding window frame controls data volume and calculations.</p>
+    <pre><code><span class="sql-comment">-- Calculate 7-day moving average of revenues</span>
+<span class="sql-kw">SELECT</span>
+  order_date,
+  daily_revenue,
+  <span class="sql-fn">AVG</span>(daily_revenue) <span class="sql-kw">OVER</span>(
+    <span class="sql-kw">ORDER BY</span> order_date
+    <span class="sql-kw">ROWS BETWEEN</span> 6 <span class="sql-kw">PRECEDING AND CURRENT ROW</span>
+  ) <span class="sql-kw">AS</span> rolling_7day_avg
+<span class="sql-kw">FROM</span> daily_sales;
+
+<span class="sql-comment">-- Cumulative running sum over partitions</span>
+<span class="sql-kw">SELECT</span>
+  user_id,
+  event_time,
+  <span class="sql-fn">SUM</span>(points) <span class="sql-kw">OVER</span>(
+    <span class="sql-kw">PARTITION BY</span> user_id
+    <span class="sql-kw">ORDER BY</span> event_time
+    <span class="sql-kw">ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW</span>
+  ) <span class="sql-kw">AS</span> lifetime_points
+<span class="sql-kw">FROM</span> user_events;</code></pre>
+
+    <div class="tip-box">
+      <strong>Optimization Tip:</strong> Prefer <code>ROWS</code> over <code>RANGE</code>. <code>ROWS</code> checks physical row numbers which is significantly faster and uses less memory. <code>RANGE</code> calculates values relative to logical values and requires extra processing passes.
+    </div>
+
+    <h2>2. Filtering Window Results using QUALIFY</h2>
+    <p>In modern analytical warehouses (Snowflake, BigQuery, DuckDB), you can avoid wrapping queries in outer subqueries to filter window results by utilizing the <code>QUALIFY</code> clause directly.</p>
+    <pre><code><span class="sql-comment">-- Get only the most recent purchase for each customer (Instant filtering)</span>
+<span class="sql-kw">SELECT</span>
+  customer_id,
+  order_id,
+  order_date,
+  total_amount
+<span class="sql-kw">FROM</span> orders
+<span class="sql-kw">QUALIFY</span> <span class="sql-fn">ROW_NUMBER</span>() <span class="sql-kw">OVER</span>(
+  <span class="sql-kw">PARTITION BY</span> customer_id
+  <span class="sql-kw">ORDER BY</span> order_date <span class="sql-kw">DESC</span>
+) = 1;</code></pre>
+
+    <h2>3. Hierarchical Graph Parsing via Recursive CTEs</h2>
+    <p>Use recursive Common Table Expressions to parse trees, directory hierarchies, org charts, or multi-hop clickstreams.</p>
+    <pre><code><span class="sql-kw">WITH RECURSIVE</span> OrgChart <span class="sql-kw">AS</span> (
+  <span class="sql-comment">-- Anchor member: Start with top-level managers</span>
+  <span class="sql-kw">SELECT</span> employee_id, manager_id, employee_name, 1 <span class="sql-kw">AS</span> org_depth
+  <span class="sql-kw">FROM</span> employees
+  <span class="sql-kw">WHERE</span> manager_id <span class="sql-kw">IS NULL</span>
+
+  <span class="sql-kw">UNION ALL</span>
+
+  <span class="sql-comment">-- Recursive member: Link employees to managers</span>
+  <span class="sql-kw">SELECT</span> e.employee_id, e.manager_id, e.employee_name, o.org_depth + 1
+  <span class="sql-kw">FROM</span> employees e
+  <span class="sql-kw">JOIN</span> OrgChart o <span class="sql-kw">ON</span> e.manager_id = o.employee_id
+)
+<span class="sql-kw">SELECT</span> * <span class="sql-kw">FROM</span> OrgChart <span class="sql-kw">ORDER BY</span> org_depth, employee_name;</code></pre>
+
+    <h2>4. Analytical Cohort Transformations</h2>
+    <p>Designing user cohorts by signup date and calculating transaction offsets is the foundation of user retention calculations.</p>
+    <pre><code><span class="sql-kw">WITH</span> UserSignups <span class="sql-kw">AS</span> (
+  <span class="sql-kw">SELECT</span> user_id, <span class="sql-fn">DATE_TRUNC</span>(<span class="sql-str">'month'</span>, created_at) <span class="sql-kw">AS</span> cohort_month
+  <span class="sql-kw">FROM</span> users
+),
+UserRevenues <span class="sql-kw">AS</span> (
+  <span class="sql-kw">SELECT</span>
+    user_id,
+    <span class="sql-fn">DATE_TRUNC</span>(<span class="sql-str">'month'</span>, order_date) <span class="sql-kw">AS</span> activity_month,
+    <span class="sql-fn">SUM</span>(amount) <span class="sql-kw">AS</span> monthly_revenue
+  <span class="sql-kw">FROM</span> orders
+  <span class="sql-kw">GROUP BY</span> 1, 2
+)
+<span class="sql-kw">SELECT</span>
+  s.cohort_month,
+  <span class="sql-fn">DATEDIFF</span>(<span class="sql-str">'month'</span>, s.cohort_month, r.activity_month) <span class="sql-kw">AS</span> month_offset,
+  <span class="sql-fn">COUNT</span>(<span class="sql-kw">DISTINCT</span> s.user_id) <span class="sql-kw">AS</span> active_users,
+  <span class="sql-fn">SUM</span>(r.monthly_revenue) <span class="sql-kw">AS</span> cohort_revenue
+<span class="sql-kw">FROM</span> UserSignups s
+<span class="sql-kw">JOIN</span> UserRevenues r <span class="sql-kw">ON</span> s.user_id = r.user_id
+<span class="sql-kw">GROUP BY</span> 1, 2
+<span class="sql-kw">ORDER BY</span> 1, 2;</code></pre>
+  </div>
+</body>
+</html>

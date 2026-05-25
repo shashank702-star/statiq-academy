@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Retrieval-Augmented Generation (RAG) Blueprint | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+      color: #f472b6;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .step-num {
+      background: var(--primary);
+      color: var(--bg-darkest);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-btn">← Back to StatIQ Academy</a>
+    <h1>LLM Retrieval-Augmented Generation (RAG) Blueprint</h1>
+    <p>Retrieval-Augmented Generation (RAG) solves LLM hallucination and updates factual knowledge by searching and stuffing relevant document context into the model's prompt context window before execution. This walkthrough outlines the architecture of a production-level RAG system.</p>
+
+    <div class="card">
+      <h3>🧩 RAG Pipeline Architecture</h3>
+      <p>A production-ready RAG pipeline follows four sequential stages: chunking/ingestion, vector indexing, query retrieval, and LLM prompt generation.</p>
+    </div>
+
+    <h2><span class="step-num">1</span> Ingestion & Chunking</h2>
+    <p>Raw text documents (like PDFs, manuals, or database logs) are split into semantic chunks. Sliding window chunking ensures that paragraphs are not cut in half, preserving context bounds.</p>
+    <pre><code><span style="color: #6b7280; font-style: italic;"># In Python using LangChain recursive chunkers</span>
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,      <span style="color: #6b7280; font-style: italic;"># chunk length constraint</span>
+    chunk_overlap=200,    <span style="color: #6b7280; font-style: italic;"># sliding boundary overlay</span>
+    length_function=len,
+    is_separator_regex=False,
+)
+
+chunks = text_splitter.split_text(raw_document_text)</code></pre>
+
+    <h2><span class="step-num">2</span> Generating Dense Embeddings</h2>
+    <p>Convert raw text chunks into mathematical vectors representing semantic meaning using modern embeddings APIs.</p>
+    <pre><code><span style="color: #6b7280; font-style: italic;"># Using OpenAI text-embedding-3-small API (outputs 1536 dimensions)</span>
+import openai
+
+response = openai.Embedding.create(
+    model="text-embedding-3-small",
+    input="Sample text chunk to embed in database index"
+)
+embedding_vector = response['data'][0]['embedding']</code></pre>
+
+    <h2><span class="step-num">3</span> Vector Database Indexing (pgvector)</h2>
+    <p>Store vector outputs in a vector-capable database. For enterprise PostgreSQL setups, use the <code>pgvector</code> extension configured with an HNSW (Hierarchical Navigable Small World) index for fast approximate nearest neighbor searches.</p>
+    <pre><code><span style="color: #6b7280; font-style: italic;">-- Enable extension and create document table</span>
+<span style="color: #f472b6; font-weight: bold;">CREATE EXTENSION IF NOT EXISTS</span> vector;
+
+<span style="color: #f472b6; font-weight: bold;">CREATE TABLE</span> document_chunks (
+    id <span style="color: #f472b6; font-weight: bold;">SERIAL PRIMARY KEY</span>,
+    content <span style="color: #f472b6; font-weight: bold;">TEXT</span>,
+    embedding <span style="color: #f472b6; font-weight: bold;">vector</span>(1536) <span style="color: #6b7280; font-style: italic;">-- matching dimension size</span>
+);
+
+<span style="color: #6b7280; font-style: italic;">-- Create highly optimized HNSW index for Cosine Distance search</span>
+<span style="color: #f472b6; font-weight: bold;">CREATE INDEX ON</span> document_chunks <span style="color: #f472b6; font-weight: bold;">USING</span> hnsw (embedding vector_cosine_ops);</code></pre>
+
+    <h2><span class="step-num">4</span> Similarity Retrieval</h2>
+    <p>When a user asks a query, embed their query and run a cosine similarity query on the index to pull the top 3 matching chunks.</p>
+    <pre><code><span style="color: #6b7280; font-style: italic;">-- Retrieve top matching segments using Cosine operator (&lt;=&gt;)</span>
+<span style="color: #f472b6; font-weight: bold;">SELECT</span> content, 1 - (embedding &lt;=&gt; <span style="color: #60a5fa;">'[0.015, -0.023, ...]'</span>) <span style="color: #f472b6; font-weight: bold;">AS</span> similarity
+<span style="color: #f472b6; font-weight: bold;">FROM</span> document_chunks
+<span style="color: #f472b6; font-weight: bold;">ORDER BY</span> embedding &lt;=&gt; <span style="color: #60a5fa;">'[0.015, -0.023, ...]'</span>
+<span style="color: #f472b6; font-weight: bold;">LIMIT</span> 3;</code></pre>
+
+    <h2><span class="step-num">5</span> Prompt Context Stuffing & Execution</h2>
+    <p>Stuff the retrieved texts directly into the LLM system prompt as reference material, ensuring the response is anchored to facts.</p>
+    <pre><code>system_prompt = f"""
+You are an expert system. Answer the user's question using ONLY the context provided below.
+If the context does not contain the answer, reply that you do not know.
+
+DOCUMENT CONTEXT REFERENCE:
+1. {retrieved_chunks[0]}
+2. {retrieved_chunks[1]}
+3. {retrieved_chunks[2]}
+"""
+
+user_question = "How do we configure HNSW indexes in postgres?"
+
+<span style="color: #6b7280; font-style: italic;"># Submit parameters to the target LLM</span></code></pre>
+  </div>
+</body>
+</html>

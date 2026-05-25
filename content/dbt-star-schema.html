@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dbt Core Setup & Fact Star Modeling | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+      color: #f472b6;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-btn">← Back to StatIQ Academy</a>
+    <h1>dbt Core Setup & Fact Star Modeling</h1>
+    <p>A reference guide to compiling data warehouses using dbt (Data Build Tool) Core to form optimized dimensional layouts (Star Schemas) inside cloud analytical warehouses (Snowflake, BigQuery, Redshift).</p>
+
+    <div class="card">
+      <h3>⭐ The Star Schema Architecture</h3>
+      <p>Star Schemas partition models into two main layers:</p>
+      <ul>
+        <li><strong>Fact Tables (fact_*)</strong>: Quantitative transactional measurements (e.g. sales, logs, checkout amounts) containing keys linking to dimensions.</li>
+        <li><strong>Dimension Tables (dim_*)</strong>: Descriptive context attributes (e.g. customer name, product category, region details).</li>
+      </ul>
+    </div>
+
+    <h2>1. Defining Raw Sources (src.yml)</h2>
+    <p>Always reference raw transactional tables inside a source configuration file to isolate model code from schema changes.</p>
+    <pre><code><span style="color: #6b7280; font-style: italic;"># models/staging/src_stripe.yml</span>
+version: 2
+sources:
+  - name: stripe
+    database: raw_warehouse
+    schema: stripe_api
+    tables:
+      - name: charges
+      - name: customers</code></pre>
+
+    <h2>2. Staging Layer Model (stg_stripe_charges.sql)</h2>
+    <p>Cleanse, cast data types, and rename raw transaction fields in lightweight staging models.</p>
+    <pre><code><span style="color: #6b7280; font-style: italic;">-- models/staging/stg_stripe_charges.sql</span>
+WITH raw_charges AS (
+  SELECT * FROM {{ source('stripe', 'charges') }}
+)
+SELECT
+  id AS charge_id,
+  customer_id,
+  amount / 100.0 AS amount_usd, <span style="color: #6b7280; font-style: italic;">-- normalize pennies</span>
+  UPPER(currency) AS currency_code,
+  created_at AS charge_timestamp
+FROM raw_charges;</code></pre>
+
+    <h2>3. Dimension Model (dim_customers.sql)</h2>
+    <p>Build comprehensive dimensions aggregating context profiles.</p>
+    <pre><code><span style="color: #6b7280; font-style: italic;">-- models/marts/dim_customers.sql</span>
+WITH customers AS (
+  SELECT * FROM {{ ref('stg_stripe_customers') }}
+),
+charges AS (
+  SELECT * FROM {{ ref('stg_stripe_charges') }}
+),
+customer_spending AS (
+  SELECT
+    customer_id,
+    SUM(amount_usd) AS lifetime_spend,
+    COUNT(charge_id) AS total_orders
+  FROM charges
+  GROUP BY 1
+)
+SELECT
+  c.customer_id,
+  c.customer_name,
+  c.signup_date,
+  COALESCE(s.lifetime_spend, 0.0) AS lifetime_value,
+  COALESCE(s.total_orders, 0) AS total_orders
+FROM customers c
+LEFT JOIN customer_spending s ON c.customer_id = s.customer_id;</code></pre>
+
+    <h2>4. Testing Schema Assertions (schema.yml)</h2>
+    <p>Verify primary key integrity, null values constraints, and relationship integrity (foreign key mapping) using schema assertions.</p>
+    <pre><code><span style="color: #6b7280; font-style: italic;"># models/marts/schema.yml</span>
+version: 2
+models:
+  - name: dim_customers
+    description: "Descriptive master customer records containing lifetime spend metrics"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: fact_orders
+    description: "Detailed transactional order logs"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id</code></pre>
+  </div>
+</body>
+</html>

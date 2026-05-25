@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Best Practices -->
+  <title>StatIQ Data Academy | Master Data Science, Analytics, & BI</title>
+  <meta name="description" content="Go from beginner to industry-ready expert. Learn statistics, data analysis, machine learning, and business intelligence with an interactive curriculum and 1-on-1 mentorship.">
+  <meta name="keywords" content="Data Science course, learn data analysis, Business Intelligence bootcamp, statistics tutorials, machine learning, SQL, Python, Tableau, PowerBI">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+
+
+  <!-- Header / Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo" id="nav-logo">
+        <span class="logo-icon">S</span>
+        <span>Stat<span class="gradient-text">IQ</span></span>
+      </a>
+      
+      <nav>
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="#tracks">Learning Paths</a></li>
+          <li><a href="#sandbox">Data Sandbox</a></li>
+          <li><a href="#calculator">ROI Calculator</a></li>
+          <li><a href="#curriculum">Syllabus</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      
+      <div class="nav-actions">
+        <a href="#pricing" class="btn btn-secondary">Sign In</a>
+        <button class="btn btn-primary enroll-trigger" id="btn-header-enroll">Enroll Now</button>
+      </div>
+
+      <button class="menu-toggle" aria-label="Toggle Navigation Menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <span class="badge badge-cyan">Specialized Career Accelerator</span>
+          <h1 class="hero-title">Master the <br><span class="gradient-text">Language of Data</span></h1>
+
+          <p class="hero-subtitle">
+            Go from absolute beginner to senior-level practitioner. Build the mathematical core, program in Python & SQL, design dashboard structures, and implement production machine learning.
+          </p>
+          
+          <div class="hero-buttons">
+            <button class="btn btn-primary enroll-trigger" id="btn-hero-primary">Start Learning Free</button>
+            <a href="#tracks" class="btn btn-secondary" id="btn-hero-secondary">Explore Tracks</a>
+          </div>
+
+          <!-- Trust Indicators -->
+          <div class="trust-indicators">
+            <h4 class="trust-title">Our Graduates Work At</h4>
+            <div class="trust-logos">
+              <!-- Inline SVG representations of clean modern tech logos -->
+              <svg class="trust-logo" width="80" height="24" viewBox="0 0 100 30" fill="#6b7280" aria-label="Google logo">
+                <path d="M12 15c0-3.3 2.7-6 6-6 1.8 0 3.4.8 4.5 2.1l-2.8 2.8C19 13.2 18.5 13 18 13c-1.7 0-3 1.3-3 3s1.3 3 3 3c1.3 0 2.2-.8 2.6-1.8H18v-3.5h6.3c.1.4.2.8.2 1.3 0 3.8-2.6 6.5-6.5 6.5-3.3 0-6-2.7-6-6zm18 3c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6-6-2.7-6-6zm9.5 0c0-1.7-1.3-3.2-3.5-3.2s-3.5 1.5-3.5 3.2 1.3 3.2 3.5 3.2 3.5-1.5 3.5-3.2zm11.5 0c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6-6-2.7-6-6zm9.5 0c0-1.7-1.3-3.2-3.5-3.2s-3.5 1.5-3.5 3.2 1.3 3.2 3.5 3.2 3.5-1.5 3.5-3.2zm11.5 5.5V11.2h2.8v1.3c.7-1.1 2-1.8 3.5-1.8 3.3 0 5.2 2.2 5.2 5.3v6.5h-2.8v-6c0-1.6-.9-2.8-2.6-2.8-1.5 0-2.6 1.2-2.6 2.8v6H70zm24-5.5c0-3.3 2.7-6 6-6 1.7 0 3.2.7 4.2 1.8l-2.2 2.2c-.6-.6-1.3-1-2-1-1.8 0-3.2 1.4-3.2 3.2s1.4 3.2 3.2 3.2c1 0 1.6-.4 2.2-1l2.2 2.2c-1.2 1.2-2.8 2-4.4 2-3.3 0-6-2.7-6-6z"/>
+              </svg>
+              <svg class="trust-logo" width="80" height="24" viewBox="0 0 100 30" fill="#6b7280" aria-label="Meta logo">
+                <path d="M10 20c-3.3 0-6-2.7-6-6s2.7-6 6-6c1.6 0 3 .6 4 1.7L18.7 5C16.5 2.5 13.4 1 10 1 3.9 1 0 5.4 0 11s3.9 10 10 10c2.8 0 5.3-.9 7.2-2.6l-3-3c-.9.9-2.3 1.6-4.2 1.6zm22.5 0v-4.5c0-1.6-.9-2.8-2.6-2.8-1.5 0-2.6 1.2-2.6 2.8v4.5h-2.8V7.2h2.8v1.3c.7-1.1 2-1.8 3.5-1.8 3.3 0 5.2 2.2 5.2 5.3v8H32.5zm11.5-6h7v2.5h-7V17h8.5v2.5H41.2V7.2H53v2.5h-8.8V14zm19-4.2V19.5h-2.8V9.8h-2.5V7.2h7.8v2.6h-2.5zm15.5-2.6l-4 12.3h-2.8L72.2 7.2h3l2.5 9 2.5-9h3z"/>
+              </svg>
+              <svg class="trust-logo" width="80" height="24" viewBox="0 0 100 30" fill="#6b7280" aria-label="Stripe logo">
+                <path d="M3.7 14.3c0-2.3 1.8-3.7 4.7-3.7 1.5 0 2.8.4 3.7.8V9c0-1.8-1.3-2.6-3.2-2.6-1.5 0-2.8.4-3.8.9L4 5c1.4-.7 3.4-1.1 5.4-1.1 4 0 6.6 2 6.6 6.3v8.5c-.9.4-2.3.8-3.9.8-4.1.1-8.4-1.4-8.4-5.2zm8.4-.7V13c-.6-.4-1.4-.6-2.3-.6-1.8 0-2.8.8-2.8 2 0 1.2 1.1 1.9 2.8 1.9.9 0 1.7-.2 2.3-.6zm10.7 5.9V11.2h2.8v1.3c.7-1.1 2-1.8 3.5-1.8 3.3 0 5.2 2.2 5.2 5.3v6.5h-2.8v-6c0-1.6-.9-2.8-2.6-2.8-1.5 0-2.6 1.2-2.6 2.8v6h-2.8zm19.7-5.5V19.5h-2.8v-6.5c0-1.6-.9-2.8-2.6-2.8-1.5 0-2.6 1.2-2.6 2.8v6.5h-2.8V7.2h2.8v1.3c.7-1.1 2-1.8 3.5-1.8 3.3 0 5.2 2.2 5.2 5.3zm9 5.5v-6.5h-2.5V11.2h2.5V8.5h2.8v2.7H58v2.5h-3.2V19.5h-2.8z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Floating Visual elements (Mock Code Editor) -->
+        <div class="hero-visual reveal">
+          <div class="code-window">
+
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <span class="code-title">predictive_model.py</span>
+            </div>
+            
+            <div class="code-body">
+              <div class="code-line"><span class="kw">import</span> pandas <span class="kw">as</span> pd</div>
+              <div class="code-line"><span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LinearRegression</div>
+              <div class="code-line"><span class="comment"># Load dataset</span></div>
+              <div class="code-line">df = pd.<span class="fn">read_csv</span>(<span class="str">'career_stats.csv'</span>)</div>
+              <div class="code-line"></div>
+              <div class="code-line">X = df[[<span class="str">'study_hours'</span>]]</div>
+              <div class="code-line">y = df[<span class="str">'expected_salary'</span>]</div>
+              <div class="code-line"></div>
+              <div class="code-line"><span class="comment"># Train model</span></div>
+              <div class="code-line">model = <span class="fn">LinearRegression</span>().<span class="fn">fit</span>(X, y)</div>
+              <div class="code-line"></div>
+              <div class="code-line"><span class="fn">print</span>(<span class="str">f"Model Fit: {model.score(X, y):.3f}"</span>)</div>
+              <div class="code-line"><span class="comment">> Model Fit: 0.982</span></div>
+            </div>
+          </div>
+
+          <!-- Floating Badges -->
+          <div class="floating-overlay-card floating-1" id="float-badge-salary">
+            <div class="floating-card-icon">📈</div>
+            <div class="floating-card-text">
+              <h4>+40% Salary Hike</h4>
+              <p>Average graduate outcome</p>
+            </div>
+          </div>
+
+          <div class="floating-overlay-card floating-2" id="float-badge-grading">
+            <div class="floating-card-icon">🧠</div>
+            <div class="floating-card-text">
+              <h4>Real-time Feedback</h4>
+              <p>Visual testing sandbox</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY STATS STRIP -->
+    <section class="stats-bar">
+      <div class="container stats-grid">
+        <div class="stat-item reveal" id="stat-students">
+          <h3>10,000+</h3>
+          <p>Global Students</p>
+        </div>
+        <div class="stat-item reveal" id="stat-placement">
+          <h3>93%</h3>
+          <p>Hire Rate within 180 Days</p>
+        </div>
+        <div class="stat-item reveal" id="stat-salary">
+          <h3>$28,500</h3>
+          <p>Median Salary Increase</p>
+        </div>
+        <div class="stat-item reveal" id="stat-mentors">
+          <h3>250+</h3>
+          <p>Active Industry Mentors</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE TRACK EXPLORER -->
+    <section class="tracks" id="tracks">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="badge badge-purple">Curriculum Roadmap</span>
+          <h2>Four Disciplines, One Mastery</h2>
+
+          <p>We break down silos. Learn statistics, analysis, engineering, and deployment in unified sequential paths.</p>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="explorer-tabs">
+          <button class="tab-btn active" data-track="track-stats" id="tab-btn-stats">
+            <i>📊</i> Statistics & Probability
+          </button>
+          <button class="tab-btn" data-track="track-analysis" id="tab-btn-analysis">
+            <i>🔍</i> Data Analysis
+          </button>
+          <button class="tab-btn" data-track="track-ds" id="tab-btn-ds">
+            <i>🤖</i> Data Science & ML
+          </button>
+          <button class="tab-btn" data-track="track-bi" id="tab-btn-bi">
+            <i>🏢</i> Business Intelligence
+          </button>
+        </div>
+
+        <!-- Tab Panes -->
+        <div class="explorer-content">
+          
+          <!-- Tab 1: Statistics -->
+          <div class="track-pane active" id="track-stats">
+            <div class="track-info">
+              <h3><i>📊</i> Statistics & Probability</h3>
+              <p>
+                Build the core reasoning engine. Without robust statistics, ML algorithms are black boxes, and BI metrics are coincidences. Master how to design experiments, establish confidence bounds, and prove hypothesis testing.
+              </p>
+              
+              <div class="track-tools">
+                <h4>Core tools used</h4>
+                <div class="tools-list">
+                  <span class="tool-badge">Python</span>
+                  <span class="tool-badge">R-Lang</span>
+                  <span class="tool-badge">Numpy</span>
+                  <span class="tool-badge">SciPy</span>
+                  <span class="tool-badge">Jupyter</span>
+                </div>
+              </div>
+
+              <div class="skills-list">
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>Hypothesis Testing</h5>
+                    <p>Perform t-tests, ANOVA, and Chi-Square tests to prove data relationships.</p>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>A/B Testing Frameworks</h5>
+                    <p>Calculate minimum sample size, statistical power, and significance ratios.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="track-preview">
+              <div class="preview-card">
+                <span class="preview-tag">Milestone Project</span>
+                <h4>Healthcare Treatment Significance Simulator</h4>
+                <p>Verify clinical trials outcome by building an analytical script that checks p-value confidence margins across patient populations.</p>
+                <ul class="preview-list">
+                  <li>Compute bootstrap confidence intervals.</li>
+                  <li>Build permutation tests to check biases.</li>
+                  <li>Draft scientific briefs for review.</li>
+                </ul>
+                <button class="btn btn-secondary enroll-trigger" data-role-pref="statistics" id="btn-stats-project">Enroll in Path</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: Data Analysis -->
+          <div class="track-pane" id="track-analysis">
+            <div class="track-info">
+              <h3><i>🔍</i> Data Analysis</h3>
+              <p>
+                Translate raw signals into structures. Query massive databases, clean incomplete sets, and construct queries to isolate target KPIs. You will learn to manipulate datasets with speed and scale.
+              </p>
+              
+              <div class="track-tools">
+                <h4>Core tools used</h4>
+                <div class="tools-list">
+                  <span class="tool-badge">SQL (PostgreSQL)</span>
+                  <span class="tool-badge">Python (Pandas)</span>
+                  <span class="tool-badge">dbt (Data Build Tool)</span>
+                  <span class="tool-badge">Excel (Advanced)</span>
+                </div>
+              </div>
+
+              <div class="skills-list">
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>Data Cleansing pipelines</h5>
+                    <p>Identify null values, impute data bias, and transform nested JSON structures.</p>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>SQL Optimization</h5>
+                    <p>Write window functions, complex CTE joins, and index optimization tables.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="track-preview">
+              <div class="preview-card">
+                <span class="preview-tag">Milestone Project</span>
+                <h4>E-Commerce Funnel Retention Audit</h4>
+                <p>Write SQL queries on 12 million checkout rows to highlight funnel drop-offs and customer cohort retention percentages.</p>
+                <ul class="preview-list">
+                  <li>Construct multi-layer CTEs.</li>
+                  <li>Build cohort tables by retention month.</li>
+                  <li>Synthesize insights in markdown files.</li>
+                </ul>
+                <button class="btn btn-secondary enroll-trigger" data-role-pref="data-analysis" id="btn-analysis-project">Enroll in Path</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 3: Data Science & ML -->
+          <div class="track-pane" id="track-ds">
+            <div class="track-info">
+              <h3><i>🤖</i> Data Science & Machine Learning</h3>
+              <p>
+                Synthesize future projections. Learn supervised and unsupervised training models, optimize feature matrices, run cross-validations, and package models into production-level code.
+              </p>
+              
+              <div class="track-tools">
+                <h4>Core tools used</h4>
+                <div class="tools-list">
+                  <span class="tool-badge">Scikit-Learn</span>
+                  <span class="tool-badge">XGBoost</span>
+                  <span class="tool-badge">TensorFlow</span>
+                  <span class="tool-badge">FastAPI</span>
+                </div>
+              </div>
+
+              <div class="skills-list">
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>Regression & Classification</h5>
+                    <p>Deploy Random Forests, Gradient Boosters, and support vector grids.</p>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>Model Serving API</h5>
+                    <p>Wrap scikit-learn models in FastAPI endpoints using Docker containers.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="track-preview">
+              <div class="preview-card">
+                <span class="preview-tag">Milestone Project</span>
+                <h4>SaaS Churn Classification Engine</h4>
+                <p>Train a predictive model to isolate subscribers at risk of churn with 91% recall score, deploying it via API containers.</p>
+                <ul class="preview-list">
+                  <li>Implement GridSearch hyperparameters.</li>
+                  <li>Mitigate class imbalance using SMOTE.</li>
+                  <li>Create automated scoring pipelines.</li>
+                </ul>
+                <button class="btn btn-secondary enroll-trigger" data-role-pref="data-science" id="btn-ds-project">Enroll in Path</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 4: Business Intelligence -->
+          <div class="track-pane" id="track-bi">
+            <div class="track-info">
+              <h3><i>🏢</i> Business Intelligence</h3>
+              <p>
+                Align organizations with data truths. Design dashboard UI frameworks, develop KPI hierarchies, structure data warehouses (Star schema), and tell visual stories that drive executive choices.
+              </p>
+              
+              <div class="track-tools">
+                <h4>Core tools used</h4>
+                <div class="tools-list">
+                  <span class="tool-badge">Tableau</span>
+                  <span class="tool-badge">PowerBI (DAX)</span>
+                  <span class="tool-badge">Looker</span>
+                  <span class="tool-badge">Snowflake</span>
+                </div>
+              </div>
+
+              <div class="skills-list">
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>Dimensional Modeling</h5>
+                    <p>Construct clean star schemas with optimized fact and dimension databases.</p>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>DAX & BI Logic</h5>
+                    <p>Build real-time context metrics, year-over-year growth, and filter sets.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="track-preview">
+              <div class="preview-card">
+                <span class="preview-tag">Milestone Project</span>
+                <h4>Enterprise Executive Performance Portal</h4>
+                <p>Design a 3-layered visual dashboard in Tableau for corporate leadership, displaying sales pipeline dynamics and gross margins.</p>
+                <ul class="preview-list">
+                  <li>Establish secure row-level filters.</li>
+                  <li>Implement drill-down matrix views.</li>
+                  <li>Build automated scheduled email reports.</li>
+                </ul>
+                <button class="btn btn-secondary enroll-trigger" data-role-pref="business-intelligence" id="btn-bi-project">Enroll in Path</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE DATA SANDBOX (INTERACTIVE WIDGET) -->
+    <section class="sandbox" id="sandbox">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="badge badge-cyan">Visual Sandbox</span>
+          <h2>Interact with Linear Regression</h2>
+
+          <p>Get a feel for our visual sandbox editor. Adjust the slope and intercept controls below to align the regression line to the data points and watch the metrics recalculate.</p>
+        </div>
+
+        <div class="glass-card sandbox-card reveal">
+          <!-- Plot visual representation -->
+
+          <div class="sandbox-plot-area">
+            <div class="sandbox-plot-container">
+              <!-- SVG plot rendering coordinates dynamically via app.js -->
+              <svg class="plot-svg" id="plot-canvas" viewBox="0 0 400 300">
+                <!-- Grid Lines -->
+                <line x1="40" y1="20" x2="40" y2="260" stroke="rgba(255,255,255,0.05)" />
+                <line x1="40" y1="260" x2="380" y2="260" stroke="rgba(255,255,255,0.1)" />
+                <line x1="40" y1="200" x2="380" y2="200" stroke="rgba(255,255,255,0.03)" />
+                <line x1="40" y1="140" x2="380" y2="140" stroke="rgba(255,255,255,0.03)" />
+                <line x1="40" y1="80" x2="380" y2="80" stroke="rgba(255,255,255,0.03)" />
+                
+                <!-- X & Y Labels -->
+                <text x="210" y="290" fill="#6b7280" font-size="10" text-anchor="middle">Study Hours →</text>
+                <text x="15" y="140" fill="#6b7280" font-size="10" text-anchor="middle" transform="rotate(-90 15 140)">Performance Score →</text>
+
+                <!-- Data Points (hardcoded placeholders matching app.js coords) -->
+                <circle cx="60" cy="240" r="5" fill="#10b981" opacity="0.8" />
+                <circle cx="90" cy="220" r="5" fill="#10b981" opacity="0.8" />
+                <circle cx="120" cy="190" r="5" fill="#10b981" opacity="0.8" />
+                <circle cx="160" cy="180" r="5" fill="#10b981" opacity="0.8" />
+                <circle cx="200" cy="140" r="5" fill="#10b981" opacity="0.8" />
+                <circle cx="230" cy="130" r="5" fill="#10b981" opacity="0.8" />
+                <circle cx="270" cy="90" r="5" fill="#10b981" opacity="0.8" />
+                <circle cx="310" cy="80" r="5" fill="#10b981" opacity="0.8" />
+                <circle cx="340" cy="50" r="5" fill="#10b981" opacity="0.8" />
+                <circle cx="370" cy="40" r="5" fill="#10b981" opacity="0.8" />
+
+                <!-- Dynamic Regression Line -->
+                <line id="regression-line" x1="40" y1="250" x2="380" y2="50" stroke="#3b82f6" stroke-width="3" style="filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.5));" />
+
+              </svg>
+            </div>
+          </div>
+
+          <!-- Controls sidebar -->
+          <div class="sandbox-controls">
+            <div class="control-group">
+              <div class="control-label">
+                <span>Slope (m)</span>
+                <span id="slope-val">0.65</span>
+              </div>
+              <input type="range" class="control-slider" id="slope-slider" min="-1.0" max="1.5" step="0.05" value="0.65" aria-label="Regression slope slider">
+            </div>
+
+            <div class="control-group">
+              <div class="control-label">
+                <span>Intercept (c)</span>
+                <span id="intercept-val">270</span>
+              </div>
+              <input type="range" class="control-slider" id="intercept-slider" min="100" max="350" step="5" value="270" aria-label="Regression intercept slider">
+            </div>
+
+            <!-- Mathematical Output Metrics -->
+            <div class="sandbox-metrics">
+              <h4 class="metrics-title">Live Model Performance Metrics</h4>
+              <div class="metric-grid">
+                <div class="metric-card">
+                  <h5>R² (Coefficient of Determination)</h5>
+                  <p id="r2-metric">0.000</p>
+                </div>
+                <div class="metric-card">
+                  <h5>MSE (Mean Squared Error)</h5>
+                  <p id="mse-metric">0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAREER ROI & TUITION CALCULATOR -->
+    <section class="calculator" id="calculator">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="badge badge-cyan">ROI Assessment</span>
+          <h2>Calculate Your Career Upside</h2>
+
+          <p>Invest in skills, calculate returns. Enter your salary profile to estimate program completion duration and post-graduation payoff.</p>
+        </div>
+
+        <div class="glass-card calc-card reveal">
+          <!-- Inputs panel -->
+
+          <div class="calc-inputs">
+            <div class="control-group">
+              <div class="control-label">
+                <span>Current Annual Salary</span>
+                <span id="current-salary-val">$50,000</span>
+              </div>
+              <input type="range" class="control-slider" id="current-salary" min="30000" max="150000" step="5000" value="50000" aria-label="Current salary slider">
+            </div>
+
+            <div class="calc-select-group">
+              <label for="target-role" style="font-size: 0.9rem; font-weight:600; margin-bottom:8px; display:block;">Target Role Path</label>
+              <select id="target-role" class="calc-select">
+                <option value="data-analyst">Data Analyst (Avg Base: $78K)</option>
+                <option value="business-analyst">Business Analyst (Avg Base: $84K)</option>
+                <option value="bi-engineer">Business Intelligence Engineer (Avg Base: $96K)</option>
+                <option value="data-scientist" selected>Data Scientist (Avg Base: $120K)</option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <div class="control-label">
+                <span>Weekly Study Hours</span>
+                <span id="study-hours-val">15 hrs</span>
+              </div>
+              <input type="range" class="control-slider" id="study-hours" min="5" max="30" step="5" value="15" aria-label="Weekly study hours slider">
+            </div>
+          </div>
+
+          <!-- Outputs dashboard display -->
+          <div class="calc-outputs">
+            <div class="calc-output-item">
+              <div class="calc-output-label">
+                <h4>Estimated Post-Program Salary</h4>
+                <p>Calculated based on target role + hours modifier</p>
+              </div>
+              <span class="calc-output-value" id="expected-salary">$120,000</span>
+            </div>
+
+            <div class="calc-output-item">
+              <div class="calc-output-label">
+                <h4>Annual Income Increase</h4>
+                <p>Expected change in yearly earnings</p>
+              </div>
+              <span class="calc-output-value" id="salary-increase">$70,000</span>
+            </div>
+
+            <div class="calc-output-item">
+              <div class="calc-output-label">
+                <h4>Duration of Program</h4>
+                <p>At current weekly study hours</p>
+              </div>
+              <span class="calc-output-value highlight-purple" id="graduation-time">20 Weeks</span>
+            </div>
+
+            <div class="calc-output-item">
+              <div class="calc-output-label">
+                <h4>Tuition Payback Period</h4>
+                <p>Months to recoup program tuition cost</p>
+              </div>
+              <span class="calc-output-value highlight-purple" id="payback-period">0.6 Months</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAILED CURRICULUM SYLLABUS -->
+    <section class="curriculum" id="curriculum">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="badge badge-purple">Structured Learning</span>
+          <h2>Inside the Curriculum</h2>
+
+          <p>4 core modules structured to provide deep analytical theory followed by practical production engineering.</p>
+        </div>
+
+        <div class="curriculum-accordion">
+          
+          <!-- Accordion Module 1 -->
+          <div class="accordion-item reveal">
+            <div class="accordion-header">
+
+              <div class="accordion-header-left">
+                <span class="accordion-num">01</span>
+                <div class="accordion-title">
+                  <h3>Probability & Statistics Foundations</h3>
+                  <p>Module 1 • 6 Lessons • Project 1</p>
+                </div>
+              </div>
+              <span class="accordion-icon">▼</span>
+            </div>
+            
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <div class="syllabus-grid">
+                  <div class="syllabus-lessons">
+                    <h4>What you will learn</h4>
+                    <div class="lessons-list">
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Descriptive vs. Inferential analysis structures</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Random variables, variance, and standard distributions</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Central Limit Theorem and confidence intervals</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Hypothesis formulation (one-tailed/two-tailed Z-scores)</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Standard errors and statistical power (Type I / II errors)</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> A/B Testing design, multivariate adjustments, sample splits</div>
+                    </div>
+                  </div>
+                  <div class="syllabus-project">
+                    <h4>Capstone Project</h4>
+                    <div class="project-card">
+                      <h5>Conversion Rate Optimization Engine</h5>
+                      <p>Design a stats pipeline that parses marketing split-tests and yields statistical bounds showing absolute impact changes.</p>
+                      <span class="project-tag">⚡ Applied Experimentation</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Module 2 -->
+          <div class="accordion-item reveal">
+            <div class="accordion-header">
+
+              <div class="accordion-header-left">
+                <span class="accordion-num">02</span>
+                <div class="accordion-title">
+                  <h3>SQL & Python Clean-wrangling Pipelines</h3>
+                  <p>Module 2 • 8 Lessons • Project 2</p>
+                </div>
+              </div>
+              <span class="accordion-icon">▼</span>
+            </div>
+            
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <div class="syllabus-grid">
+                  <div class="syllabus-lessons">
+                    <h4>What you will learn</h4>
+                    <div class="lessons-list">
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Relational schemas: PostgreSQL architecture, PK/FK indexing</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Advanced SQL querying: Windows, partition overlays, subqueries</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Python core scripting: Numpy arrays and vector mechanics</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Polars vs. Pandas: High-speed DataFrames and memory layout</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Local analytics databases: DuckDB queries on raw Parquet files</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Modern ETL pipelines: Orchestrating data build tool (dbt Core)</div>
+                    </div>
+                  </div>
+                  <div class="syllabus-project">
+                    <h4>Capstone Project</h4>
+                    <div class="project-card">
+                      <h5>DuckDB & dbt Air Quality Pipeline</h5>
+                      <p>Build a scheduled Python ETL script querying air quality endpoints, structuring schemas with DuckDB and dbt logs.</p>
+                      <span class="project-tag">⚡ Data Engineering</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Module 3 -->
+          <div class="accordion-item reveal">
+            <div class="accordion-header">
+
+              <div class="accordion-header-left">
+                <span class="accordion-num">03</span>
+                <div class="accordion-title">
+                  <h3>Applied Machine Learning Models</h3>
+                  <p>Module 3 • 8 Lessons • Project 3</p>
+                </div>
+              </div>
+              <span class="accordion-icon">▼</span>
+            </div>
+            
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <div class="syllabus-grid">
+                  <div class="syllabus-lessons">
+                    <h4>What you will learn</h4>
+                    <div class="lessons-list">
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Supervised Learning: Regression & Classification pipelines</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Decision trees, ensembles, Random Forests, XGBoost grids</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Hyperparameter tuning: GridSearchCV vs Optuna optimizations</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Generative AI foundations: LLM tokenization, prompting, RAG systems</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Vector Search databases: Chromadb and pgvector query indexing</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Model serving: Deploying ML & LLM pipelines via FastAPI Docker APIs</div>
+                    </div>
+                  </div>
+                  <div class="syllabus-project">
+                    <h4>Capstone Project</h4>
+                    <div class="project-card">
+                      <h5>RAG-Powered SaaS Churn Explainer API</h5>
+                      <p>Train a classifier for churn risk, plug predictions into an LLM via RAG to output auto-generated client email saves.</p>
+                      <span class="project-tag">⚡ AI & Production ML</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Module 4 -->
+          <div class="accordion-item reveal">
+            <div class="accordion-header">
+
+              <div class="accordion-header-left">
+                <span class="accordion-num">04</span>
+                <div class="accordion-title">
+                  <h3>BI Analytics & Storytelling</h3>
+                  <p>Module 4 • 6 Lessons • Project 4</p>
+                </div>
+              </div>
+              <span class="accordion-icon">▼</span>
+            </div>
+            
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <div class="syllabus-grid">
+                  <div class="syllabus-lessons">
+                    <h4>What you will learn</h4>
+                    <div class="lessons-list">
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Dimensional warehousing: Star schemas on Snowflake and BigQuery</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> PowerBI DAX & Semantic Models: Measures, contexts, relationship graphs</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Tableau Cloud dashboards: Parameter actions, sets, custom tooltips</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Chart aesthetics: Design layouts, avoiding clutter, visual hierarchies</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> SaaS business metrics: CAC, Lifetime Value (LTV), NRR, gross margins</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Executive reporting: Framing insights and pitching data stories to stakeholders</div>
+                    </div>
+                  </div>
+                  <div class="syllabus-project">
+                    <h4>Capstone Project</h4>
+                    <div class="project-card">
+                      <h5>SaaS Executive KPI Control Portal</h5>
+                      <p>Design a 3-layered Snowflake + Tableau interactive dashboard displaying real-time unit economics and predictive ARR scenarios.</p>
+                      <span class="project-tag">⚡ Business Intelligence</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CURATED LEARNING RESOURCES -->
+    <section class="resources" id="resources">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-cyan">Learning Library</span>
+          <h2>Latest Learning Materials</h2>
+          <p>Explore and filter our curated library of the latest open-source textbooks, modern data stack references, and practice datasets.</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="resources-filter-container">
+          <div class="filter-tags">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="textbook">Books</button>
+            <button class="filter-btn" data-filter="cheatsheet">Cheat Sheets</button>
+            <button class="filter-btn" data-filter="dataset">Datasets</button>
+            <button class="filter-btn" data-filter="guide">GenAI Guides</button>
+          </div>
+          <div class="search-box">
+            <input type="text" id="resource-search" placeholder="Search resources..." aria-label="Search resources library">
+          </div>
+        </div>
+
+        <!-- Dynamic Grid -->
+        <div class="resources-grid" id="resources-grid">
+          <!-- Loaded dynamically via app.js -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TESTIMONIALS (STUDENT REVIEWS CAROUSEL) -->
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="badge badge-purple">Success Stories</span>
+
+          <h2>Real Outcomes, Proven Paths</h2>
+          <p>Don't just take our word for it. Hear how our graduates transformed their careers and salaries.</p>
+        </div>
+
+        <div class="testimonials-carousel-container reveal">
+          <div class="carousel-viewport">
+
+            <div class="carousel-track">
+              
+              <!-- Slide 1 -->
+              <div class="testimonial-slide">
+                <div class="glass-card testimonial-card">
+                  <span class="testimonial-quote-icon">“</span>
+                  <p class="testimonial-quote">
+                    "I had zero coding experience coming from retail management. The step-by-step SQL and statistics modules gave me the confidence to write data scripts. The mentor mock interviews prepared me to present cases. I landed a Data Analyst position before finishing module 4."
+                  </p>
+                  <div class="student-info">
+                    <span class="student-name">Sarah Jenkins</span>
+                    <div class="student-career">
+                      <span class="career-before">Store Manager</span>
+                      <span class="career-arrow">→</span>
+                      <span class="career-after">Data Analyst @ Microsoft</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="testimonial-slide">
+                <div class="glass-card testimonial-card">
+                  <span class="testimonial-quote-icon">“</span>
+                  <p class="testimonial-quote">
+                    "The machine learning module is outstanding. Instead of just running scikit-learn commands, we built models and deployed them via FastAPI on AWS. Understanding both the math and the production deployment is what got me hired as a Data Scientist."
+                  </p>
+                  <div class="student-info">
+                    <span class="student-name">Arjun Mehta</span>
+                    <div class="student-career">
+                      <span class="career-before">Financial Analyst</span>
+                      <span class="career-arrow">→</span>
+                      <span class="career-after">Data Scientist @ Amazon</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="testimonial-slide">
+                <div class="glass-card testimonial-card">
+                  <span class="testimonial-quote-icon">“</span>
+                  <p class="testimonial-quote">
+                    "The dashboard systems and data modeling concepts transformed my thinking. I was writing SQL before, but now I know how to design optimized star schemas and model KPI trends in Tableau. Our executive dashboards have streamlined our business pipelines."
+                  </p>
+                  <div class="student-info">
+                    <span class="student-name">Clara Vance</span>
+                    <div class="student-career">
+                      <span class="career-before">Junior Web Developer</span>
+                      <span class="career-arrow">→</span>
+                      <span class="career-after">BI Developer @ Stripe</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="carousel-prev" aria-label="Previous Testimonial">◀</button>
+            <div class="carousel-dots"></div>
+            <button class="carousel-btn" id="carousel-next" aria-label="Next Testimonial">▶</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING TIERS -->
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="badge badge-cyan">Membership Options</span>
+
+          <h2>Clear Paths, Flat Tuition</h2>
+          <p>Select the program depth that matches your schedule. Save 30% by choosing annual enrollment.</p>
+        </div>
+
+        <!-- Monthly/Annual Toggle -->
+        <div class="pricing-toggle-container">
+          <span class="pricing-label active">Monthly Billing</span>
+          <label class="toggle-switch" for="billing-toggle">
+            <input type="checkbox" id="billing-toggle" aria-label="Toggle annual or monthly pricing switch">
+            <span class="slider-round"></span>
+          </label>
+          <span class="pricing-label">Annual Billing (Save 30%)</span>
+        </div>
+
+        <div class="pricing-grid">
+          
+          <!-- Plan 1: Self-Paced -->
+          <div class="glass-card pricing-card reveal" id="pricing-card-self">
+            <div class="pricing-plan-header">
+
+              <h3>Self-Paced</h3>
+              <p>Learn on your schedule, at your own speed.</p>
+            </div>
+            
+            <div class="pricing-price">
+              <span class="price-currency">$</span>
+              <span class="price-val" id="price-self" data-monthly="49" data-annual="39">49</span>
+              <span class="price-period">/mo</span>
+            </div>
+
+            <ul class="pricing-features">
+              <li>140+ HD Video Lessons</li>
+              <li>Interactive Code Sandboxes</li>
+              <li>Discord Student Channels</li>
+              <li>Verified Certificates</li>
+              <li class="disabled">Live Cohort Sessions</li>
+              <li class="disabled">1-on-1 Mentor Audits</li>
+              <li class="disabled">Job Placement Guarantee</li>
+            </ul>
+
+            <button class="btn btn-secondary enroll-trigger" data-role-pref="self-paced" id="btn-pricing-self">Get Started</button>
+          </div>
+
+          <!-- Plan 2: Cohort Based -->
+          <div class="glass-card pricing-card popular reveal" id="pricing-card-cohort">
+            <div class="pricing-plan-header">
+
+              <h3>Hybrid Cohort</h3>
+              <p>Weekly live classes, group projects, guided focus.</p>
+            </div>
+            
+            <div class="pricing-price">
+              <span class="price-currency">$</span>
+              <span class="price-val" id="price-cohort" data-monthly="149" data-annual="119">149</span>
+              <span class="price-period">/mo</span>
+            </div>
+
+            <ul class="pricing-features">
+              <li>All Self-Paced Access</li>
+              <li>Weekly Live Interactive Lectures</li>
+              <li>Syllabus capstone code reviews</li>
+              <li>Dedicated Group Projects</li>
+              <li>Active Slack Workspace</li>
+              <li class="disabled">1-on-1 Weekly Private Calls</li>
+              <li class="disabled">Resume & Portfolio Audit</li>
+            </ul>
+
+            <button class="btn btn-primary enroll-trigger" data-role-pref="hybrid-cohort" id="btn-pricing-cohort">Enroll in Cohort</button>
+          </div>
+
+          <!-- Plan 3: Mentor Led -->
+          <div class="glass-card pricing-card reveal" id="pricing-card-mentor">
+            <div class="pricing-plan-header">
+
+              <h3>1-on-1 Mentor Led</h3>
+              <p>Dedicated personal coach for complete career transition.</p>
+            </div>
+            
+            <div class="pricing-price">
+              <span class="price-currency">$</span>
+              <span class="price-val" id="price-mentor" data-monthly="299" data-annual="239">299</span>
+              <span class="price-period">/mo</span>
+            </div>
+
+            <ul class="pricing-features">
+              <li>All Hybrid Cohort Access</li>
+              <li>Weekly 45m private mentor calls</li>
+              <li>Unlimited asynchronous code review</li>
+              <li>Portfolio & Resume Audits</li>
+              <li>Mock Tech Interview Prep</li>
+              <li>Exclusive Recruiter Database</li>
+              <li>Job Placement Guarantee</li>
+            </ul>
+
+            <button class="btn btn-secondary enroll-trigger" data-role-pref="mentor-led" id="btn-pricing-mentor">Get 1-on-1 Coach</button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-purple">Common Questions</span>
+          <h2>Frequently Asked Questions</h2>
+          <p>Everything you need to know about starting your data analytics career.</p>
+        </div>
+
+        <div class="faq-accordion">
+          
+          <div class="faq-item">
+            <div class="faq-header">
+              <h3>Do I need a math or coding background to enroll?</h3>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-content">
+              <div class="faq-body">
+                No. Our curriculum starts from absolute foundations. We begin with core probability concepts and basic SQL queries before introducing advanced programming. Approximately 60% of our students come from non-technical backgrounds.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-header">
+              <h3>How long does the program take to complete?</h3>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-content">
+              <div class="faq-body">
+                The program contains 300 hours of learning. If you dedicate 15 hours per week, you will graduate in 20 weeks. If you study full-time (30 hours per week), you can complete the entire program in 10 weeks.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-header">
+              <h3>How does the job placement guarantee work?</h3>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-content">
+              <div class="faq-body">
+                For students in the 1-on-1 Mentor-Led plan, if you do not receive an employment offer in a data-related field within 180 days of graduation, you will receive a 100% tuition refund. Certain application and networking activity metrics must be met to maintain eligibility.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-header">
+              <h3>Is there a certificate of completion?</h3>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-content">
+              <div class="faq-body">
+                Yes. Upon finishing all capstone projects, you will receive a verified digital credential that links directly to your project portfolios. This can be embedded directly in your LinkedIn profile or resume.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-col footer-logo-desc">
+        <a href="#" class="logo">
+          <span class="logo-icon">S</span>
+          <span>Stat<span class="gradient-text">IQ</span></span>
+        </a>
+        <p>Providing rigorous statistical and programming training to create the next generation of data scientists, analytics engineers, and decision makers.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Academy</h4>
+        <ul>
+          <li><a href="#tracks">Learning Paths</a></li>
+          <li><a href="#curriculum">Syllabus</a></li>
+          <li><a href="#pricing">Pricing Models</a></li>
+          <li><a href="#faq">Student FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Hiring Partners</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Contact Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-newsletter">
+        <h4>Stay Updated</h4>
+        <p>Get our free 7-day data science crash course and weekly analytical tips.</p>
+        <form class="newsletter-form">
+          <input type="email" class="newsletter-input" placeholder="Enter your email" aria-label="Newsletter email input" required>
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 StatIQ Data Academy. All rights reserved. Built with premium design standards.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link" aria-label="StatIQ Twitter Page">𝕏</a>
+        <a href="#" class="social-link" aria-label="StatIQ GitHub Repository">💾</a>
+        <a href="#" class="social-link" aria-label="StatIQ LinkedIn Page">in</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LEAD CAPTURE MODAL -->
+  <div class="modal-overlay" id="enroll-modal">
+    <div class="glass-card modal-container">
+      <button class="modal-close" aria-label="Close registration modal">✕</button>
+      
+      <div class="modal-header">
+        <h3>Join StatIQ Academy</h3>
+        <p>Submit details below to check cohort availability and speak with an advisor.</p>
+      </div>
+
+      <form class="modal-form" id="lead-form">
+        <div class="form-group">
+          <label for="form-name">Full Name</label>
+          <input type="text" id="form-name" class="form-input" placeholder="Alex Morgan" required>
+        </div>
+
+        <div class="form-group">
+          <label for="form-email">Email Address</label>
+          <input type="email" id="form-email" class="form-input" placeholder="alex@company.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="form-interest">Primary Interest Track</label>
+          <select id="form-interest" class="calc-select">
+            <option value="statistics">Statistics & Probability</option>
+            <option value="data-analysis">Data Analysis</option>
+            <option value="data-science">Data Science & ML</option>
+            <option value="business-intelligence">Business Intelligence</option>
+            <option value="self-paced">Self-Paced Program</option>
+            <option value="hybrid-cohort">Hybrid Cohort Program</option>
+            <option value="mentor-led">1-on-1 Mentor Led Program</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Submit Enrollment Request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SUCCESS NOTIFICATION TOAST -->
+  <div class="toast-container">
+    <div class="toast" id="success-toast">
+      <span class="toast-icon">✓</span>
+      <div>
+        <h4 style="font-size:0.95rem; font-weight:700;">Submission Received!</h4>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Our academic advisors will reach out in 24 hours.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

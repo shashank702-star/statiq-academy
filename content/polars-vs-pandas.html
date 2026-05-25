@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polars vs. Pandas 2.0 DataFrame Reference | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: var(--bg-card);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+    }
+    th, td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+    th {
+      background-color: rgba(255,255,255,0.02);
+      font-weight: 700;
+      color: var(--primary);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      padding: 10px;
+      margin: 0;
+      overflow-x: auto;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      color: #34d399;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-btn">← Back to StatIQ Academy</a>
+    <h1>Polars vs. Pandas 2.0 DataFrame Reference</h1>
+    <p>Rust-based Polars provides a massive speedup over traditional Pandas by leveraging physical multi-threading, strict Arrow memory structures, and a query optimizer. This guide provides side-by-side syntax comparisons for common tasks.</p>
+
+    <div class="card">
+      <h3>🚀 Why Polars over Pandas?</h3>
+      <p>Traditional Pandas is single-threaded and executes operations eagerly, resulting in high memory footprint and CPU underutilization. Polars natively runs multi-threaded parallel queries and features a <strong>Lazy API</strong> that prunes columns, pushes filters down to the file scan layer, and optimizes memory joins before execution.</p>
+    </div>
+
+    <h2>Side-by-Side Operations Reference</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 15%;">Operation</th>
+          <th style="width: 42.5%;">Pandas 2.0 (PyArrow)</th>
+          <th style="width: 42.5%;">Polars (Eager / Lazy)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Row 1 -->
+        <tr>
+          <td><strong>Import & Read CSV</strong></td>
+          <td>
+            <pre><code>import pandas as pd
+
+df = pd.read_csv(
+    "data.csv",
+    dtype_backend="pyarrow"
+)</code></pre>
+          </td>
+          <td>
+            <pre><code>import polars as pl
+
+# Eager Read
+df = pl.read_csv("data.csv")
+
+# Lazy Scan (Prunes columns & files)
+lf = pl.scan_csv("data.csv")</code></pre>
+          </td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+          <td><strong>Filter Rows</strong></td>
+          <td>
+            <pre><code>df[df["age"] > 25]
+
+# Or query()
+df.query("age > 25")</code></pre>
+          </td>
+          <td>
+            <pre><code>df.filter(pl.col("age") > 25)</code></pre>
+          </td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+          <td><strong>Select Columns</strong></td>
+          <td>
+            <pre><code>df[["name", "salary"]]</code></pre>
+          </td>
+          <td>
+            <pre><code>df.select(["name", "salary"])</code></pre>
+          </td>
+        </tr>
+        <!-- Row 4 -->
+        <tr>
+          <td><strong>Aggregate & GroupBy</strong></td>
+          <td>
+            <pre><code>df.groupby("cohort").agg({
+    "revenue": "sum",
+    "age": "mean"
+}).reset_index()</code></pre>
+          </td>
+          <td>
+            <pre><code>df.group_by("cohort").agg([
+    pl.col("revenue").sum(),
+    pl.col("age").mean()
+])</code></pre>
+          </td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+          <td><strong>Join DataFrames</strong></td>
+          <td>
+            <pre><code>df1.merge(
+    df2,
+    on="user_id",
+    how="inner"
+)</code></pre>
+          </td>
+          <td>
+            <pre><code>df1.join(
+    df2,
+    on="user_id",
+    how="inner"
+)</code></pre>
+          </td>
+        </tr>
+        <!-- Row 6 -->
+        <tr>
+          <td><strong>Lazy Execution Graph</strong></td>
+          <td>
+            <pre><code># Not supported in Pandas.
+# All expressions execute instantly,
+# loading entire files into memory.</code></pre>
+          </td>
+          <td>
+            <pre><code># Optimize and execute pipeline
+q = (
+    pl.scan_csv("data.csv")
+    .filter(pl.col("age") > 25)
+    .select(["name", "cohort", "salary"])
+    .group_by("cohort")
+    .agg(pl.col("salary").mean())
+)
+
+# Print visual query graph
+print(q.explain())
+
+# Fetch/execute result
+df = q.collect()</code></pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
