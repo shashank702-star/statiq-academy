@@ -602,6 +602,8 @@ section {
   align-items: center;
   gap: 8px;
   transition: var(--transition);
+  text-decoration: none;
+  color: inherit;
 }
 
 .tool-badge:hover {
