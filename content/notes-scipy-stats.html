@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SciPy Stats Module Notes | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+      color: #38bdf8;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--secondary);
+      border-radius: 4px;
+      color: var(--secondary);
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">SciPy Study Notes</span>
+    <h1>SciPy Stats Module Foundations</h1>
+    <p>A reference guide on using Python's SciPy library to represent statistical distributions, run hypothesis tests, and compute confidence intervals.</p>
+
+    <div class="card">
+      <h3>🔬 Scientific Computing in Python</h3>
+      <p>SciPy builds on NumPy arrays to offer robust statistical functions. The sub-module <code>scipy.stats</code> contains tools for continuous and discrete random variables.</p>
+    </div>
+
+    <h2>1. Working with Probability Distributions</h2>
+    <p>SciPy allows you to represent probability density functions (PDF), cumulative distribution functions (CDF), and percent point functions (PPF).</p>
+    <pre><code>from scipy import stats
+
+# 1. Normal Distribution N(0, 1)
+norm_dist = stats.norm(loc=0, scale=1)
+
+# Probability Density of x = 1.96
+print(f"PDF at 1.96: {norm_dist.pdf(1.96):.4f}")
+
+# Cumulative Probability of x <= 1.96
+print(f"CDF at 1.96: {norm_dist.cdf(1.96):.4f}") # Outputs ~0.975
+
+# PPF (inverse of CDF) - Find value for 97.5% cumulative probability
+print(f"97.5th Percentile: {norm_dist.ppf(0.975):.2f}") # Outputs ~1.96</code></pre>
+
+    <h2>2. Running Hypothesis Tests</h2>
+    <p>Perform statistical significance calculations instantly using built-in tests:</p>
+
+    <h3>One-Sample t-test</h3>
+    <p>Compare a sample mean against a known population mean.</p>
+    <pre><code># Test if sample mean differs from population mean of 100
+sample_data = [98, 102, 104, 99, 101, 97, 103, 105, 100, 101]
+t_stat, p_val = stats.ttest_1samp(sample_data, popmean=100)
+
+print(f"t-statistic: {t_stat:.4f}, p-value: {p_val:.4f}")</code></pre>
+
+    <h3>Two-Sample Independent t-test</h3>
+    <p>Compare means of two distinct groups (common in A/B testing continuous metrics like session duration).</p>
+    <pre><code>group_A = [12, 15, 14, 13, 16]
+group_B = [18, 17, 19, 16, 20]
+
+t_stat, p_val = stats.ttest_ind(group_A, group_B)
+print(f"Ind. t-stat: {t_stat:.4f}, p-value: {p_val:.4f}")</code></pre>
+
+    <h2>3. Chi-Square Test of Independence</h2>
+    <p>Used to determine if there is a significant association between two categorical variables.</p>
+    <pre><code># Contingency table (Device vs Churn)
+# Columns: Churned, Retained. Rows: Mobile, Desktop
+contingency_table = [[120, 380], 
+                     [80, 420]]
+
+chi2, p_val, dof, expected = stats.chi2_contingency(contingency_table)
+print(f"Chi2 statistic: {chi2:.4f}, p-value: {p_val:.4f}")</code></pre>
+  </div>
+</body>
+</html>

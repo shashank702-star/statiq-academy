@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PowerBI DAX Modeling Guide | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+      color: #38bdf8;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--secondary);
+      border-radius: 4px;
+      color: var(--secondary);
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Business Intelligence Guide</span>
+    <h1>PowerBI DAX & Semantic Modeling</h1>
+    <p>A reference guide on DAX functions, Calculated Columns vs. Measures, filter contexts, and Time Intelligence expressions.</p>
+
+    <div class="card">
+      <h3>📈 Semantic Data Modeling</h3>
+      <p>Data Analysis Expressions (DAX) is the formula language used throughout PowerBI to build contextual columns and metrics inside your star schema.</p>
+    </div>
+
+    <h2>1. Calculated Columns vs. Measures</h2>
+    <p>Understanding when to use columns versus measures is critical for RAM optimization:</p>
+    <ul>
+      <li><strong>Calculated Column (Row Context)</strong>: Calculated row-by-row during data load. Consumes RAM. Used for slicing/filtering dimensions.</li>
+      <li><strong>Measure (Filter Context)</strong>: Computed dynamically on-the-fly when added to a visual. Optimized, ignores row context by default. Used for quantitative aggregation metrics.</li>
+    </ul>
+
+    <h2>2. The CALCULATE Function (Filter Modification)</h2>
+    <p><code>CALCULATE</code> is the most powerful function in DAX, allowing you to modify active filter contexts.</p>
+    <pre><code><span style="color: #6b7280; font-style: italic;">-- Calculate sales specifically for the Technology category</span>
+TechSales = CALCULATE(
+    SUM(Sales[sales_usd]),
+    Product[category] = "Technology"
+)
+
+<span style="color: #6b7280; font-style: italic;">-- Calculate sales ignoring all filters currently applied to the visual</span>
+AllSales = CALCULATE(
+    SUM(Sales[sales_usd]),
+    ALL(Sales)
+)</code></pre>
+
+    <h2>3. Related & Relationships (RELATED / RELATEDTABLE)</h2>
+    <p>Pull columns from lookup dimension tables into fact tables using active star-schema relationships.</p>
+    <pre><code><span style="color: #6b7280; font-style: italic;">-- Calculated Column in Fact table pulling segment from Customer dimension</span>
+CustomerSegmentColumn = RELATED(Customer[customer_segment])</code></pre>
+
+    <h2>4. Time Intelligence Expressions</h2>
+    <p>DAX contains specialized functions to compare year-over-year and month-over-month sales trends seamlessly.</p>
+    <pre><code><span style="color: #6b7280; font-style: italic;">-- Year-to-Date (YTD) Revenue</span>
+YTD_Revenue = TOTALYTD(SUM(Sales[sales_usd]), DateTable[Date])
+
+<span style="color: #6b7280; font-style: italic;">-- Revenue from the same period last year</span>
+PriorYearRevenue = CALCULATE(
+    SUM(Sales[sales_usd]),
+    SAMEPERIODLASTYEAR(DateTable[Date])
+)</code></pre>
+  </div>
+</body>
+</html>

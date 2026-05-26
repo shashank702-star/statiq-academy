@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TensorFlow Deep Learning Guide | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+      color: #38bdf8;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--secondary);
+      border-radius: 4px;
+      color: var(--secondary);
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Deep Learning Guide</span>
+    <h1>TensorFlow & Deep Learning Architectures</h1>
+    <p>A reference guide on building multi-layer neural networks, compiling models with optimizers, and running gradient descent fitting processes.</p>
+
+    <div class="card">
+      <h3>🧠 Deep Neural Networks</h3>
+      <p>TensorFlow (with its high-level Keras API) allows you to define feedforward networks, convolutional neural networks (CNNs), and recurrent layers by stacking sequential classes.</p>
+    </div>
+
+    <h2>1. The Sequential Model API</h2>
+    <p>Learn how to define layers, activation functions (ReLU, Sigmoid), and regularization layers (Dropout) to prevent overfitting.</p>
+    <pre><code>import tensorflow as tf
+from tensorflow.keras import layers, models
+
+# 1. Initialize Sequential Model architecture
+model = models.Sequential([
+    # Input layer with 10 features, feeding to 64 neurons
+    layers.Dense(64, activation='relu', input_shape=(10,)),
+    
+    # Dropout layer to randomly disable 20% of weights during training
+    layers.Dropout(0.2),
+    
+    # Second hidden layer
+    layers.Dense(32, activation='relu'),
+    
+    # Output layer with 1 node for binary classification (probability)
+    layers.Dense(1, activation='sigmoid')
+])
+
+model.summary()</code></pre>
+
+    <h2>2. Compiling the Network</h2>
+    <p>The compilation step binds loss functions, gradient descent optimizers (Adam, SGD), and evaluation metrics to the model graph.</p>
+    <pre><code>model.compile(
+    # Adam optimizer with custom learning rate
+    optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+    
+    # Loss function for binary class classifications
+    loss='binary_crossentropy',
+    
+    # Metrics to track during training epochs
+    metrics=['accuracy']
+)</code></pre>
+
+    <h2>3. Fitting & Evaluating</h2>
+    <p>Fit the parameters (weights/biases) to the training datasets and run predictions on test sets.</p>
+    <pre><code># Fit model over 50 epochs (iterations through dataset)
+history = model.fit(
+    X_train, y_train, 
+    epochs=50, 
+    batch_size=32, 
+    validation_split=0.2
+)
+
+# Evaluate performance on unseen test data
+test_loss, test_acc = model.evaluate(X_test, y_test)
+print(f"Test Accuracy: {test_acc * 100:.2f}%")</code></pre>
+  </div>
+</body>
+</html>

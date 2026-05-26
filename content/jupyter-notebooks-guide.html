@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jupyter Notebooks Guide | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+      color: #38bdf8;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--secondary);
+      border-radius: 4px;
+      color: var(--secondary);
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      border: 1px solid var(--color-border);
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Developer Guide</span>
+    <h1>Jupyter Notebooks & Visual Explores</h1>
+    <p>A reference guide on running Jupyter Notebooks, mastering keyboard shortcuts, integrating inline charts, and compiling markdown cells.</p>
+
+    <div class="card">
+      <h3>📓 Interactive Python Execution</h3>
+      <p>Jupyter Notebooks combine live code blocks, mathematical equations, visualizations, and narrative text cells in a single JSON-based document structure.</p>
+    </div>
+
+    <h2>1. The Two Main Modes</h2>
+    <p>Jupyter cells behave differently depending on whether you are editing or selecting cells:</p>
+    <ul>
+      <li><strong>Command Mode (Blue border)</strong>: Manipulate notebook structures. Press <code>Esc</code> to enter Command Mode.</li>
+      <li><strong>Edit Mode (Green border)</strong>: Write code or text inside cells. Press <code>Enter</code> to edit.</li>
+    </ul>
+
+    <h2>2. Essential Keyboard Shortcuts</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Shortcut</th>
+          <th>Action</th>
+          <th>Mode</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>Shift + Enter</code></td>
+          <td>Run current cell and advance to next.</td>
+          <td>Any</td>
+        </tr>
+        <tr>
+          <td><code>Ctrl + Enter</code></td>
+          <td>Run current cell in-place.</td>
+          <td>Any</td>
+        </tr>
+        <tr>
+          <td><code>A</code></td>
+          <td>Insert new cell above active cell.</td>
+          <td>Command</td>
+        </tr>
+        <tr>
+          <td><code>B</code></td>
+          <td>Insert new cell below active cell.</td>
+          <td>Command</td>
+        </tr>
+        <tr>
+          <td><code>D + D</code> (double press)</td>
+          <td>Delete active cell.</td>
+          <td>Command</td>
+        </tr>
+        <tr>
+          <td><code>M</code></td>
+          <td>Convert cell type to Markdown (text/equations).</td>
+          <td>Command</td>
+        </tr>
+        <tr>
+          <td><code>Y</code></td>
+          <td>Convert cell type to Code (executable).</td>
+          <td>Command</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>3. Magic Commands</h2>
+    <p>Magic commands are special pre-compiled functions built into the IPython kernel to simplify system tasks.</p>
+    <pre><code><span style="color: #6b7280; font-style: italic;"># Render matplotlib charts inline below code cells</span>
+%matplotlib inline
+
+<span style="color: #6b7280; font-style: italic;"># Measure execution speed of a code block</span>
+%%timeit
+my_list = [x**2 for x in range(1000)]
+
+<span style="color: #6b7280; font-style: italic;"># List files in the active workspace directory</span>
+%ls</code></pre>
+  </div>
+</body>
+</html>

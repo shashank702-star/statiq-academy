@@ -462,6 +462,46 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "content/notes-data-analysis.html"
     },
     {
+      title: "SciPy Stats Module Foundations",
+      category: "notes",
+      description: "A reference guide on using Python's SciPy library to represent statistical distributions, run hypothesis tests, and compute confidence intervals.",
+      tags: ["Python", "SciPy", "Statistics"],
+      downloadText: "Open Study Notes",
+      link: "content/notes-scipy-stats.html"
+    },
+    {
+      title: "Jupyter Notebooks & Visual Explores",
+      category: "guide",
+      description: "A reference guide on running Jupyter Notebooks, mastering keyboard shortcuts, integrating inline charts, and compiling markdown cells.",
+      tags: ["Jupyter", "Workspace", "IPython"],
+      downloadText: "Read Study Guide",
+      link: "content/jupyter-notebooks-guide.html"
+    },
+    {
+      title: "TensorFlow & Deep Learning Architectures",
+      category: "guide",
+      description: "A reference guide on building multi-layer neural networks, compiling models with optimizers, and running gradient descent fitting processes.",
+      tags: ["TensorFlow", "Keras", "Deep Learning"],
+      downloadText: "Read Study Guide",
+      link: "content/tensorflow-deep-learning.html"
+    },
+    {
+      title: "PowerBI DAX & Semantic Modeling",
+      category: "guide",
+      description: "A reference guide on DAX functions, Calculated Columns vs. Measures, filter contexts, and Time Intelligence expressions.",
+      tags: ["PowerBI", "DAX", "Modeling"],
+      downloadText: "Read Study Guide",
+      link: "content/powerbi-dax-guide.html"
+    },
+    {
+      title: "Looker LookML Modeling Guide",
+      category: "guide",
+      description: "A reference guide on Looker's LookML data modeling language, defining views, explore joins, dimensions, and custom measures.",
+      tags: ["Looker", "LookML", "Modeling"],
+      downloadText: "Read Study Guide",
+      link: "content/looker-lookml-guide.html"
+    },
+    {
       title: "Interactive Linear Regression Lecture Slides",
       category: "slides",
       description: "A step-by-step presentation deck explaining intercept, slope, Ordinary Least Squares fitting, and coefficient definitions.",

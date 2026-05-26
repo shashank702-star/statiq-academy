@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Looker LookML Modeling Guide | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+      color: #38bdf8;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--secondary);
+      border-radius: 4px;
+      color: var(--secondary);
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Business Intelligence Guide</span>
+    <h1>Looker LookML Modeling</h1>
+    <p>A reference guide on Looker's LookML data modeling language, defining views, explore joins, dimensions, and custom measures.</p>
+
+    <div class="card">
+      <h3>🏢 The Looker Modeling Layer</h3>
+      <p>LookML separates SQL database logic from the visualization layer. Developers define schemas, joins, and measures in LookML files, and Looker generates optimized SQL queries dynamically on demand.</p>
+    </div>
+
+    <h2>1. Defining a View (customer.view.lkml)</h2>
+    <p>Views represent tables or derived tables in your database. Define fields as either dimensions (categories/variables) or measures (aggregates).</p>
+    <pre><code>view: customer {
+  sql_table_name: raw_warehouse.customer_api ;;
+
+  # Dimension: Customer ID (Primary Key)
+  dimension: customer_id {
+    primary_key: yes
+    type: string
+    sql: ${TABLE}.id ;;
+  }
+
+  # Dimension: Customer Segment
+  dimension: customer_segment {
+    type: string
+    sql: ${TABLE}.segment ;;
+  }
+
+  # Measure: Count of active customers
+  measure: count {
+    type: count
+    drill_fields: [customer_id, customer_segment]
+  }
+}</code></pre>
+
+    <h2>2. Exploring and Joining (statiq.model.lkml)</h2>
+    <p>Explores define the entry points for analysis and declare how different view files join together.</p>
+    <pre><code>connection: "snowflake_dw"
+include: "/views/*.view.lkml"
+
+explore: orders {
+  label: "Sales Ledger Analytics"
+
+  # Join customer view file
+  join: customer {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${orders.customer_id} = ${customer.customer_id} ;;
+  }
+}</code></pre>
+
+    <h2>3. LookML Custom Measures</h2>
+    <p>Create dynamic aggregates that generate safe, grouped SQL formulas when selected by users.</p>
+    <pre><code>view: orders {
+  sql_table_name: raw_warehouse.orders ;;
+
+  # Dimension: Raw order sale amount
+  dimension: sales_usd {
+    type: number
+    sql: ${TABLE}.sales ;;
+  }
+
+  # Measure: Total revenue sum
+  measure: total_revenue {
+    type: sum
+    sql: ${sales_usd} ;;
+    value_format_name: usd_0
+  }
+
+  # Measure: Average order value
+  measure: average_order_value {
+    type: average
+    sql: ${sales_usd} ;;
+    value_format_name: usd
+  }
+}</code></pre>
+  </div>
+</body>
+</html>
