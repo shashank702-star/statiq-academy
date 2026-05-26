@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "Core probability theories, random variables, sample statistics, distributions, and hypothesis testing equations needed for data science.",
       tags: ["Math", "Statistics", "Theory"],
       downloadText: "Open Study Notes",
-      link: "content/notes-probability-reference.html"
+      link: "reader.html?topic=notes-probability-reference"
     },
     {
       title: "Data Analysis Foundations Notes",
@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A detailed reference for data classification systems, handling missing values, statistical outlier detection, and associations mapping.",
       tags: ["Data", "EDA", "Statistics"],
       downloadText: "Open Study Notes",
-      link: "content/notes-data-analysis.html"
+      link: "reader.html?topic=notes-data-analysis"
     },
     {
       title: "Feature Engineering & Data Preprocessing",
@@ -467,7 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A reference guide on preparing numeric and categorical variables, scaling features, transforming distributions, and handling skewness.",
       tags: ["ML", "Preprocessing", "Python"],
       downloadText: "Read Study Guide",
-      link: "content/feature-engineering-guide.html"
+      link: "reader.html?topic=feature-engineering-guide"
     },
     {
       title: "Prompt Engineering & LLM APIs",
@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A reference guide on zero-shot/few-shot prompting, system instructions, structured output parsing, and calling LLM APIs in Python.",
       tags: ["GenAI", "Gemini", "API"],
       downloadText: "Read Study Guide",
-      link: "content/prompt-engineering-guide.html"
+      link: "reader.html?topic=prompt-engineering-guide"
     },
     {
       title: "Data Pipelines & Orchestration (Airflow)",
@@ -483,7 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A reference guide on declaring Directed Acyclic Graphs (DAGs), managing task dependencies, scheduling runs, and writing tasks using Airflow operators.",
       tags: ["Airflow", "ETL", "DAGs"],
       downloadText: "Read Study Guide",
-      link: "content/airflow-pipelines-guide.html"
+      link: "reader.html?topic=airflow-pipelines-guide"
     },
     {
       title: "Model Evaluation Metrics Cheat Sheet",
@@ -491,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A reference guide on classification metrics (precision, recall, F1, AUC), regression metrics (MSE, RMSE, R²), and confusion matrices.",
       tags: ["ML", "Metrics", "Validation"],
       downloadText: "Read Study Guide",
-      link: "content/model-evaluation-guide.html"
+      link: "reader.html?topic=model-evaluation-guide"
     },
     {
       title: "SciPy Stats Module Foundations",
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A reference guide on using Python's SciPy library to represent statistical distributions, run hypothesis tests, and compute confidence intervals.",
       tags: ["Python", "SciPy", "Statistics"],
       downloadText: "Open Study Notes",
-      link: "content/notes-scipy-stats.html"
+      link: "reader.html?topic=notes-scipy-stats"
     },
     {
       title: "Jupyter Notebooks & Visual Explores",
@@ -507,7 +507,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A reference guide on running Jupyter Notebooks, mastering keyboard shortcuts, integrating inline charts, and compiling markdown cells.",
       tags: ["Jupyter", "Workspace", "IPython"],
       downloadText: "Read Study Guide",
-      link: "content/jupyter-notebooks-guide.html"
+      link: "reader.html?topic=jupyter-notebooks-guide"
     },
     {
       title: "TensorFlow & Deep Learning Architectures",
@@ -515,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A reference guide on building multi-layer neural networks, compiling models with optimizers, and running gradient descent fitting processes.",
       tags: ["TensorFlow", "Keras", "Deep Learning"],
       downloadText: "Read Study Guide",
-      link: "content/tensorflow-deep-learning.html"
+      link: "reader.html?topic=tensorflow-deep-learning"
     },
     {
       title: "PowerBI DAX & Semantic Modeling",
@@ -523,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A reference guide on DAX functions, Calculated Columns vs. Measures, filter contexts, and Time Intelligence expressions.",
       tags: ["PowerBI", "DAX", "Modeling"],
       downloadText: "Read Study Guide",
-      link: "content/powerbi-dax-guide.html"
+      link: "reader.html?topic=powerbi-dax-guide"
     },
     {
       title: "Looker LookML Modeling Guide",
@@ -531,7 +531,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A reference guide on Looker's LookML data modeling language, defining views, explore joins, dimensions, and custom measures.",
       tags: ["Looker", "LookML", "Modeling"],
       downloadText: "Read Study Guide",
-      link: "content/looker-lookml-guide.html"
+      link: "reader.html?topic=looker-lookml-guide"
     },
     {
       title: "Interactive Linear Regression Lecture Slides",
@@ -539,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A step-by-step presentation deck explaining intercept, slope, Ordinary Least Squares fitting, and coefficient definitions.",
       tags: ["Regression", "Math", "Slides"],
       downloadText: "Start Slideshow",
-      link: "content/slides-regression.html"
+      link: "reader.html?topic=slides-regression"
     },
     {
       title: "Data Analysis Lifecycle & Methods Slides",
@@ -547,7 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "An interactive presentation slide deck walking through the Ask, Prepare, Process, Analyze, Share, and Act workflow phases.",
       tags: ["EDA", "Workflow", "Slides"],
       downloadText: "Start Slideshow",
-      link: "content/slides-data-analysis.html"
+      link: "reader.html?topic=slides-data-analysis"
     },
     {
       title: "Retail Store Sales Practice Dataset",
@@ -563,7 +563,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "High-speed analytical indexes, CTE structures, cohort partition layouts, and window aggregation formulas optimized for PostgreSQL and Snowflake.",
       tags: ["SQL", "Snowflake"],
       downloadText: "Get Cheatsheet",
-      link: "content/sql-optimization.html"
+      link: "reader.html?topic=sql-optimization"
     },
     {
       title: "Advanced Excel Formulas & Analytics Guide",
@@ -571,7 +571,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A structured walkthrough of lookups (XLOOKUP, INDEX/MATCH), conditional sums (SUMIFS), Pivot Tables, and Power Query ETL pipelines.",
       tags: ["Excel", "PowerQuery", "Formulas"],
       downloadText: "Read Study Guide",
-      link: "content/excel-advanced-guide.html"
+      link: "reader.html?topic=excel-advanced-guide"
     },
     {
       title: "Tableau Dashboard Design & Calculations Guide",
@@ -579,7 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A masterclass reference covering calculated fields, Level of Detail (LOD) calculations, Parameter Actions, and dashboard visual layouts.",
       tags: ["Tableau", "LOD", "Dashboards"],
       downloadText: "Read Study Guide",
-      link: "content/tableau-dashboard-guide.html"
+      link: "reader.html?topic=tableau-dashboard-guide"
     },
     {
       title: "SaaS Customer Churn Practice Dataset",
@@ -595,7 +595,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A step-by-step practical coding lesson using Python, Pandas, and Scikit-Learn to load the cohort dataset, analyze indicators, and train a predictive classifier.",
       tags: ["Python", "Pandas", "Scikit-Learn"],
       downloadText: "Read Study Guide",
-      link: "content/customer-churn-guide.html"
+      link: "reader.html?topic=customer-churn-guide"
     },
     {
       title: "NYC Taxi & Limousine Dataset (2025)",
@@ -611,7 +611,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "A developer walkthrough explaining vector index embeddings, local pgvector setups, and context-stuffed prompt workflows using LangChain.",
       tags: ["GenAI", "ChromaDB"],
       downloadText: "Read Blueprint",
-      link: "content/rag-blueprint.html"
+      link: "reader.html?topic=rag-blueprint"
     },
     {
       title: "Polars vs. Pandas 2.0 DataFrame Reference",
@@ -619,7 +619,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "Comprehensive syntax mappings, memory optimizations, lazy execution graphs, and thread execution differences for high-volume tabular workloads.",
       tags: ["Python", "Polars"],
       downloadText: "Get Guide",
-      link: "content/polars-vs-pandas.html"
+      link: "reader.html?topic=polars-vs-pandas"
     },
     {
       title: "dbt Core Setup & Fact Star Modeling",
@@ -627,7 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
       description: "Architecting logical database transformations, model dependencies, schema assertions, and modular pipeline deployment in Snowflake warehouses.",
       tags: ["dbt", "Snowflake"],
       downloadText: "View Documentation",
-      link: "content/dbt-star-schema.html"
+      link: "reader.html?topic=dbt-star-schema"
     },
     {
       title: "Hands-On Machine Learning, 3rd Edition",
