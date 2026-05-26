@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apache Airflow Pipeline Guide | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+      color: #38bdf8;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--secondary);
+      border-radius: 4px;
+      color: var(--secondary);
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Data Engineering Guide</span>
+    <h1>Data Pipelines & Orchestration (Airflow)</h1>
+    <p>A reference guide on declaring Directed Acyclic Graphs (DAGs), managing task dependencies, scheduling runs, and writing tasks using Airflow operators.</p>
+
+    <div class="card">
+      <h3>⛓️ Pipeline Orchestration</h3>
+      <p>Apache Airflow is a platform to programmatically author, schedule, and monitor data workflows. Workflows are represented as Directed Acyclic Graphs (DAGs) in Python code.</p>
+    </div>
+
+    <h2>1. Anatomy of a DAG</h2>
+    <p>Every Airflow pipeline consists of a DAG object that encapsulates task dependencies and execution configurations.</p>
+    <pre><code>from datetime import datetime, timedelta
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+
+default_args = {
+    'owner': 'statiq_ops',
+    'depends_on_past': False,
+    'start_date': datetime(2026, 1, 1),
+    'retries': 2,
+    'retry_delay': timedelta(minutes=5),
+}
+
+# Declare DAG connection & schedule
+with DAG(
+    dag_id='statiq_retail_pipeline',
+    default_args=default_args,
+    description='ETL pipeline for retail store transactions',
+    schedule_interval='@daily',
+    catchup=False,
+) as dag:
+    # Operators go here
+    pass</code></pre>
+
+    <h2>2. Python & SQL Operators</h2>
+    <p>Operators represent a single task within the pipeline. Airflow provides operators for shell scripts, SQL statements, and Python execution.</p>
+    <pre><code>def extract_transactions():
+    print("Fetching CSV ledger data...")
+
+def transform_metrics():
+    print("Normalizing currency rates...")
+
+# Define python tasks
+task_extract = PythonOperator(
+    task_id='extract_raw_data',
+    python_callable=extract_transactions,
+)
+
+task_transform = PythonOperator(
+    task_id='transform_ledger_data',
+    python_callable=transform_metrics,
+)</code></pre>
+
+    <h2>3. Defining Task Dependencies</h2>
+    <p>Declare task execution sequences using bitwise operators. Tasks can run sequentially or in parallel groups.</p>
+    <pre><code># Run task_extract FIRST, then run task_transform SECOND
+task_extract >> task_transform</code></pre>
+  </div>
+</body>
+</html>

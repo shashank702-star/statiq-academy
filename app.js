@@ -462,6 +462,38 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "content/notes-data-analysis.html"
     },
     {
+      title: "Feature Engineering & Data Preprocessing",
+      category: "guide",
+      description: "A reference guide on preparing numeric and categorical variables, scaling features, transforming distributions, and handling skewness.",
+      tags: ["ML", "Preprocessing", "Python"],
+      downloadText: "Read Study Guide",
+      link: "content/feature-engineering-guide.html"
+    },
+    {
+      title: "Prompt Engineering & LLM APIs",
+      category: "guide",
+      description: "A reference guide on zero-shot/few-shot prompting, system instructions, structured output parsing, and calling LLM APIs in Python.",
+      tags: ["GenAI", "Gemini", "API"],
+      downloadText: "Read Study Guide",
+      link: "content/prompt-engineering-guide.html"
+    },
+    {
+      title: "Data Pipelines & Orchestration (Airflow)",
+      category: "guide",
+      description: "A reference guide on declaring Directed Acyclic Graphs (DAGs), managing task dependencies, scheduling runs, and writing tasks using Airflow operators.",
+      tags: ["Airflow", "ETL", "DAGs"],
+      downloadText: "Read Study Guide",
+      link: "content/airflow-pipelines-guide.html"
+    },
+    {
+      title: "Model Evaluation Metrics Cheat Sheet",
+      category: "guide",
+      description: "A reference guide on classification metrics (precision, recall, F1, AUC), regression metrics (MSE, RMSE, R²), and confusion matrices.",
+      tags: ["ML", "Metrics", "Validation"],
+      downloadText: "Read Study Guide",
+      link: "content/model-evaluation-guide.html"
+    },
+    {
       title: "SciPy Stats Module Foundations",
       category: "notes",
       description: "A reference guide on using Python's SciPy library to represent statistical distributions, run hypothesis tests, and compute confidence intervals.",

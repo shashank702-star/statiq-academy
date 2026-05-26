@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Evaluation Metrics Guide | StatIQ Academy</title>
+  <style>
+    :root {
+      --bg-darkest: #0b0f19;
+      --bg-card: #1f2937;
+      --color-border: #374151;
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-main: 'Outfit', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    pre {
+      background-color: #0d1117;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+      color: #38bdf8;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--secondary);
+      border-radius: 4px;
+      color: var(--secondary);
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Machine Learning Guide</span>
+    <h1>Model Evaluation Metrics Cheat Sheet</h1>
+    <p>A reference guide on classification metrics (precision, recall, F1, AUC), regression metrics (MSE, RMSE, R²), and confusion matrices.</p>
+
+    <div class="card">
+      <h3>📈 Model Validation</h3>
+      <p>Accuracy alone is misleading, especially for imbalanced datasets (e.g. churn predictions or fraud detection). Use specialized metrics to evaluate model errors.</p>
+    </div>
+
+    <h2>1. Classification Evaluation Metrics</h2>
+    <p>Understand the trade-offs of the confusion matrix columns:</p>
+    <ul>
+      <li><strong>Precision</strong>: Out of all positive predictions, how many were correct? Minimize false positives.
+        <br><code>Precision = TP / (TP + FP)</code>
+      </li>
+      <li><strong>Recall (Sensitivity)</strong>: Out of all actual positive cases, how many did the model find? Minimize false negatives.
+        <br><code>Recall = TP / (TP + FN)</code>
+      </li>
+      <li><strong>F1-Score</strong>: The harmonic mean of precision and recall. Ideal for imbalanced classes.
+        <br><code>F1 = 2 * (Precision * Recall) / (Precision + Recall)</code>
+      </li>
+      <li><strong>ROC AUC (Area Under Curve)</strong>: Evaluates performance across all probability thresholds. Scale is 0.5 (random guessing) to 1.0 (perfect classifier).</li>
+    </ul>
+    <pre><code>from sklearn.metrics import classification_report, roc_auc_score
+
+# Compute all classification performance statistics
+print(classification_report(y_true, y_pred))
+print(f"ROC AUC: {roc_auc_score(y_true, y_prob):.3f}")</code></pre>
+
+    <h2>2. Regression Evaluation Metrics</h2>
+    <p>Quantify distance predictions error scales:</p>
+    <ul>
+      <li><strong>Mean Absolute Error (MAE)</strong>: Average of absolute residuals. Easy to interpret.</li>
+      <li><strong>Mean Squared Error (MSE)</strong>: Average of squared residuals. Heavily penalizes large error residuals.</li>
+      <li><strong>Root Mean Squared Error (RMSE)</strong>: The square root of MSE. Translates errors back to the target variable's unit scale.</li>
+      <li><strong>R² (Coefficient of Determination)</strong>: The percentage of variance in the target variable explained by the features.</li>
+    </ul>
+    <pre><code>from sklearn.metrics import mean_squared_error, r2_score
+import numpy as np
+
+mse = mean_squared_error(y_true, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_true, y_pred)
+
+print(f"RMSE: {rmse:.3f}, R2: {r2:.3f}")</code></pre>
+  </div>
+</body>
+</html>
