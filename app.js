@@ -522,6 +522,22 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "reader.html?topic=cli-git-basics-guide"
     },
     {
+      title: "Data Cleaning Foundations",
+      category: "notes",
+      description: "Detailed notes on missing data mechanisms (MCAR/MAR/MNAR), drop vs. impute strategies, outlier IQR boundary rules, Z-score formulas, and scaling methods.",
+      tags: ["Cleaning", "Wrangling", "Python", "SQL"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=data-cleaning-foundations"
+    },
+    {
+      title: "Principles of Data Visualization",
+      category: "notes",
+      description: "Detailed notes on Gestalt design psychology, chart selection criteria, color theory contrast accessibility, and visual grid layout hierarchies.",
+      tags: ["Visualization", "BI", "Design"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=data-visualization-principles"
+    },
+    {
       title: "Linear Algebra Foundations",
       category: "notes",
       description: "A mathematical guide covering vectors, dot products, matrix multiplication, transposes, inverses, eigenvalues/eigenvectors, and PCA.",

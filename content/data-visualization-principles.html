@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Principles of Data Visualization | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Data Visualization Lesson</span>
+    <h1>Principles of Data Visualization</h1>
+    <p>Data visualization is the translation of data into visual contexts, such as maps or charts, to make data easier for the human brain to understand and extract insights from. Excellent visualizations optimize cognitive load and tell a structured story.</p>
+
+    <h2>1. Cognitive Load & Gestalt Principles</h2>
+    <p>Visual storytelling succeeds by minimizing <strong>cognitive load</strong>—the mental effort required to process information. We leverage Gestalt psychology to guide the viewer's eyes naturally:</p>
+    <ul>
+      <li><strong>Proximity</strong>: Elements close to each other are perceived as a group. (e.g., placing labels right next to lines instead of using a separate legend).</li>
+      <li><strong>Similarity</strong>: Elements sharing shape, size, or color are grouped together. (e.g., color-coding all marketing metrics in blue and product metrics in orange).</li>
+      <li><strong>Enclosure</strong>: Framing elements inside boundaries sets them apart as distinct. (e.g., putting card borders around executive KPI summaries).</li>
+      <li><strong>Connection</strong>: Elements linked by physical lines are viewed as related. (e.g., line charts showing historical trends).</li>
+    </ul>
+
+    <h2>2. Chart Selection Matrix</h2>
+    <p>Choosing the correct chart depends on the relationship you want to visualize:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Relationship</th>
+          <th>Description</th>
+          <th>Recommended Chart</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Comparison</strong></td>
+          <td>Comparing values across different categories.</td>
+          <td>Bar Chart (horizontal if labels are long), Column Chart</td>
+        </tr>
+        <tr>
+          <td><strong>Trend over Time</strong></td>
+          <td>Tracking metrics changing over continuous periods.</td>
+          <td>Line Chart, Area Chart</td>
+        </tr>
+        <tr>
+          <td><strong>Distribution</strong></td>
+          <td>Showing the frequency and spread of values.</td>
+          <td>Histogram, Density Plot, Box & Whisker Plot</td>
+        </tr>
+        <tr>
+          <td><strong>Correlation</strong></td>
+          <td>Showing the relationship between two numeric variables.</td>
+          <td>Scatter Plot (add regression lines to show trends)</td>
+        </tr>
+        <tr>
+          <td><strong>Composition</strong></td>
+          <td>Displaying part-to-whole segment breakdown.</td>
+          <td>Stacked Bar Chart, Treemap (avoid Pie Charts for >3 segments)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>3. Color Theory & Accessibility</h2>
+    <p>Color is a double-edged sword. Overusing color creates visual clutter, while bad choices lock out colorblind users (approximately 8% of men worldwide). Follow these guidelines:</p>
+    <ul>
+      <li><strong>Use Color as an Accent</strong>: Keep 90% of the dashboard in neutral tones (grays, whites, dark backgrounds) and use a single vibrant color to highlight the primary insight.</li>
+      <li><strong>Colorblind-Safe Palettes</strong>: Avoid standard Red/Green comparisons (Deuteranopia). Utilize palettes like **Viridis** (blue-to-yellow) or **Cividis**, which scale monotonically in both color and luminance.</li>
+      <li><strong>Luminance Contrast</strong>: Ensure a contrast ratio of at least 4.5:1 for body text and interactive icons against the background to satisfy WCAG AA accessibility standards.</li>
+    </ul>
+
+    <h2>4. Dashboard Layout & Visual Hierarchy</h2>
+    <p>Construct dashboards to mirror natural reading directions (the <strong>Z-pattern</strong> or **F-pattern**):</p>
+    <pre><code>+-------------------------------------------------------+
+|  LOGO / TITLE                             FILTERS  V  |
++-------------------------------------------------------+
+|  [ KPI 1: $12.4M ]   [ KPI 2: +15.2% ]   [ KPI 3: 42s ]|
++-------------------------------------------------------+
+|                                                       |
+|                  MAIN REGIONAL MAP                    |
+|                                                       |
++---------------------------+---------------------------+
+|  LINE CHART: SALES TREND  |  BAR CHART: TOP PRODUCTS  |
++---------------------------+---------------------------+</code></pre>
+    <ul>
+      <li><strong>KPI Summary Cards (Top)</strong>: Always display absolute context metrics (revenue, percentages, averages) at the top left of the layout.</li>
+      <li><strong>Main Visual (Center)</strong>: Dedicate the largest block of space to the primary analytical chart.</li>
+      <li><strong>Supporting Details (Bottom)</strong>: Place granular breakdowns or secondary charts below the main visualization.</li>
+    </ul>
+  </div>
+</body>
+</html>

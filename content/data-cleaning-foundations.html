@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Cleaning Foundations | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Data Cleaning Lesson</span>
+    <h1>Data Cleaning Foundations</h1>
+    <p>Data cleaning is the most critical phase of the data science lifecycle. Real-world data is messy, incomplete, and noisy. Training models or running analysis on unclean data leads directly to skewed insights and poor performance.</p>
+
+    <h2>1. Missing Data Mechanisms & Imputation</h2>
+    <p>When dealing with missing values (NaN, null, or None), you must categorize the mechanism of missingness to apply the correct strategy:</p>
+    <ul>
+      <li><strong>Missing Completely at Random (MCAR)</strong>: The probability of missingness is unrelated to any variable. (e.g., a test tube breaks in a lab at random). Dropping rows is acceptable here if they represent less than 5% of the total dataset.</li>
+      <li><strong>Missing at Random (MAR)</strong>: The missingness systematically depends on other observed variables but not the missing value itself. (e.g., older patients are less likely to record their heart rate). Imputation using grouped metrics is standard.</li>
+      <li><strong>Missing Not at Random (MNAR)</strong>: The missingness depends on the value of the missing variable itself. (e.g., high-income earners refuse to disclose their salaries). Simple imputation will skew the model; model-based imputation or adding dummy flags is required.</li>
+    </ul>
+
+    <h3>Common Imputation Strategies</h3>
+    <pre><code>import pandas as pd
+import numpy as np
+
+# Sample DataFrame
+df = pd.DataFrame({'income': [50000, np.nan, 75000, 120000, 60000, np.nan]})
+
+# 1. Mean Imputation (symmetric, normally distributed columns)
+df['income_mean'] = df['income'].fillna(df['income'].mean())
+
+# 2. Median Imputation (skewed columns with outliers)
+df['income_median'] = df['income'].fillna(df['income'].median())
+
+# 3. Mode Imputation (categorical columns)
+df['category'] = pd.Series(['A', np.nan, 'B', 'A', 'A'])
+df['category_mode'] = df['category'].fillna(df['category'].mode()[0])</code></pre>
+
+    <h2>2. Outlier Detection & Handling</h2>
+    <p>Outliers can severely bias statistics (like the mean) and damage machine learning models. We locate them using two primary statistical rules:</p>
+    
+    <h3>A. Interquartile Range (IQR) Rule (Tukey's Fences)</h3>
+    <p>Best for skewed, non-normal distributions. We construct a boundary boundary around the middle 50% of our data:</p>
+    <pre><code># Q1 (25th percentile) and Q3 (75th percentile)
+Q1 = df['income'].quantile(0.25)
+Q3 = df['income'].quantile(0.75)
+IQR = Q3 - Q1
+
+# Boundaries
+lower_fence = Q1 - 1.5 * IQR
+upper_fence = Q3 + 1.5 * IQR
+
+# Filter outliers
+cleaned_df = df[(df['income'] >= lower_fence) & (df['income'] <= upper_fence)]</code></pre>
+
+    <h3>B. Z-Score Rule</h3>
+    <p>Best for normally distributed (Gaussian) columns. Any value that falls beyond $\pm 3$ standard deviations from the mean is flagged:</p>
+    <pre><code># Z-score computation
+mean = df['income'].mean()
+std = df['income'].std()
+
+df['z_score'] = (df['income'] - mean) / std
+cleaned_df = df[df['z_score'].abs() <= 3]</code></pre>
+
+    <h2>3. Scaling & Normalization</h2>
+    <p>Scaling transforms numerical attributes so they lie within a similar scale. This is mandatory for distance-based models (KNN, K-Means) and gradient optimization (Neural Networks):</p>
+    <ul>
+      <li><strong>MinMaxScaler (Normalization)</strong>: Rescales values to range exactly between <code>[0, 1]</code>. Highly sensitive to outliers.</li>
+      <li><strong>StandardScaler (Standardization)</strong>: Center data to <code>mean = 0</code> and <code>standard deviation = 1</code>. Best for normally distributed attributes.</li>
+      <li><strong>RobustScaler</strong>: Scales data using the median and IQR, making it highly robust to outlier values.</li>
+    </ul>
+    <pre><code>from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler
+
+# Initialize scalers
+minmax = MinMaxScaler()
+standard = StandardScaler()
+robust = RobustScaler()
+
+# Apply to numeric columns
+df['normalized'] = minmax.fit_transform(df[['income']])
+df['standardized'] = standard.fit_transform(df[['income']])
+df['robust_scaled'] = robust.fit_transform(df[['income']])</code></pre>
+  </div>
+</body>
+</html>

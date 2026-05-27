@@ -701,9 +701,51 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     {
-      moduleTitle: "SQL & Python Clean-wrangling Pipelines",
+      moduleTitle: "Data Cleaning & Wrangling Pipelines",
       moduleId: "mod-4",
       lessons: [
+        {
+          title: "Data Cleaning Foundations",
+          id: "data-cleaning-foundations",
+          file: "content/data-cleaning-foundations.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "Which missing data mechanism occurs when the probability of missingness depends on the unobserved missing value itself?",
+              options: [
+                "MCAR",
+                "MAR",
+                "MNAR",
+                "Imputed"
+              ],
+              answer: 2,
+              explain: "Missing Not at Random (MNAR) means the missingness systematically depends on the missing values themselves (e.g., wealthy people not reporting high salaries)."
+            },
+            {
+              q: "How does Tukey's IQR rule define the lower outlier boundary?",
+              options: [
+                "Q1 - 1.5 * IQR",
+                "Q3 + 1.5 * IQR",
+                "Mean - 2 * STD",
+                "Median - 1.5 * IQR"
+              ],
+              answer: 0,
+              explain: "Tukey's IQR method defines outlier boundaries as Q1 - 1.5 * IQR (lower fence) and Q3 + 1.5 * IQR (upper fence)."
+            },
+            {
+              q: "Which feature scaler scales attributes strictly between 0 and 1, but is highly sensitive to outliers?",
+              options: [
+                "StandardScaler",
+                "MinMaxScaler",
+                "RobustScaler",
+                "Normalizer"
+              ],
+              answer: 1,
+              explain: "MinMaxScaler scales features to the [0, 1] range using minimum and maximum bounds, making it vulnerable to extreme outlier values."
+            }
+          ]
+        },
         {
           title: "Advanced SQL Optimization",
           id: "sql-optimization",
@@ -1301,9 +1343,51 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     {
-      moduleTitle: "BI Analytics & Storytelling",
+      moduleTitle: "Data Visualization & BI Analytics",
       moduleId: "mod-6",
       lessons: [
+        {
+          title: "Principles of Data Visualization",
+          id: "data-visualization-principles",
+          file: "content/data-visualization-principles.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "Which Gestalt design principle states that visual elements placed within a shared boundary or box are perceived as grouped?",
+              options: [
+                "Proximity",
+                "Similarity",
+                "Enclosure",
+                "Connection"
+              ],
+              answer: 2,
+              explain: "Enclosure wraps elements in a common boundary, visually segregating them from surrounding elements."
+            },
+            {
+              q: "What chart type is most recommended for displaying relationships/correlations between two numeric attributes?",
+              options: [
+                "Bar Chart",
+                "Line Chart",
+                "Treemap",
+                "Scatter Plot"
+              ],
+              answer: 3,
+              explain: "Scatter plots map variables onto Cartesian coordinate grids, displaying linear or non-linear correlation structures."
+            },
+            {
+              q: "In dashboard layout hierarchy, why should KPI cards be placed at the top left?",
+              options: [
+                "To load the data from SQL faster.",
+                "To align with natural reading visual scan patterns (Z-pattern / F-pattern).",
+                "Because web browsers render top-left elements first.",
+                "To filter out outliers."
+              ],
+              answer: 1,
+              explain: "Human eyes naturally sweep layouts starting from the top-left, making it the highest priority area for key business metrics."
+            }
+          ]
+        },
         {
           title: "Tableau Calculated Fields & LODs",
           id: "tableau-dashboard-guide",
