@@ -133,46 +133,136 @@ document.addEventListener('DOMContentLoaded', () => {
               explain: "In Git, clones duplicate the entire project repository database, allowing offline tracking and local branches."
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      moduleTitle: "Mathematical Foundations",
+      moduleId: "mod-1",
+      lessons: [
         {
-          title: "Mathematics & Calculus Foundations",
-          id: "math-basics-guide",
-          file: "content/math-basics-guide.html",
+          title: "Linear Algebra Foundations",
+          id: "linear-algebra-basics",
+          file: "content/linear-algebra-basics.html",
           type: "notes",
           readTime: 5,
           quiz: [
             {
-              q: "In Linear Algebra, what is a Vector?",
+              q: "What is the dot product of vectors v = [2, 4] and w = [3, 1]?",
               options: [
-                "A two-dimensional grid of numbers.",
-                "An ordered list of values representing features of a data point.",
-                "A single variable representing error metrics.",
-                "A rate of change derivative."
-              ],
-              answer: 1,
-              explain: "A Vector is a one-dimensional array of numbers representing features, whereas a Matrix is a two-dimensional grid."
-            },
-            {
-              q: "What is the derivative of the function f(x) = 4x^3 + 5x?",
-              options: [
-                "12x^2 + 5",
-                "12x^3 + 5",
-                "4x^2 + 5",
-                "12x + 5"
+                "10",
+                "14",
+                "6",
+                "8"
               ],
               answer: 0,
-              explain: "Using the Power Rule, d/dx(4x^3) = 12x^2 and d/dx(5x) = 5, yielding 12x^2 + 5."
+              explain: "The dot product is (2*3) + (4*1) = 6 + 4 = 10."
             },
             {
-              q: "What is the role of derivative slopes in Gradient Descent optimization?",
+              q: "Which matrix operation flips a matrix over its diagonal, swapping its rows and columns?",
               options: [
-                "They compute average variable sums.",
-                "They indicate the direction to move weights to minimize error functions.",
-                "They scale data matrices to bounds between 0 and 1.",
-                "They calculate correlation vectors."
+                "Inverse",
+                "Determinant",
+                "Transpose",
+                "Eigendecomposition"
+              ],
+              answer: 2,
+              explain: "The Transpose operation swaps rows with columns, turning an m x n matrix into an n x m matrix."
+            },
+            {
+              q: "In Principal Component Analysis (PCA), what do eigenvectors of the covariance matrix represent?",
+              options: [
+                "The loss function gradients.",
+                "The principal components representing axes of maximum variance.",
+                "The scaling factor weights of hidden layers.",
+                "The identity matrix diagonals."
               ],
               answer: 1,
-              explain: "Derivatives measure slopes. Moving parameters in the opposite direction of the slope minimizes model loss."
+              explain: "Eigenvectors of the covariance matrix point in the directions of maximum variance, defining the principal components."
+            }
+          ]
+        },
+        {
+          title: "Calculus & Optimization Basics",
+          id: "calculus-optimization-basics",
+          file: "content/calculus-optimization-basics.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "Using the Power Rule, what is the derivative of the function f(x) = 5x^3?",
+              options: [
+                "15x^2",
+                "5x^2",
+                "15x^3",
+                "8x^2"
+              ],
+              answer: 0,
+              explain: "d/dx(5x^3) = 5 * 3 * x^(3-1) = 15x^2."
+            },
+            {
+              q: "Which mathematical rule is the primary mechanic of error backpropagation in deep neural networks?",
+              options: [
+                "The Product Rule",
+                "The Chain Rule",
+                "The Quotient Rule",
+                "The Power Rule"
+              ],
+              answer: 1,
+              explain: "The Chain Rule allows us to calculate the derivative of composite functions, passing error gradients back through nested layers."
+            },
+            {
+              q: "How does Gradient Descent adjust a parameter weight w when the partial derivative of loss w.r.t w is positive?",
+              options: [
+                "It increases the weight w.",
+                "It decreases the weight w.",
+                "It leaves the weight w unchanged.",
+                "It resets the weight w to zero."
+              ],
+              answer: 1,
+              explain: "The gradient descent update rule is w = w - learning_rate * gradient. Since the gradient is positive, subtracting it decreases the weight."
+            }
+          ]
+        },
+        {
+          title: "Discrete Mathematics & Logic Basics",
+          id: "discrete-math-basics",
+          file: "content/discrete-math-basics.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "In Set Theory, which set operation is equivalent to an INNER JOIN in SQL?",
+              options: [
+                "Union",
+                "Difference",
+                "Intersection",
+                "Subset"
+              ],
+              answer: 2,
+              explain: "Intersection (A ∩ B) returns elements that exist in both sets, which is identical to SQL's INNER JOIN condition."
+            },
+            {
+              q: "If inputs A and B are True and False respectively, what are the outputs of AND and XOR operations?",
+              options: [
+                "AND: True, XOR: False",
+                "AND: False, XOR: True",
+                "AND: False, XOR: False",
+                "AND: True, XOR: True"
+              ],
+              answer: 1,
+              explain: "AND is True only if both are True (so False here). XOR is True if exactly one is True (so True here)."
+            },
+            {
+              q: "Which expression represents the number of ways to choose a committee of r members from a pool of n candidates where order does not matter?",
+              options: [
+                "Permutations: P(n, r) = n! / (n - r)!",
+                "Combinations: C(n, r) = n! / (r! * (n - r)!)",
+                "Factorial: n!",
+                "Summation: Σ(n)"
+              ],
+              answer: 1,
+              explain: "Combinations are used when selection order does not matter, whereas Permutations are used when order does matter."
             }
           ]
         }
@@ -180,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       moduleTitle: "Probability & Statistics Foundations",
-      moduleId: "mod-1",
+      moduleId: "mod-2",
       lessons: [
         {
           title: "Probability Theory & Basics",
@@ -396,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       moduleTitle: "SQL & Python Clean-wrangling Pipelines",
-      moduleId: "mod-2",
+      moduleId: "mod-3",
       lessons: [
         {
           title: "Advanced SQL Optimization",
@@ -528,7 +618,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       moduleTitle: "Applied Machine Learning Models",
-      moduleId: "mod-3",
+      moduleId: "mod-4",
       lessons: [
         {
           title: "Linear Regression Foundations",
@@ -996,7 +1086,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       moduleTitle: "BI Analytics & Storytelling",
-      moduleId: "mod-4",
+      moduleId: "mod-5",
       lessons: [
         {
           title: "Tableau Calculated Fields & LODs",

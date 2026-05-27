@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discrete Mathematics & Logic Basics | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Mathematical Foundations Lesson</span>
+    <h1>Discrete Mathematics & Logic Basics</h1>
+    <p>Discrete mathematics deals with countable, distinct structures. It is essential for understanding algorithms, conditional statements, database joins, probability spaces, and boolean logic operations in computer systems.</p>
+
+    <h2>1. Set Theory & Logic Operations</h2>
+    <p>A **Set** is a collection of distinct elements. In data analytics and SQL, table queries are based directly on set operations.</p>
+    <ul>
+      <li><strong>Union ($A \cup B$)</strong>: Elements in set A OR set B OR both. In SQL, this is represented by <code>UNION</code>.</li>
+      <li><strong>Intersection ($A \cap B$)</strong>: Elements in set A AND set B. In SQL, this is equivalent to an <code>INNER JOIN</code>.</li>
+      <li><strong>Difference ($A \setminus B$)</strong>: Elements in set A but not in set B. In SQL, this is represented by <code>EXCEPT</code> or <code>LEFT JOIN ... WHERE right.id IS NULL</code>.</li>
+    </ul>
+
+    <h3>Boolean Algebra & Logic Gates</h3>
+    <p>Logic gates perform basic logical operations that underpin conditional programming control flow (if/else statements):</p>
+    <div class="formula-block">
+      AND (&and;): Returns True if BOTH inputs are True.
+      <br>OR (&or;): Returns True if AT LEAST ONE input is True.
+      <br>NOT (&not;): Inverts the input (True becomes False).
+      <br>XOR (&oplus;): Returns True if EXACTLY ONE input is True (A != B).
+    </div>
+
+    <pre><code># Set operations and Logic gates in Python
+set_a = {"Python", "SQL", "Tableau"}
+set_b = {"SQL", "Git", "R"}
+
+# Set Math
+union = set_a.union(set_b) # OR
+intersection = set_a.intersection(set_b) # AND
+difference = set_a.difference(set_b) # subtraction
+
+print("Union:", union)
+print("Intersection:", intersection) # {'SQL'}
+print("Difference (A-B):", difference) # {'Python', 'Tableau'}
+
+# Boolean checks
+x = True
+y = False
+print("x AND y:", x and y)
+print("x OR y:", x or y)
+print("x XOR y:", x != y)</code></pre>
+
+    <h2>2. Combinatorics: Permutations & Combinations</h2>
+    <p>Combinatorics is the study of counting arrangements. It is essential for calculating sample spaces in probability and assessing statistical probabilities.</p>
+    
+    <h3>Factorial ($n!$)</h3>
+    <p>The product of all positive integers less than or equal to $n$. Represents the number of ways to arrange $n$ objects in a sequence.</p>
+    <div class="formula-block">
+      n! = n * (n-1) * (n-2) * ... * 1
+    </div>
+
+    <h3>Permutations ($P$) vs. Combinations ($C$)</h3>
+    <ul>
+      <li><strong>Permutations</strong>: Arrangements where **order matters** (e.g., choosing a President and Vice President from a pool).
+        <div class="formula-block">P(n, r) = n! / (n - r)!</div>
+      </li>
+      <li><strong>Combinations</strong>: Selections where **order does not matter** (e.g., choosing a committee of 2 from a pool).
+        <div class="formula-block">C(n, r) = n! / (r! * (n - r)!)</div>
+      </li>
+    </ul>
+
+    <pre><code># Permutations and Combinations in math module
+import math
+
+n = 5
+r = 2
+
+# Permutations P(5, 2): 5! / 3! = 20
+perms = math.perm(n, r)
+print(f"Permutations: {perms}")
+
+# Combinations C(5, 2): 5! / (2! * 3!) = 10
+combs = math.comb(n, r)
+print(f"Combinations: {combs}")</code></pre>
+
+    <h2>3. Summation (&Sigma;) and Product (&Pi;) Notations</h2>
+    <p>Mathematical equations in machine learning papers heavily rely on these short-hand iteration representations:</p>
+    
+    <h3>Summation (&Sigma; - Sigma)</h3>
+    <p>Indicates adding a sequence of numbers from a lower limit to an upper limit.</p>
+    <div class="formula-block">
+      &Sigma;<sub>i=1</sub><sup>n</sup> x<sub>i</sub> = x<sub>1</sub> + x<sub>2</sub> + ... + x<sub>n</sub>
+    </div>
+
+    <h3>Product (&Pi; - Pi)</h3>
+    <p>Indicates multiplying a sequence of numbers from a lower limit to an upper limit (e.g., computing joint likelihood probabilities).</p>
+    <div class="formula-block">
+      &Pi;<sub>i=1</sub><sup>n</sup> x<sub>i</sub> = x<sub>1</sub> * x<sub>2</sub> * ... * x<sub>n</sub>
+    </div>
+  </div>
+</body>
+</html>

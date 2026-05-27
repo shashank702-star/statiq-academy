@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculus & Optimization Basics | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Mathematical Foundations Lesson</span>
+    <h1>Calculus & Optimization Basics</h1>
+    <p>Calculus is the engine behind learning in neural networks and machine learning models. By computing derivatives, we measure the rate of change of errors relative to model parameters, allowing us to iteratively adjust weights to optimize performance.</p>
+
+    <h2>1. Derivatives & The Slopes of Functions</h2>
+    <p>The **Derivative** of a function $f(x)$, denoted as $f'(x)$ or $\frac{df}{dx}$, measures the instantaneous rate of change of the function output relative to changes in its input. Visually, the derivative is the slope of the line tangent to the function curve at a specific point.</p>
+    <div class="info-card">
+      <h3>Key Rules of Calculus</h3>
+      <ul>
+        <li><strong>Power Rule</strong>: $\frac{d}{dx}(x^n) = n x^{n-1}$ &mdash; e.g., $\frac{d}{dx}(x^3) = 3x^2$</li>
+        <li><strong>Constant Rule</strong>: $\frac{d}{dx}(C) = 0$ &mdash; e.g., $\frac{d}{dx}(5) = 0$</li>
+        <li><strong>Sum Rule</strong>: $\frac{d}{dx}(f(x) + g(x)) = f'(x) + g'(x)$</li>
+        <li><strong>Product Rule</strong>: $\frac{d}{dx}(f(x) \cdot g(x)) = f'(x)g(x) + f(x)g'(x)$</li>
+      </ul>
+    </div>
+
+    <h2>2. Chain Rule & Partial Derivatives</h2>
+    <p>In machine learning, functions are often composite ($f(g(x))$) and have multiple variables (such as neural network weights). To solve these, we use multi-variable calculus.</p>
+    
+    <h3>The Chain Rule</h3>
+    <p>The Chain Rule computes the derivative of composite functions. It is the core mathematical mechanic of <strong>backpropagation</strong> in deep neural networks, where we pass error gradients backward through multiple hidden layers.</p>
+    <div class="formula-block">
+      dy/dx = (dy/du) * (du/dx) &mdash; where y = f(u) and u = g(x)
+    </div>
+
+    <h3>Partial Derivatives</h3>
+    <p>When a function depends on multiple variables (e.g., $f(w, b)$ where $w$ represents weights and $b$ represents bias), a <strong>partial derivative</strong> measures the rate of change with respect to one variable while holding all other variables constant. We use the symbol &part; (curly d) to write partial derivatives: $\frac{\partial f}{\partial w}$ and $\frac{\partial f}{\partial b}$.</p>
+    <div class="formula-block">
+      Gradient &nabla;f = [ &part;f/&part;w<sub>1</sub>, &part;f/&part;w<sub>2</sub>, ..., &part;f/&part;w<sub>n</sub> ]
+    </div>
+
+    <pre><code># Symbolic Derivatives in Python using SymPy
+import sympy as sp
+
+x, w, b = sp.symbols('x w b')
+# Define loss function: L = (w*x + b - 10)**2
+loss = (w*x + b - 10)**2
+
+# Take partial derivative of loss with respect to weight 'w'
+partial_w = sp.diff(loss, w)
+print("Partial derivative w.r.t w:")
+print(partial_w) # 2*x*(b + w*x - 10)
+
+# Evaluate at values: x=2, w=3, b=1
+gradient_val = partial_w.subs({x: 2, w: 3, b: 1})
+print(f"Gradient value at w=3: {gradient_val}")</code></pre>
+
+    <h2>3. Gradient Descent Optimization</h2>
+    <p><strong>Gradient Descent</strong> is an optimization algorithm that shifts model weights in the opposite direction of the gradient to minimize the loss (error) function. By constantly moving in the direction of steepest descent, we converge toward the global minimum error.</p>
+    <div class="formula-block">
+      w<sub>new</sub> = w<sub>old</sub> - &eta; * &nabla;L(w)
+      <br>&eta; (eta) = Learning Rate (step size scaling factor)
+    </div>
+    
+    <div class="info-card">
+      <h3>The Learning Rate (&eta;)</h3>
+      <ul>
+        <li><strong>Too Small</strong>: Converging takes too long, requiring heavy computational times.</li>
+        <li><strong>Too Large</strong>: The optimization steps overshoot, oscillating and failing to converge to the minimum.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

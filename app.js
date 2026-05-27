@@ -177,7 +177,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     switch (track) {
       case 'basics':
-        totalHours = 60;
+        totalHours = 45;
+        milestones = 1;
+        break;
+      case 'math':
+        totalHours = 50;
         milestones = 1;
         break;
       case 'statistics':
@@ -474,12 +478,28 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "reader.html?topic=cli-git-basics-guide"
     },
     {
-      title: "Mathematics & Calculus Foundations",
+      title: "Linear Algebra Foundations",
       category: "notes",
-      description: "A fundamental reference covering vectors, matrices, dot products, derivatives, Power Rule calculus, and Gradient Descent optimization.",
-      tags: ["Math", "Basics", "Calculus"],
+      description: "A mathematical guide covering vectors, dot products, matrix multiplication, transposes, inverses, eigenvalues/eigenvectors, and PCA.",
+      tags: ["Math", "Linear Algebra", "Basics"],
       downloadText: "Open Study Notes",
-      link: "reader.html?topic=math-basics-guide"
+      link: "reader.html?topic=linear-algebra-basics"
+    },
+    {
+      title: "Calculus & Optimization Basics",
+      category: "notes",
+      description: "A mathematical guide covering derivatives, rules, composites (Chain Rule), partial derivatives, gradients, and Gradient Descent optimization.",
+      tags: ["Math", "Calculus", "Optimization"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=calculus-optimization-basics"
+    },
+    {
+      title: "Discrete Mathematics & Logic Basics",
+      category: "notes",
+      description: "A mathematical guide covering set theory (union, intersection), logic gates, combinatorics, factorials, permutations, and summation/product notations.",
+      tags: ["Math", "Discrete Math", "Logic"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=discrete-math-basics"
     },
     {
       title: "Neural Networks Foundations",

@@ -166,6 +166,9 @@
           <button class="tab-btn active" data-track="track-basics" id="tab-btn-basics">
             <i>🌱</i> Basics Foundations
           </button>
+          <button class="tab-btn" data-track="track-math" id="tab-btn-math">
+            <i>📐</i> Mathematical Foundations
+          </button>
           <button class="tab-btn" data-track="track-stats" id="tab-btn-stats">
             <i>📊</i> Statistics & Probability
           </button>
@@ -188,7 +191,7 @@
             <div class="track-info">
               <h3><i>🌱</i> Basics Foundations</h3>
               <p>
-                Establish your programming and mathematical foundations. Before diving into statistical distributions or training neural networks, master core Python scripting, relational database queries, command line navigation, and matrix algebra.
+                Establish your programming and version control foundations. Before writing data processing pipelines or training neural networks, master core Python scripting, relational database queries, and command-line terminal version control.
               </p>
               
               <div class="track-tools">
@@ -197,7 +200,6 @@
                   <a href="reader.html?topic=python-basics-guide" class="tool-badge">Python (Basics)</a>
                   <a href="reader.html?topic=sql-basics-guide" class="tool-badge">SQL (Queries)</a>
                   <a href="reader.html?topic=cli-git-basics-guide" class="tool-badge">Git & CLI (Terminal)</a>
-                  <a href="reader.html?topic=math-basics-guide" class="tool-badge">Mathematics (Matrices)</a>
                 </div>
               </div>
 
@@ -228,6 +230,56 @@
                   <li>Write functions to parse CSV values.</li>
                   <li>Join tables to resolve missing segments.</li>
                   <li>Verify output formats via log assertions.</li>
+                </ul>
+                <a href="#curriculum" class="btn btn-secondary">Explore Syllabus</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 0.5: Mathematical Foundations -->
+          <div class="track-pane" id="track-math">
+            <div class="track-info">
+              <h3><i>📐</i> Mathematical Foundations</h3>
+              <p>
+                Build your theoretical mathematical core. Machine learning models represent data as vector spaces and optimize parameter weights using multi-variable calculus gradients and optimization theory.
+              </p>
+              
+              <div class="track-tools">
+                <h4>Core tools used</h4>
+                <div class="tools-list">
+                  <a href="reader.html?topic=linear-algebra-basics" class="tool-badge">Linear Algebra</a>
+                  <a href="reader.html?topic=calculus-optimization-basics" class="tool-badge">Calculus & Optimization</a>
+                  <a href="reader.html?topic=discrete-math-basics" class="tool-badge">Discrete Math & Logic</a>
+                </div>
+              </div>
+
+              <div class="skills-list">
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>Vector & Matrix Algebra</h5>
+                    <p>Model datasets using vector coordinates and execute matrix multiplications, transpositions, and transformations.</p>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>Optimization & Gradients</h5>
+                    <p>Apply partial derivatives and the chain rule to implement iterative Gradient Descent algorithms.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="track-preview">
+              <div class="preview-card">
+                <span class="preview-tag">Milestone Project</span>
+                <h4>Matrix Transformation Engine</h4>
+                <p>Build a local Python module that performs linear transformations on datasets, calculates eigenvectors, and implements a basic gradient descent minimization script from scratch.</p>
+                <ul class="preview-list">
+                  <li>Compute dot products and matrix scaling.</li>
+                  <li>Implement power-rule derivative optimization.</li>
+                  <li>Track converging errors across training epochs.</li>
                 </ul>
                 <a href="#curriculum" class="btn btn-secondary">Explore Syllabus</a>
               </div>
@@ -552,7 +604,8 @@
             <div class="calc-select-group">
               <label for="target-role" style="font-size: 0.9rem; font-weight:600; margin-bottom:8px; display:block;">Target Learning Path</label>
               <select id="target-role" class="calc-select">
-                <option value="basics">Basics Foundations Path (60 hrs)</option>
+                <option value="basics">Basics Foundations Path (45 hrs)</option>
+                <option value="math">Mathematical Foundations Path (50 hrs)</option>
                 <option value="statistics">Statistics & Probability (100 hrs)</option>
                 <option value="data-analysis">Data Analysis Path (180 hrs)</option>
                 <option value="data-science" selected>Data Science & ML Path (300 hrs)</option>
@@ -619,14 +672,14 @@
 
         <div class="curriculum-accordion">
           
-          <!-- Accordion Module 0 -->
+          <!-- Accordion Module 00 -->
           <div class="accordion-item reveal">
             <div class="accordion-header">
               <div class="accordion-header-left">
                 <span class="accordion-num">00</span>
                 <div class="accordion-title">
                   <h3>Basics Foundations</h3>
-                  <p>Module 0 • 4 Lessons • Project 0</p>
+                  <p>Module 00 • 3 Lessons • Project 00</p>
                 </div>
               </div>
               <span class="accordion-icon">▼</span>
@@ -637,10 +690,9 @@
                   <div class="syllabus-lessons">
                     <h4>What you will learn</h4>
                     <div class="lessons-list">
-                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Python basics: primitives, control flows, loops, containers</div>
-                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Relational SQL: SELECT queries, WHERE filters, GROUP BY aggregations</div>
-                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Shell navigation & Version Control: CLI paths, Git commits & pushes</div>
-                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Mathematics foundations: Matrix vector multiplications, Calculus derivatives</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Python programming basics: variables, control flows, loops, containers</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Relational database SQL queries: SELECT, WHERE, GROUP BY, joins</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Command Line navigation & Git version control workflows</div>
                     </div>
                   </div>
                   <div class="syllabus-project">
@@ -656,20 +708,54 @@
             </div>
           </div>
 
-          <!-- Accordion Module 1 -->
+          <!-- Accordion Module 01 -->
           <div class="accordion-item reveal">
             <div class="accordion-header">
-
               <div class="accordion-header-left">
                 <span class="accordion-num">01</span>
                 <div class="accordion-title">
-                  <h3>Probability & Statistics Foundations</h3>
-                  <p>Module 1 • 6 Lessons • Project 1</p>
+                  <h3>Mathematical Foundations</h3>
+                  <p>Module 01 • 3 Lessons • Project 01</p>
                 </div>
               </div>
               <span class="accordion-icon">▼</span>
             </div>
-            
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <div class="syllabus-grid">
+                  <div class="syllabus-lessons">
+                    <h4>What you will learn</h4>
+                    <div class="lessons-list">
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Linear Algebra: vectors, matrix operations, transpose, inverse, eigenvectors</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Calculus & Optimization: derivatives, partial derivatives, chain rule, gradient descent</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Discrete Mathematics & Logic: set theory, logic gates, combinatorics, mathematical notation</div>
+                    </div>
+                  </div>
+                  <div class="syllabus-project">
+                    <h4>Capstone Project</h4>
+                    <div class="project-card">
+                      <h5>Matrix Transformation Engine</h5>
+                      <p>Build a local Python module that performs linear transformations on datasets, calculates eigenvectors, and implements a basic gradient descent minimization script from scratch.</p>
+                      <span class="project-tag">⚡ Mathematical Core</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Module 02 -->
+          <div class="accordion-item reveal">
+            <div class="accordion-header">
+              <div class="accordion-header-left">
+                <span class="accordion-num">02</span>
+                <div class="accordion-title">
+                  <h3>Probability & Statistics Foundations</h3>
+                  <p>Module 02 • 5 Lessons • Project 02</p>
+                </div>
+              </div>
+              <span class="accordion-icon">▼</span>
+            </div>
             <div class="accordion-content">
               <div class="accordion-body">
                 <div class="syllabus-grid">
@@ -697,20 +783,18 @@
             </div>
           </div>
 
-          <!-- Accordion Module 2 -->
+          <!-- Accordion Module 03 -->
           <div class="accordion-item reveal">
             <div class="accordion-header">
-
               <div class="accordion-header-left">
-                <span class="accordion-num">02</span>
+                <span class="accordion-num">03</span>
                 <div class="accordion-title">
                   <h3>SQL & Python Clean-wrangling Pipelines</h3>
-                  <p>Module 2 • 8 Lessons • Project 2</p>
+                  <p>Module 03 • 3 Lessons • Project 03</p>
                 </div>
               </div>
               <span class="accordion-icon">▼</span>
             </div>
-            
             <div class="accordion-content">
               <div class="accordion-body">
                 <div class="syllabus-grid">
@@ -738,20 +822,18 @@
             </div>
           </div>
 
-          <!-- Accordion Module 3 -->
+          <!-- Accordion Module 04 -->
           <div class="accordion-item reveal">
             <div class="accordion-header">
-
               <div class="accordion-header-left">
-                <span class="accordion-num">03</span>
+                <span class="accordion-num">04</span>
                 <div class="accordion-title">
                   <h3>Applied Machine Learning Models</h3>
-                  <p>Module 3 • 12 Lessons • Project 3</p>
+                  <p>Module 04 • 11 Lessons • Project 04</p>
                 </div>
               </div>
               <span class="accordion-icon">▼</span>
             </div>
-            
             <div class="accordion-content">
               <div class="accordion-body">
                 <div class="syllabus-grid">
@@ -781,20 +863,18 @@
             </div>
           </div>
 
-          <!-- Accordion Module 4 -->
+          <!-- Accordion Module 05 -->
           <div class="accordion-item reveal">
             <div class="accordion-header">
-
               <div class="accordion-header-left">
-                <span class="accordion-num">04</span>
+                <span class="accordion-num">05</span>
                 <div class="accordion-title">
                   <h3>BI Analytics & Storytelling</h3>
-                  <p>Module 4 • 6 Lessons • Project 4</p>
+                  <p>Module 05 • 5 Lessons • Project 05</p>
                 </div>
               </div>
               <span class="accordion-icon">▼</span>
             </div>
-            
             <div class="accordion-content">
               <div class="accordion-body">
                 <div class="syllabus-grid">

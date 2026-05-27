@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear Algebra Foundations | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Mathematical Foundations Lesson</span>
+    <h1>Linear Algebra Foundations</h1>
+    <p>Linear Algebra is the mathematical language of data. From image pixel representations to high-dimensional text embeddings and neural network weight matrices, data is structured and transformed using linear algebra operations.</p>
+
+    <h2>1. Vectors: The Elements of Data</h2>
+    <p>A <strong>Vector</strong> is an ordered list of numbers representing features of a data point. In 2D space, a vector represents a direction and magnitude from the origin. In data science, a vector can have thousands of dimensions (e.g., word embeddings).</p>
+    
+    <h3>Vector Dot Product</h3>
+    <p>The dot product multiplies corresponding entries of two equal-length vectors and sums the results, producing a single scalar. It is key for computing similarity (cosine similarity) and matrix operations.</p>
+    <div class="formula-block">
+      v &middot; w = &Sigma; (v<sub>i</sub> * w<sub>i</sub>) = v<sub>1</sub>w<sub>1</sub> + v<sub>2</sub>w<sub>2</sub> + ... + v<sub>n</sub>w<sub>n</sub>
+    </div>
+    
+    <pre><code># Vector operations in NumPy
+import numpy as np
+
+# Feature vectors for two users
+user_a = np.array([4.0, 5.0, 1.0]) # Rating for [Action, Comedy, Drama]
+user_b = np.array([5.0, 4.0, 0.0])
+
+# Dot Product calculation
+dot_prod = np.dot(user_a, user_b)
+print(f"Dot Product: {dot_prod}") # (4*5) + (5*4) + (1*0) = 40.0
+
+# Cosine Similarity: dot(a, b) / (norm(a) * norm(b))
+cos_sim = dot_prod / (np.linalg.norm(user_a) * np.linalg.norm(user_b))
+print(f"Cosine Similarity: {cos_sim:.4f}")</code></pre>
+
+    <h2>2. Matrices: Datasets and Weights</h2>
+    <p>A <strong>Matrix</strong> is a 2D grid of numbers. In machine learning, a matrix can represent a full dataset (rows = samples, columns = features) or the weights of a neural network layer.</p>
+
+    <h3>Matrix Multiplication</h3>
+    <p>Multiplying a matrix $A$ (size $m \times n$) by a matrix $B$ (size $n \times p$) yields a matrix $C$ ($m \times p$). Each element $C_{i,j}$ is the dot product of row $i$ of $A$ and column $j$ of $B$.</p>
+    <div class="formula-block">
+      C<sub>i,j</sub> = &Sigma; A<sub>i,k</sub> * B<sub>k,j</sub>
+    </div>
+
+    <h3>Transpose, Identity, and Inverse</h3>
+    <ul>
+      <li><strong>Transpose ($A^T$)</strong>: Flips a matrix over its diagonal, swapping rows and columns.</li>
+      <li><strong>Identity ($I$)</strong>: A square matrix with 1s on the diagonal and 0s elsewhere. Multiplying any matrix by $I$ leaves it unchanged ($AI = A$).</li>
+      <li><strong>Inverse ($A^{-1}$)</strong>: A matrix that, when multiplied by the original matrix, yields the identity matrix ($A A^{-1} = I$). Only square matrices with non-zero determinants have inverses.</li>
+    </ul>
+
+    <pre><code># Matrix transformations in Python
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+
+# Matrix Multiplication
+C = np.dot(A, B) # Or: A @ B
+print("C = A @ B:\n", C)
+
+# Transpose
+print("A Transposed:\n", A.T)
+
+# Inverse of A
+A_inv = np.linalg.inv(A)
+print("Inverse of A:\n", A_inv)
+print("A @ Inverse(A):\n", np.round(A @ A_inv)) # Identity Matrix</code></pre>
+
+    <h2>3. Eigenvalues and Eigenvectors</h2>
+    <p>For a square matrix $A$, a non-zero vector $v$ is an <strong>eigenvector</strong> if multiplying it by $A$ only scales the vector by a scalar factor &lambda; (the <strong>eigenvalue</strong>).</p>
+    <div class="formula-block">
+      A * v = &lambda; * v
+    </div>
+    <p>In data science, eigenvectors represent the axes of maximum variance in datasets, which forms the mathematical foundation of <strong>Principal Component Analysis (PCA)</strong> for dimensionality reduction.</p>
+
+    <pre><code># Eigendecomposition
+matrix = np.array([[4, 2], [1, 3]])
+eigenvalues, eigenvectors = np.linalg.eig(matrix)
+
+print("Eigenvalues:", eigenvalues)
+print("Eigenvectors (columns):\n", eigenvectors)</code></pre>
+  </div>
+</body>
+</html>
