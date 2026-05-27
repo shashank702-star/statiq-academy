@@ -498,6 +498,14 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "reader.html?topic=python-exceptions-files"
     },
     {
+      title: "Python Standard Library & Dynamic Loading",
+      category: "notes",
+      description: "Detailed notes on Python built-in standard modules, package index repositories (PyPI, pip), virtual environments, dynamic imports, and ctypes.",
+      tags: ["Python", "Programming", "Packages", "Libraries"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=python-stdlib-packages"
+    },
+    {
       title: "SQL Basics Foundations",
       category: "notes",
       description: "A fundamental guide on Structured Query Language SELECT statements, WHERE conditional filters, GROUP BY aggregations, and tables JOINs.",

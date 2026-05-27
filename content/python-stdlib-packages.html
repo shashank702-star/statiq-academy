@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Standard Library & Dynamic Loading | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Python Programming Lesson</span>
+    <h1>Python Standard Library & Dynamic Loading</h1>
+    <p>Python provides a rich ecosystem out of the box through its Standard Library. Furthermore, its ability to fetch external libraries from PyPI and dynamically link compiled C/C++ binaries makes it exceptionally powerful for high-performance data processing.</p>
+
+    <h2>1. The Python Standard Library</h2>
+    <p>Python's "batteries included" philosophy means many crucial utilities are built directly into the language. Some of the most common standard modules include:</p>
+    <ul>
+      <li><strong>math & random</strong>: Advanced math functions (trigonometry, logs) and pseudo-random generators.</li>
+      <li><strong>datetime</strong>: Parsing, formatting, and calculating differences between dates and timezones.</li>
+      <li><strong>collections</strong>: Specialized container datatypes like <code>Counter</code> (counting hashable objects) and <code>defaultdict</code> (dicts with default values for missing keys).</li>
+      <li><strong>os & sys</strong>: System-level path operations, directory listings, command-line arguments, and environment variables.</li>
+    </ul>
+    <pre><code>import math
+import random
+from datetime import datetime, timedelta
+from collections import Counter, defaultdict
+
+# Math & Random
+print(math.sqrt(257))              # 16.0312
+print(random.randint(1, 100))      # Random integer between 1 and 100
+
+# Datetime manipulation
+now = datetime.now()
+one_week_ago = now - timedelta(days=7)
+print(f"Formatted Date: {now.strftime('%Y-%m-%d %H:%M:%S')}")
+
+# Collections: Counter & defaultdict
+words = ["data", "sql", "data", "python", "sql", "data"]
+word_counts = Counter(words)       # Counter({'data': 3, 'sql': 2, 'python': 1})
+
+# defaultdict prevents KeyError on missing keys
+grouped_data = defaultdict(list)
+grouped_data["basics"].append("SQL")
+print(grouped_data["basics"])       # ['SQL']
+print(grouped_data["math"])         # [] (automatically initialized as empty list)</code></pre>
+
+    <h2>2. Package Repositories, Pip, & Virtual Environments</h2>
+    <p>For libraries not included in the standard library (such as Pandas, NumPy, or Scikit-Learn), Python relies on PyPI (the Python Package Index) and dependency managers:</p>
+    <ul>
+      <li><strong>PyPI (Python Package Index)</strong>: A public, online repository of user-published packages.</li>
+      <li><strong>pip</strong>: Python's package installer. Commands like <code>pip install package_name</code> retrieve binaries from PyPI.</li>
+      <li><strong>Virtual Environments (venv)</strong>: Isolated environments created locally to prevent dependency version conflicts between different projects.</li>
+    </ul>
+    <pre><code># CLI Terminal commands for package management
+
+# Create a virtual environment named 'env'
+python -m venv env
+
+# Activate the virtual environment
+# On Windows:
+.\env\Scripts\activate
+# On Linux/macOS:
+source env/bin/activate
+
+# Install packages and save dependencies
+pip install numpy pandas
+pip freeze > requirements.txt
+
+# Reinstall packages from a requirements file
+pip install -r requirements.txt</code></pre>
+
+    <h2>3. Dynamic Imports & Loading Shared C Libraries</h2>
+    <p>Python supports dynamic code loading at runtime, allowing you to load modules by name or execute high-performance compiled binary code.</p>
+    
+    <h3>Dynamic Module Importing</h3>
+    <p>Using the <code>importlib</code> library, Python code can import a module using a string containing the module name, which is highly useful for plugins or dynamic architectures.</p>
+    <pre><code>import importlib
+
+# Dynamically import the math module by string name
+module_name = "math"
+dynamic_math = importlib.import_module(module_name)
+print(dynamic_math.log2(8))  # Computes log2(8) = 3.0</code></pre>
+
+    <h3>Loading Shared Dynamic C/C++ Libraries (ctypes)</h3>
+    <p>For CPU-intensive tasks, you can compile performance-critical code in C or C++ as a shared dynamic library (a <code>.dll</code> on Windows, <code>.so</code> on Linux, or <code>.dylib</code> on macOS) and load it dynamically into Python using <code>ctypes</code>.</p>
+    <pre><code>import ctypes
+import os
+
+# Assume we compiled a C shared library 'fast_math.dll' or 'fast_math.so'
+# C function signature: double add_floats(double a, double b);
+
+# Load the dynamic library
+lib_path = os.path.abspath("fast_math.dll")
+if os.path.exists(lib_path):
+    fast_lib = ctypes.CDLL(lib_path)
+    
+    # Define argument and return types for ctypes mapping
+    fast_lib.add_floats.argtypes = [ctypes.c_double, ctypes.c_double]
+    fast_lib.add_floats.restype = ctypes.c_double
+
+    # Call the C compiled function directly from Python
+    result = fast_lib.add_floats(3.14, 2.718)
+    print(f"Result from C library: {result}")
+else:
+    print("Shared library 'fast_math.dll' not found, skipping call.")</code></pre>
+  </div>
+</body>
+</html>

@@ -307,6 +307,48 @@ document.addEventListener('DOMContentLoaded', () => {
               explain: "Python raises a ZeroDivisionError when a division or modulo by zero is performed."
             }
           ]
+        },
+        {
+          title: "Python Standard Library & Dynamic Loading",
+          id: "python-stdlib-packages",
+          file: "content/python-stdlib-packages.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "Which module in Python's standard library provides container types like Counter and defaultdict?",
+              options: [
+                "math",
+                "collections",
+                "itertools",
+                "sys"
+              ],
+              answer: 1,
+              explain: "The collections module provides specialized alternatives to Python's general-purpose built-in containers, such as Counter and defaultdict."
+            },
+            {
+              q: "What tool is standard for installing and managing third-party libraries hosted on the Python Package Index (PyPI)?",
+              options: [
+                "venv",
+                "pip",
+                "importlib",
+                "ctypes"
+              ],
+              answer: 1,
+              explain: "pip is Python's package installer, which downloads and installs packages from PyPI."
+            },
+            {
+              q: "Which module enables Python to dynamically load pre-compiled C/C++ shared dynamic libraries (such as .dll or .so files) at runtime?",
+              options: [
+                "sys",
+                "importlib",
+                "ctypes",
+                "os"
+              ],
+              answer: 2,
+              explain: "ctypes is a foreign function library for Python. It provides C compatible data types, and allows calling functions in DLLs or shared libraries."
+            }
+          ]
         }
       ]
     },
