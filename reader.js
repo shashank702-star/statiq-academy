@@ -5,6 +5,180 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   const syllabus = [
     {
+      moduleTitle: "Basics Foundations",
+      moduleId: "mod-0",
+      lessons: [
+        {
+          title: "Python Programming Basics",
+          id: "python-basics-guide",
+          file: "content/python-basics-guide.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "Which data type in Python stores key-value pairs representing records?",
+              options: [
+                "List",
+                "Dictionary",
+                "Tuple",
+                "Set"
+              ],
+              answer: 1,
+              explain: "Dictionaries in Python store mapping pairs defined as {key: value}, which are ideal for structured data records."
+            },
+            {
+              q: "What does the code block range(5) yield in a Python for-loop?",
+              options: [
+                "Numbers 1 to 5 inclusive.",
+                "Numbers 0 to 4 inclusive.",
+                "A list containing five random float decimals.",
+                "An array of string tokens."
+              ],
+              answer: 1,
+              explain: "range(n) starts from 0 and stops at n-1, yielding numbers 0, 1, 2, 3, and 4."
+            },
+            {
+              q: "How do you declare a parameter default value in a Python function definition?",
+              options: [
+                "By writing parameter := default inside the body.",
+                "By assigning values directly in the def statement: def func(param=default).",
+                "By using the global keyword inside functions.",
+                "Python does not support parameter default values."
+              ],
+              answer: 1,
+              explain: "Default values are assigned directly inside the def header parameter list using the '=' sign."
+            }
+          ]
+        },
+        {
+          title: "SQL Basics Foundations",
+          id: "sql-basics-guide",
+          file: "content/sql-basics-guide.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "Which clause filters aggregate metric results in a grouped SQL query?",
+              options: [
+                "WHERE",
+                "HAVING",
+                "GROUP BY",
+                "ORDER BY"
+              ],
+              answer: 1,
+              explain: "WHERE filters raw rows before aggregation, while HAVING filters final grouped values after aggregation."
+            },
+            {
+              q: "What is the difference between INNER JOIN and LEFT JOIN?",
+              options: [
+                "INNER returns matches only; LEFT returns matches plus unmatched rows from the left table.",
+                "INNER returns all records; LEFT returns only matching records.",
+                "INNER links database columns; LEFT joins tables vertically.",
+                "There is no difference in syntax or results."
+              ],
+              answer: 0,
+              explain: "INNER JOIN yields rows matching key IDs in both tables. LEFT JOIN retains all rows from the left table, padding right columns with NULL if unmatched."
+            },
+            {
+              q: "Which statement computes the average value of a column in SQL?",
+              options: [
+                "MEAN(price)",
+                "AVG(price)",
+                "AVERAGE(price)",
+                "SUM(price) / COUNT(*)"
+              ],
+              answer: 1,
+              explain: "AVG() is the standard SQL aggregate function used to compute numeric column averages."
+            }
+          ]
+        },
+        {
+          title: "CLI & Git Version Control",
+          id: "cli-git-basics-guide",
+          file: "content/cli-git-basics-guide.html",
+          type: "notes",
+          readTime: 4,
+          quiz: [
+            {
+              q: "Which shell command navigate your terminal into a different subdirectory?",
+              options: [
+                "pwd",
+                "ls",
+                "cd",
+                "mkdir"
+              ],
+              answer: 2,
+              explain: "cd (Change Directory) navigates the terminal path, while pwd prints the current path."
+            },
+            {
+              q: "What is the stage command in the Git commit loop?",
+              options: [
+                "git init",
+                "git status",
+                "git add",
+                "git commit"
+              ],
+              answer: 2,
+              explain: "git add stages changes, preparing tracked files to be committed in the next snapshot."
+            },
+            {
+              q: "Why is Git called a distributed version control system?",
+              options: [
+                "Because code is distributed across many separate servers only.",
+                "Every developer keeps a full copy of the repository history locally.",
+                "Because it distributes code directly to deployment web servers.",
+                "It requires network connections to track file histories."
+              ],
+              answer: 1,
+              explain: "In Git, clones duplicate the entire project repository database, allowing offline tracking and local branches."
+            }
+          ]
+        },
+        {
+          title: "Mathematics & Calculus Foundations",
+          id: "math-basics-guide",
+          file: "content/math-basics-guide.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "In Linear Algebra, what is a Vector?",
+              options: [
+                "A two-dimensional grid of numbers.",
+                "An ordered list of values representing features of a data point.",
+                "A single variable representing error metrics.",
+                "A rate of change derivative."
+              ],
+              answer: 1,
+              explain: "A Vector is a one-dimensional array of numbers representing features, whereas a Matrix is a two-dimensional grid."
+            },
+            {
+              q: "What is the derivative of the function f(x) = 4x^3 + 5x?",
+              options: [
+                "12x^2 + 5",
+                "12x^3 + 5",
+                "4x^2 + 5",
+                "12x + 5"
+              ],
+              answer: 0,
+              explain: "Using the Power Rule, d/dx(4x^3) = 12x^2 and d/dx(5x) = 5, yielding 12x^2 + 5."
+            },
+            {
+              q: "What is the role of derivative slopes in Gradient Descent optimization?",
+              options: [
+                "They compute average variable sums.",
+                "They indicate the direction to move weights to minimize error functions.",
+                "They scale data matrices to bounds between 0 and 1.",
+                "They calculate correlation vectors."
+              ],
+              answer: 1,
+              explain: "Derivatives measure slopes. Moving parameters in the opposite direction of the slope minimizes model loss."
+            }
+          ]
+        }
+      ]
+    },
+    {
       moduleTitle: "Probability & Statistics Foundations",
       moduleId: "mod-1",
       lessons: [
@@ -437,6 +611,174 @@ document.addEventListener('DOMContentLoaded', () => {
               ],
               answer: 1,
               explain: "High precision implies low False Positives (few false alarms). Low recall means high False Negatives (missed churn cases)."
+            }
+          ]
+        },
+        {
+          title: "Neural Networks Foundations",
+          id: "neural-networks-basics",
+          file: "content/neural-networks-basics.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "What is the primary purpose of activation functions in neural networks?",
+              options: [
+                "To speed up computations.",
+                "To introduce non-linearities, allowing models to learn complex boundaries.",
+                "To normalize input values between 0 and 1.",
+                "To save model weights to disk."
+              ],
+              answer: 1,
+              explain: "Activation functions introduce non-linear mappings. Stacking layers without activation would reduce to a single linear transformation."
+            },
+            {
+              q: "Which activation function is most standard for outputting multi-class classification probabilities?",
+              options: [
+                "ReLU",
+                "Sigmoid",
+                "Softmax",
+                "Tanh"
+              ],
+              answer: 2,
+              explain: "Softmax outputs a probability distribution over multiple target classes, ensuring all output values sum to 1.0."
+            },
+            {
+              q: "In backpropagation, what rule is used to compute error gradients relative to early layers?",
+              options: [
+                "The Power Rule",
+                "The Chain Rule",
+                "Bayes' Theorem",
+                "The Product Rule"
+              ],
+              answer: 1,
+              explain: "The Chain Rule calculates derivatives of nested functions, multiplying gradients backwards from output layers to inputs."
+            }
+          ]
+        },
+        {
+          title: "NLP & Transformer Attention",
+          id: "nlp-transformers-basics",
+          file: "content/nlp-transformers-basics.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "What is the purpose of Word Embeddings in NLP?",
+              options: [
+                "To count word occurrences in files.",
+                "To map word tokens into dense numerical vectors representing semantic context.",
+                "To correct typos and grammatical errors.",
+                "To split sentences into characters."
+              ],
+              answer: 1,
+              explain: "Word Embeddings represent word vectors in high-dimensional space where relative coordinates capture semantic similarities."
+            },
+            {
+              q: "What mechanism allows Transformers to contextually focus on relevant words simultaneously?",
+              options: [
+                "Recurrent feedback loops",
+                "Self-Attention mechanism",
+                "Standard hidden states",
+                "Vector database indexing"
+              ],
+              answer: 1,
+              explain: "Self-Attention processes all words at once, calculating correlation weights between all words in a sentence."
+            },
+            {
+              q: "Which model architecture represents a pure Decoder model used for auto-regressive generation?",
+              options: [
+                "BERT",
+                "GPT / Gemini Decoders",
+                "T5 Encoder-Decoder",
+                "ResNet"
+              ],
+              answer: 1,
+              explain: "GPT and Gemini decoders auto-regressively generate token predictions, predicting subsequent tokens based on preceding sequences."
+            }
+          ]
+        },
+        {
+          title: "Computer Vision & CNNs",
+          id: "computer-vision-basics",
+          file: "content/computer-vision-basics.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "Why are Convolutional layers preferred over dense layers for processing images?",
+              options: [
+                "They run faster on CPUs.",
+                "They retain spatial dimensions and local relationships via sliding kernel filters.",
+                "They convert RGB pixels to grayscale.",
+                "They require pre-sorted inputs."
+              ],
+              answer: 1,
+              explain: "Convolutional layers preserve spatial structures by sliding filters over images, detecting shapes, edges, and textures."
+            },
+            {
+              q: "What does Max Pooling do in a CNN pipeline?",
+              options: [
+                "Increases the dimensions of image vectors.",
+                "Downsamples feature maps to reduce size and make features position-invariant.",
+                "Applies activation functions.",
+                "Normalizes color channels."
+              ],
+              answer: 1,
+              explain: "Max Pooling extracts the maximum value within a sliding grid, reducing tensor dimensions and scaling features."
+            },
+            {
+              q: "An RGB image grid of size 64x64 has what tensor shape?",
+              options: [
+                "[64, 64]",
+                "[64, 64, 3]",
+                "[64, 64, 1]",
+                "[4096]"
+              ],
+              answer: 1,
+              explain: "RGB images require three color channels, making the tensor shape [Height, Width, 3]."
+            }
+          ]
+        },
+        {
+          title: "MLOps Pipelines & Registries",
+          id: "mlops-basics-guide",
+          file: "content/mlops-basics-guide.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "What MLOps task focuses on recording hyperparameters and tracking metrics over multiple runs?",
+              options: [
+                "Model Registry",
+                "Experiment Tracking (e.g. MLflow)",
+                "Data Drift Monitoring",
+                "Model Deployment"
+              ],
+              answer: 1,
+              explain: "Experiment tracking frameworks (like MLflow) log hyperparameters, evaluation metrics, and model run-times."
+            },
+            {
+              q: "What does Model Drift refer to in production MLOps?",
+              options: [
+                "A decline in model accuracy due to changing real-world input distributions over time.",
+                "Bugs in Docker containers.",
+                "Losing connection to model databases.",
+                "Rebuilding pipelines on new branches."
+              ],
+              answer: 0,
+              explain: "Model drift occurs when real-world input profiles change compared to historical training datasets, degrading predictions."
+            },
+            {
+              q: "Which environment validates model API integrations and runs load testing?",
+              options: [
+                "Development",
+                "Staging",
+                "Production",
+                "Local Sandbox"
+              ],
+              answer: 1,
+              explain: "Staging mimics production, testing performance, integration tests, and validating code benchmarks before live deployment."
             }
           ]
         },
@@ -910,7 +1252,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const header = document.createElement('div');
       header.className = 'module-header';
       header.innerHTML = `
-        <span>M${mIdx + 1}: ${module.moduleTitle}</span>
+        <span>M${mIdx < 10 ? '0' + mIdx : mIdx}: ${module.moduleTitle}</span>
         <span>▼</span>
       `;
       

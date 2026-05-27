@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLI & Git Version Control | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Basics Foundations Lesson</span>
+    <h1>CLI & Git Version Control</h1>
+    <p>Developing data pipelines requires command line navigation and code version management. This guide covers standard bash/shell commands and Git workflow loops.</p>
+
+    <h2>1. Shell Navigation (Command Line)</h2>
+    <p>The command line allows you to run scripts, manage packages, and explore system folders.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>pwd</code></td>
+          <td>Print Working Directory: Outputs your current active folder path.</td>
+          <td><code>pwd</code></td>
+        </tr>
+        <tr>
+          <td><code>ls</code> or <code>dir</code></td>
+          <td>List: Displays files and folders in your current directory.</td>
+          <td><code>ls -la</code></td>
+        </tr>
+        <tr>
+          <td><code>cd</code></td>
+          <td>Change Directory: Navigate to a different folder path.</td>
+          <td><code>cd data-academy/content</code></td>
+        </tr>
+        <tr>
+          <td><code>mkdir</code></td>
+          <td>Make Directory: Creates a new empty folder.</td>
+          <td><code>mkdir models</code></td>
+        </tr>
+        <tr>
+          <td><code>rm</code></td>
+          <td>Remove: Deletes files or directories. Use with caution!</td>
+          <td><code>rm temp_data.csv</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>2. Basic Git Workflow Loop</h2>
+    <p>Git is a version control system tracking file changes. Workflows follow a simple Stage → Commit → Push pipeline.</p>
+    <div class="info-card">
+      <h3>The Git Work Loop</h3>
+      <ol>
+        <li>Modify your project source code files locally.</li>
+        <li>Stage files: <code>git add file.py</code> (prepares them for tracking).</li>
+        <li>Commit snapshot: <code>git commit -m "commit message"</code> (saves locally).</li>
+        <li>Upload: <code>git push origin main</code> (pushes commit to remote cloud hosting, e.g., GitHub).</li>
+      </ol>
+    </div>
+
+    <h2>3. Standard Git Commands</h2>
+    <p>Use these commands to check status and sync repositories.</p>
+    <pre><code># Initialize git in a new folder
+git init
+
+# Clone a remote repository locally
+git clone https://github.com/username/repo.git
+
+# Check which files have been modified
+git status
+
+# Stage all modified and untracked files
+git add .
+
+# Save local changes with a message
+git commit -m "Feature: add neural networks guide"
+
+# Check history of commits
+git log -n 5</code></pre>
+  </div>
+</body>
+</html>

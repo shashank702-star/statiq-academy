@@ -163,7 +163,10 @@
 
         <!-- Navigation Tabs -->
         <div class="explorer-tabs">
-          <button class="tab-btn active" data-track="track-stats" id="tab-btn-stats">
+          <button class="tab-btn active" data-track="track-basics" id="tab-btn-basics">
+            <i>🌱</i> Basics Foundations
+          </button>
+          <button class="tab-btn" data-track="track-stats" id="tab-btn-stats">
             <i>📊</i> Statistics & Probability
           </button>
           <button class="tab-btn" data-track="track-analysis" id="tab-btn-analysis">
@@ -180,8 +183,59 @@
         <!-- Tab Panes -->
         <div class="explorer-content">
           
+          <!-- Tab 0: Basics Foundations -->
+          <div class="track-pane active" id="track-basics">
+            <div class="track-info">
+              <h3><i>🌱</i> Basics Foundations</h3>
+              <p>
+                Establish your programming and mathematical foundations. Before diving into statistical distributions or training neural networks, master core Python scripting, relational database queries, command line navigation, and matrix algebra.
+              </p>
+              
+              <div class="track-tools">
+                <h4>Core tools used</h4>
+                <div class="tools-list">
+                  <a href="reader.html?topic=python-basics-guide" class="tool-badge">Python (Basics)</a>
+                  <a href="reader.html?topic=sql-basics-guide" class="tool-badge">SQL (Queries)</a>
+                  <a href="reader.html?topic=cli-git-basics-guide" class="tool-badge">Git & CLI (Terminal)</a>
+                  <a href="reader.html?topic=math-basics-guide" class="tool-badge">Mathematics (Matrices)</a>
+                </div>
+              </div>
+
+              <div class="skills-list">
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>Programming Control Flow</h5>
+                    <p>Write reusable Python code with variables, loops, list containers, and conditional switches.</p>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>Relational SQL Queries</h5>
+                    <p>Extract, filter, group, and aggregate database columns using keys and table joins.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="track-preview">
+              <div class="preview-card">
+                <span class="preview-tag">Milestone Project</span>
+                <h4>Local Data Pipeline Orchestrator</h4>
+                <p>Build a local Python console application that loads a CSV transactions dataset, executes cleaning transformations, and loads summaries into a local SQL database.</p>
+                <ul class="preview-list">
+                  <li>Write functions to parse CSV values.</li>
+                  <li>Join tables to resolve missing segments.</li>
+                  <li>Verify output formats via log assertions.</li>
+                </ul>
+                <a href="#curriculum" class="btn btn-secondary">Explore Syllabus</a>
+              </div>
+            </div>
+          </div>
+
           <!-- Tab 1: Statistics -->
-          <div class="track-pane active" id="track-stats">
+          <div class="track-pane" id="track-stats">
             <div class="track-info">
               <h3><i>📊</i> Statistics & Probability</h3>
               <p>
@@ -296,6 +350,10 @@
                 <div class="tools-list">
                   <a href="reader.html?topic=slides-regression" class="tool-badge">Scikit-Learn (Slides)</a>
                   <a href="reader.html?topic=customer-churn-guide" class="tool-badge">XGBoost (Churn Classifier)</a>
+                  <a href="reader.html?topic=neural-networks-basics" class="tool-badge">Neural Networks (Basics)</a>
+                  <a href="reader.html?topic=nlp-transformers-basics" class="tool-badge">NLP & Transformers (Text)</a>
+                  <a href="reader.html?topic=computer-vision-basics" class="tool-badge">Computer Vision (CNN)</a>
+                  <a href="reader.html?topic=mlops-basics-guide" class="tool-badge">MLOps (MLflow Pipelines)</a>
                   <a href="reader.html?topic=tensorflow-deep-learning" class="tool-badge">TensorFlow (Deep Learning)</a>
                   <a href="reader.html?topic=model-evaluation-guide" class="tool-badge">ML Metrics (Evaluations)</a>
                   <a href="reader.html?topic=feature-engineering-guide" class="tool-badge">Feature Engineering (Preprocessing)</a>
@@ -494,6 +552,7 @@
             <div class="calc-select-group">
               <label for="target-role" style="font-size: 0.9rem; font-weight:600; margin-bottom:8px; display:block;">Target Learning Path</label>
               <select id="target-role" class="calc-select">
+                <option value="basics">Basics Foundations Path (60 hrs)</option>
                 <option value="statistics">Statistics & Probability (100 hrs)</option>
                 <option value="data-analysis">Data Analysis Path (180 hrs)</option>
                 <option value="data-science" selected>Data Science & ML Path (300 hrs)</option>
@@ -560,6 +619,43 @@
 
         <div class="curriculum-accordion">
           
+          <!-- Accordion Module 0 -->
+          <div class="accordion-item reveal">
+            <div class="accordion-header">
+              <div class="accordion-header-left">
+                <span class="accordion-num">00</span>
+                <div class="accordion-title">
+                  <h3>Basics Foundations</h3>
+                  <p>Module 0 • 4 Lessons • Project 0</p>
+                </div>
+              </div>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <div class="syllabus-grid">
+                  <div class="syllabus-lessons">
+                    <h4>What you will learn</h4>
+                    <div class="lessons-list">
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Python basics: primitives, control flows, loops, containers</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Relational SQL: SELECT queries, WHERE filters, GROUP BY aggregations</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Shell navigation & Version Control: CLI paths, Git commits & pushes</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Mathematics foundations: Matrix vector multiplications, Calculus derivatives</div>
+                    </div>
+                  </div>
+                  <div class="syllabus-project">
+                    <h4>Capstone Project</h4>
+                    <div class="project-card">
+                      <h5>Local Data Pipeline Orchestrator</h5>
+                      <p>Write a local script that loads and structures retail transaction ledger CSVs, loading outputs into relational tables.</p>
+                      <span class="project-tag">⚡ Programming Core</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Accordion Module 1 -->
           <div class="accordion-item reveal">
             <div class="accordion-header">
@@ -650,7 +746,7 @@
                 <span class="accordion-num">03</span>
                 <div class="accordion-title">
                   <h3>Applied Machine Learning Models</h3>
-                  <p>Module 3 • 8 Lessons • Project 3</p>
+                  <p>Module 3 • 12 Lessons • Project 3</p>
                 </div>
               </div>
               <span class="accordion-icon">▼</span>
@@ -664,9 +760,11 @@
                     <div class="lessons-list">
                       <div class="lesson-item"><span class="lesson-item-bullet"></span> Supervised Learning: Regression & Classification pipelines</div>
                       <div class="lesson-item"><span class="lesson-item-bullet"></span> Decision trees, ensembles, Random Forests, XGBoost grids</div>
-                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Hyperparameter tuning: GridSearchCV vs Optuna optimizations</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Neural Networks foundations: MLP networks, backprop activations</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Natural Language Processing: text vectors, Transformer attention</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Computer Vision: CNN kernel layers and pooling downsampling</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> MLOps experiment pipelines: MLflow and model tracking registries</div>
                       <div class="lesson-item"><span class="lesson-item-bullet"></span> Generative AI foundations: LLM tokenization, prompting, RAG systems</div>
-                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Vector Search databases: Chromadb and pgvector query indexing</div>
                       <div class="lesson-item"><span class="lesson-item-bullet"></span> Model serving: Deploying ML & LLM pipelines via FastAPI Docker APIs</div>
                     </div>
                   </div>

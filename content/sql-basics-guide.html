@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Basics Foundations | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Basics Foundations Lesson</span>
+    <h1>SQL Basics Foundations</h1>
+    <p>Structured Query Language (SQL) is the global standard for retrieving data from relational databases. This guide covers basic query filters, group aggregations, and tables joining.</p>
+
+    <h2>1. The Core SELECT Query</h2>
+    <p>Every SQL query begins by specifying the fields/columns to retrieve and the target table.</p>
+    <pre><code>-- Select all columns from users
+SELECT * 
+FROM users;
+
+-- Select specific columns and rename with alias
+SELECT 
+    user_id, 
+    email_address AS contact_email,
+    created_at
+FROM users;</code></pre>
+
+    <h2>2. Filtering Records with WHERE</h2>
+    <p>Use the WHERE clause to narrow down results to only rows satisfying target rules.</p>
+    <pre><code>SELECT name, age, country
+FROM customers
+WHERE country = 'United States'
+  AND age &gt;= 21
+  AND status = 'Active';
+
+-- Check ranges and lists
+SELECT product_name, price
+FROM products
+WHERE price BETWEEN 10.00 AND 50.00
+  AND category IN ('Books', 'Stationery');</code></pre>
+
+    <h2>3. Grouping & Aggregations (GROUP BY & HAVING)</h2>
+    <p>Aggregations compress row records into statistical summaries: count, sum, average, min, and max.</p>
+    <pre><code>SELECT 
+    category,
+    COUNT(product_id) AS total_products,
+    SUM(stock_qty) AS inventory_qty,
+    AVG(price) AS average_price
+FROM products
+GROUP BY category;
+
+-- Filter grouped results using HAVING (WHERE filters raw rows, HAVING filters aggregates)
+SELECT 
+    category,
+    AVG(price) AS average_price
+FROM products
+GROUP BY category
+HAVING AVG(price) &gt; 100.00;</code></pre>
+
+    <h2>4. Joining Tables (INNER vs. LEFT JOIN)</h2>
+    <p>Relational databases split data across tables to avoid redundancies. JOINs link them back using primary and foreign keys.</p>
+    <pre><code>-- INNER JOIN: Returns only rows where matches exist in both tables
+SELECT 
+    o.order_id,
+    c.name AS customer_name,
+    o.order_date,
+    o.total_amount
+FROM orders o
+INNER JOIN customers c ON o.customer_id = c.customer_id;
+
+-- LEFT JOIN: Returns all rows from left table, and matching rows from right (fills NULL if no match)
+SELECT 
+    c.name AS customer_name,
+    o.order_id,
+    o.total_amount
+FROM customers c
+LEFT JOIN orders o ON c.customer_id = o.customer_id;</code></pre>
+  </div>
+</body>
+</html>

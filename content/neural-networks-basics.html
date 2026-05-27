@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neural Networks Foundations | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Data Science & ML Advanced Lesson</span>
+    <h1>Neural Networks Foundations</h1>
+    <p>Neural networks form the backbone of deep learning. Inspired by biological brains, they stack layer networks to learn non-linear patterns from complex dataset features.</p>
+
+    <h2>1. The Artificial Neuron (Perceptron)</h2>
+    <p>A single neuron takes multiple numeric inputs ($x_i$), multiplies them by learned weights ($w_i$), adds a bias term ($b$), and passes the result through an activation function ($f$).</p>
+    <div class="formula-block">
+      Neuron Output = f( &Sigma;(x_i * w_i) + b )
+    </div>
+    <p>Weights control the strength of input signals, while the bias allows shifting the activation function trigger point.</p>
+
+    <h2>2. Activation Functions</h2>
+    <p>Activation functions introduce non-linearities, allowing neural networks to model non-linear boundaries. Without them, stacking layers would behave as a single linear transformation.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Activation</th>
+          <th>Equation</th>
+          <th>Range</th>
+          <th>Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Sigmoid</strong></td>
+          <td><code>1 / (1 + e^-x)</code></td>
+          <td><code>(0, 1)</code></td>
+          <td>Output layer of binary classifiers.</td>
+        </tr>
+        <tr>
+          <td><strong>ReLU</strong></td>
+          <td><code>max(0, x)</code></td>
+          <td><code>[0, &infin;)</code></td>
+          <td>Hidden layers (stops vanishing gradient).</td>
+        </tr>
+        <tr>
+          <td><strong>Softmax</strong></td>
+          <td><code>e^x_i / &Sigma; e^x_j</code></td>
+          <td><code>(0, 1)</code></td>
+          <td>Output layer of multi-class classifiers (probabilities sum to 1).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>3. Stacking Layers: Multi-Layer Perceptrons</h2>
+    <p>A standard Feedforward Neural Network (MLP) consists of three layer structures:</p>
+    <ul>
+      <li><strong>Input Layer</strong>: Receives the raw dataset features.</li>
+      <li><strong>Hidden Layer(s)</strong>: Extract abstract representations. More layers equal deeper representation limits.</li>
+      <li><strong>Output Layer</strong>: Yields predictions (e.g. churn category, house price, dog/cat class labels).</li>
+    </ul>
+
+    <h2>4. Training via Backpropagation</h2>
+    <p>Neural networks learn through a repeating loop of forward steps and feedback adjustments:</p>
+    <pre><code># Simulated Training Loop Concept in Python
+# 1. Forward Pass: Calculate predictions
+y_pred = model.predict(X_train)
+
+# 2. Loss Computation: Measure error
+loss = mean_squared_error(y_true, y_pred)
+
+# 3. Backward Pass (Backpropagation):
+# Calculate the gradient of the loss relative to each weight using the Chain Rule.
+gradients = compute_gradients(loss)
+
+# 4. Optimization: Adjust weights using Gradient Descent
+weights -= learning_rate * gradients</code></pre>
+  </div>
+</body>
+</html>

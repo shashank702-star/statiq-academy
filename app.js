@@ -176,6 +176,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let milestones = 4;
     
     switch (track) {
+      case 'basics':
+        totalHours = 60;
+        milestones = 1;
+        break;
       case 'statistics':
         totalHours = 100;
         milestones = 1;
@@ -444,6 +448,70 @@ document.addEventListener('DOMContentLoaded', () => {
       tags: ["Python", "Math"],
       downloadText: "Download PDF (Free)",
       link: "https://www.statlearning.com/"
+    },
+    {
+      title: "Python Programming Basics",
+      category: "notes",
+      description: "A fundamental overview of Python variables, primitive data types, conditionals, loops, lists, dictionaries, and reusable functions.",
+      tags: ["Python", "Basics", "Syntax"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=python-basics-guide"
+    },
+    {
+      title: "SQL Basics Foundations",
+      category: "notes",
+      description: "A fundamental guide on Structured Query Language SELECT statements, WHERE conditional filters, GROUP BY aggregations, and tables JOINs.",
+      tags: ["SQL", "Basics", "Queries"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=sql-basics-guide"
+    },
+    {
+      title: "CLI & Git Version Control",
+      category: "notes",
+      description: "Core shell commands for directory navigation and the standard Git workflow loop (Stage, Commit, Push) for version control.",
+      tags: ["CLI", "Git", "Basics"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=cli-git-basics-guide"
+    },
+    {
+      title: "Mathematics & Calculus Foundations",
+      category: "notes",
+      description: "A fundamental reference covering vectors, matrices, dot products, derivatives, Power Rule calculus, and Gradient Descent optimization.",
+      tags: ["Math", "Basics", "Calculus"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=math-basics-guide"
+    },
+    {
+      title: "Neural Networks Foundations",
+      category: "guide",
+      description: "An advanced reference guide on artificial neurons (perceptrons), non-linear activation functions (ReLU, Sigmoid, Softmax), MLPs, and backpropagation.",
+      tags: ["ML", "Deep Learning", "Neural Networks"],
+      downloadText: "Read Study Guide",
+      link: "reader.html?topic=neural-networks-basics"
+    },
+    {
+      title: "NLP & Transformer Attention",
+      category: "guide",
+      description: "An advanced guide on text tokenization, word embeddings (Word2Vec), TF-IDF, self-attention, and Encoder-Decoder architectures.",
+      tags: ["ML", "NLP", "Transformers"],
+      downloadText: "Read Study Guide",
+      link: "reader.html?topic=nlp-transformers-basics"
+    },
+    {
+      title: "Computer Vision & CNNs",
+      category: "guide",
+      description: "An advanced guide on representing image tensors, sliding kernel filters, convolutional layers, max pooling, and CNN classification architectures.",
+      tags: ["ML", "Computer Vision", "CNN"],
+      downloadText: "Read Study Guide",
+      link: "reader.html?topic=computer-vision-basics"
+    },
+    {
+      title: "MLOps Pipelines & Registries",
+      category: "guide",
+      description: "An advanced guide on dataset versioning, MLflow experiment tracking, model registries, and continuous integration/deployment (CI/CD) pipelines.",
+      tags: ["MLOps", "MLflow", "Pipelines"],
+      downloadText: "Read Study Guide",
+      link: "reader.html?topic=mlops-basics-guide"
     },
     {
       title: "Probability & Statistics Foundations Notes",

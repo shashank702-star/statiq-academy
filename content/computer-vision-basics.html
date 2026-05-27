@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Vision & CNNs | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Data Science & ML Advanced Lesson</span>
+    <h1>Computer Vision & CNNs</h1>
+    <p>Computer Vision enables machines to extract details from images and videos. This guide covers how images are represented as numerical grids and how Convolutional Neural Networks process them.</p>
+
+    <h2>1. Images as Tensors</h2>
+    <p>An image is represented as a three-dimensional grid (tensor) of shape: <code>[Height, Width, Channels]</code>. Grayscale images have 1 color channel, while color images have 3 channels: Red, Green, and Blue (RGB). Each cell value is an integer between 0 (black) and 255 (white).</p>
+    <pre><code># Representing RGB image grids in Python
+import numpy as np
+
+# Create a random RGB image grid (Height=32, Width=32, Channels=3)
+image_tensor = np.random.randint(0, 256, size=(32, 32, 3))
+
+# Check coordinates and channels
+print(f"Shape: {image_tensor.shape}")  # Shape: (32, 32, 3)
+print(f"Pixel Red channel at (0,0): {image_tensor[0, 0, 0]}")</code></pre>
+
+    <h2>2. Convolutional Layers (Kernel Filters)</h2>
+    <p>Standard dense neural networks flatten images, losing spatial structures. **Convolutional layers** retain spatial structures by sliding small matrices (kernel filters, e.g., 3x3 grids) across images to detect features like edges, corners, and shapes.</p>
+    <div class="info-card">
+      <h3>The Convolution Operation</h3>
+      <p>The filter multiplies overlapping pixel values element-wise, summing the values to yield a single value in the output **Feature Map**.</p>
+      <div class="formula-block">
+        Feature Map Cell = &Sigma; (Pixel_i,j * Kernel_i,j)
+      </div>
+      <p>Different kernels detect different patterns: Sobel kernels detect vertical/horizontal edges, while Gaussian kernels blur images.</p>
+    </div>
+
+    <h2>3. Pooling Layers (Downsampling)</h2>
+    <p>Pooling layers reduce the dimensions of feature maps, lowering computational costs and making feature detection invariant to small shifts in position. The most common method is **Max Pooling**, which extracts the maximum value within a sliding grid window (e.g. 2x2 area).</p>
+    <div class="formula-block">
+      Input Grid: [ [4, 9], [2, 7] ]
+      <br>Max Pooling (2x2) Result: [ 9 ]
+    </div>
+
+    <h2>4. CNN Architecture</h2>
+    <p>A typical image classification pipeline connects layers in a sequence:</p>
+    <ol>
+      <li><strong>Convolutional + ReLU</strong>: Extract local image features.</li>
+      <li><strong>Max Pooling</strong>: Reduce size and keep strong features.</li>
+      <li><strong>Repeat</strong>: Stacking deeper layers to extract complex features (textures, objects).</li>
+      <li><strong>Flatten</strong>: Compress 2D feature maps into a 1D vector.</li>
+      <li><strong>Dense (Fully Connected)</strong>: Classify the vector into target labels (e.g., Cat vs. Dog).</li>
+    </ol>
+  </div>
+</body>
+</html>

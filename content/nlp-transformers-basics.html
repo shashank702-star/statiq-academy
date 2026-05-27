@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NLP & Transformer Architectures | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Data Science & ML Advanced Lesson</span>
+    <h1>NLP & Transformer Architectures</h1>
+    <p>Natural Language Processing (NLP) bridges human language data and computers. Modern language AI models rely on numerical token mappings and the Transformer self-attention architecture.</p>
+
+    <h2>1. Text Preprocessing: Tokenization & Embeddings</h2>
+    <p>Computers cannot process raw text strings. Text must be cleaned, split into tokens, and represented as vector arrays.</p>
+    <ul>
+      <li><strong>Tokenization</strong>: Splitting text strings into words, subwords, or characters.</li>
+      <li><strong>Bag of Words / TF-IDF</strong>: Representing documents by word frequencies adjusted by their dataset rarity.</li>
+      <li><strong>Word Embeddings</strong>: Representing words as dense vectors (e.g. 300 dimensions) where geometrically close vectors share semantic meanings (e.g. "King" - "Man" + "Woman" &asymp; "Queen").</li>
+    </ul>
+
+    <h2>2. Vector Mappings in Python</h2>
+    <p>Using TF-IDF features to represent documents for text classification tasks:</p>
+    <pre><code>from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Sample Documents
+documents = [
+    "Machine learning parses dataset metrics.",
+    "SQL database structures table rows.",
+    "Deep learning models train neural weights."
+]
+
+# Calculate TF-IDF
+vectorizer = TfidfVectorizer()
+tfidf_matrix = vectorizer.fit_transform(documents)
+
+# View vocabulary mappings
+print(vectorizer.get_feature_names_out())
+print(tfidf_matrix.toarray())</code></pre>
+
+    <h2>3. The Self-Attention Mechanism</h2>
+    <p>Traditional RNN models read text sequentially, forgetting early words in long paragraphs. The **Self-Attention** mechanism in Transformers processes all words simultaneously, calculating context weights between all words in a sentence.</p>
+    <div class="info-card">
+      <h3>The Attention Formula</h3>
+      <p>Self-attention maps input queries ($Q$), keys ($K$), and values ($V$) to compute dynamic context scores:</p>
+      <div class="formula-block">
+        Attention(Q, K, V) = Softmax( (Q * K^T) / &radic;d_k ) * V
+      </div>
+      <p>This allows the word "bank" to dynamically adapt its embedding representation based on surrounding context keys like "river bank" vs. "money bank".</p>
+    </div>
+
+    <h2>4. Transformer Architecture (Encoder-Decoder)</h2>
+    <p>The Transformer consists of two main stack networks:</p>
+    <ul>
+      <li><strong>Encoder</strong>: Processes input text to build semantic representation vectors (e.g. BERT models). Excellent for classification, entity recognition, and sentiment checks.</li>
+      <li><strong>Decoder</strong>: Takes encoder vectors and autoregressively generates output text (e.g. GPT models, Gemini). Excellent for translations, text generations, and conversation completions.</li>
+    </ul>
+  </div>
+</body>
+</html>

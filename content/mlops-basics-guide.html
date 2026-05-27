@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLOps Pipelines & Registries | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Data Science & ML Advanced Lesson</span>
+    <h1>MLOps Pipelines & Registries</h1>
+    <p>Machine Learning Operations (MLOps) establishes standard practices to build, test, track, and deploy models reliably in production environments.</p>
+
+    <h2>1. The MLOps Lifecycle</h2>
+    <p>Deploying ML models requires managing code, data versions, and training artifacts (e.g. weights, scaling parameters).</p>
+    <div class="info-card">
+      <h3>Core MLOps Steps</h3>
+      <ul>
+        <li><strong>Data Versioning</strong>: Track changes in datasets (e.g., using DVC) to guarantee reproducible training runs.</li>
+        <li><strong>Experiment Tracking</strong>: Log hyperparameters, run times, and metrics (accuracy, RMSE) for every model training run.</li>
+        <li><strong>Model Registry</strong>: Central catalog storing trained models, tracking version histories, and tagging states (Staging, Production).</li>
+        <li><strong>Monitoring & Drift</strong>: Monitor inputs in production to detect when real-world distributions drift from training data.</li>
+      </ul>
+    </div>
+
+    <h2>2. Experiment Tracking with MLflow</h2>
+    <p>MLflow is an open-source framework used to log hyperparameters and evaluate metrics across training runs.</p>
+    <pre><code># Logging experiments in Python using MLflow
+import mlflow
+from sklearn.ensemble import RandomForestClassifier
+
+# Set active project experiment
+mlflow.set_experiment("Customer_Churn_Classifier")
+
+with mlflow.start_run():
+    # Model parameters
+    n_estimators = 100
+    max_depth = 5
+    mlflow.log_param("n_estimators", n_estimators)
+    mlflow.log_param("max_depth", max_depth)
+    
+    # Train model
+    clf = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth)
+    clf.fit(X_train, y_train)
+    
+    # Log evaluation metrics
+    accuracy = clf.score(X_test, y_test)
+    mlflow.log_metric("accuracy", accuracy)
+    
+    # Log trained model artifact
+    mlflow.sklearn.log_model(clf, "churn_model_artifact")
+    print(f"Logged run with accuracy: {accuracy}")</code></pre>
+
+    <h2>3. Model Promotion & Deployment</h2>
+    <p>Once a model is registered, it goes through validation pipelines before deploying to production endpoints.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Environment</th>
+          <th>Purpose</th>
+          <th>Promotion Criteria</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Development</strong></td>
+          <td>Experimentation, tuning hyperparameters, training on subsets.</td>
+          <td>Successful run logged in MLflow.</td>
+        </tr>
+        <tr>
+          <td><strong>Staging</strong></td>
+          <td>Performance validation, checking API integration, load testing.</td>
+          <td>Higher accuracy/recall than current production benchmark.</td>
+        </tr>
+        <tr>
+          <td><strong>Production</strong></td>
+          <td>Serving real-time user requests, generating batch predictions.</td>
+          <td>Passes CI/CD tests and unit checks.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>4. Continuous Integration & Deployment (CI/CD)</h2>
+    <p>CI/CD pipelines automate testing and deployment when code changes are pushed to GitHub. A typical pipeline runs code quality linters, executes unit tests, rebuilds Docker containers, and updates deployment clusters (e.g. AWS, GCP).</p>
+  </div>
+</body>
+</html>

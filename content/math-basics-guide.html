@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics & Calculus Foundations | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Basics Foundations Lesson</span>
+    <h1>Mathematics & Calculus Foundations</h1>
+    <p>Machine learning models represent data using linear algebra vectors, and optimize parameters using calculus derivatives. This guide covers core mathematical structures.</p>
+
+    <h2>1. Vectors & Matrices (Linear Algebra)</h2>
+    <p>A **Vector** is an ordered list of numerical features representing a single data point. A **Matrix** is a two-dimensional grid of numbers representing a full dataset table.</p>
+    <div class="formula-block">
+      Vector v = [x1, x2, x3]
+      <br>Matrix A = [ [a, b], [c, d] ]
+    </div>
+    <p>Matrix multiplication combines feature inputs with weights to output predictions in deep neural networks.</p>
+    <pre><code># Vector Dot Product in Python (numpy)
+import numpy as np
+
+# Declaring vectors
+v1 = np.array([2, 4, 6])
+v2 = np.array([1, 3, 5])
+
+# Calculate dot product: (2*1) + (4*3) + (6*5) = 2 + 12 + 30 = 44
+dot_product = np.dot(v1, v2)
+print(f"Dot Product: {dot_product}")  # Dot Product: 44</code></pre>
+
+    <h2>2. Derivatives & Rates of Change (Calculus)</h2>
+    <p>A **Derivative** ($f'(x)$ or $\frac{dy}{dx}$) measures the rate at which a function changes relative to its input. In machine learning, derivatives represent slopes indicating the direction to move parameters to minimize error.</p>
+    <div class="info-card">
+      <h3>The Power Rule</h3>
+      <p>For any variable raised to a constant exponent $n$:</p>
+      <div class="formula-block">
+        d/dx( x^n ) = n * x^(n - 1)
+      </div>
+      <p>Example: The derivative of $x^3$ is $3x^2$. The derivative of $5x^2 + 2x$ is $10x + 2$.</p>
+    </div>
+
+    <h2>3. Gradient Descent Optimization</h2>
+    <p>Gradient descent is an iterative optimization algorithm used to minimize loss functions (errors). It uses derivatives to find the steepest downward slope, adjusting weights step-by-step.</p>
+    <div class="formula-block">
+      New Parameter = Current Parameter - Learning Rate * Derivative
+    </div>
+    <p>If the derivative is positive, the parameter decreases. If negative, it increases, systematically shifting weights toward the minimum error boundary.</p>
+  </div>
+</body>
+</html>
