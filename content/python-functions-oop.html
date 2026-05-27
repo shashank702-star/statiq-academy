@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python OOP & Functions | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Python Programming Lesson</span>
+    <h1>Python OOP & Functions</h1>
+    <p>Functions encapsulate code blocks to make them reusable and modular. Object-Oriented Programming (OOP) groups data (attributes) and behavior (methods) into cohesive templates called classes.</p>
+
+    <h2>1. Functions: Parameters, Returns, & Scope</h2>
+    <p>Define a function using the <code>def</code> keyword. You can declare positional parameters, default arguments, and return values using the <code>return</code> statement. Variables declared inside a function have local scope.</p>
+    <pre><code># Functions and arguments
+def calculate_growth_rate(initial_val, final_val, period=1):
+    """Calculates compound growth rate over a period."""
+    if initial_val <= 0:
+        return 0.0
+    growth = (final_val / initial_val) ** (1 / period) - 1
+    return growth
+
+# Invoking function with positional and default arguments
+cagr = calculate_growth_rate(100, 144, period=2)
+print(f"CAGR: {cagr * 100:.1f}%") # CAGR: 20.0%</code></pre>
+
+    <h2>2. Classes & Objects: OOP Core</h2>
+    <p>A **Class** is a blueprint. An **Object** is an instance of a class. The class initializer function, <code>__init__</code>, sets up initial variables whenever a new object is created. The first argument of instance methods is always <code>self</code>, referencing the active object.</p>
+    <pre><code># Defining a Class
+class ModelEvaluator:
+    def __init__(self, model_name, accuracy):
+        # Instance attributes
+        self.model_name = model_name
+        self.accuracy = accuracy
+        
+    def generate_report(self):
+        # Instance method
+        status = "PASSED" if self.accuracy >= 0.85 else "FAILED"
+        return f"Model: {self.model_name} | Accuracy: {self.accuracy:.1%} | Status: {status}"
+
+# Instantiate objects
+eval_a = ModelEvaluator("RandomForest", 0.912)
+eval_b = ModelEvaluator("DecisionTree", 0.824)
+
+print(eval_a.generate_report()) # RandomForest: 91.2% | Status: PASSED
+print(eval_b.generate_report()) # DecisionTree: 82.4% | Status: FAILED</code></pre>
+
+    <h2>3. Inheritance: Extending Behaviors</h2>
+    <p>Inheritance allows a child class to inherit attributes and methods from a parent class, helping avoid duplicate code blocks. The child class can override parental methods or introduce new features.</p>
+    <pre><code># Class Inheritance
+class BaseTransformer:
+    def __init__(self, data):
+        self.data = data
+    def transform(self):
+        # Placeholder method
+        return self.data
+
+# Child class inheriting BaseTransformer
+class ScaleTransformer(BaseTransformer):
+    def __init__(self, data, factor):
+        # Initialize parent variables
+        super().__init__(data)
+        self.factor = factor
+        
+    def transform(self):
+        # Override parent method to scale numerical entries
+        return [x * self.factor for x in self.data]
+
+scaler = ScaleTransformer([1, 2, 3], factor=10)
+print(scaler.transform()) # Output: [10, 20, 30]</code></pre>
+  </div>
+</body>
+</html>

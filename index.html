@@ -166,6 +166,9 @@
           <button class="tab-btn active" data-track="track-basics" id="tab-btn-basics">
             <i>🌱</i> Basics Foundations
           </button>
+          <button class="tab-btn" data-track="track-python" id="tab-btn-python">
+            <i>🐍</i> Python Programming
+          </button>
           <button class="tab-btn" data-track="track-math" id="tab-btn-math">
             <i>📐</i> Mathematical Foundations
           </button>
@@ -191,13 +194,12 @@
             <div class="track-info">
               <h3><i>🌱</i> Basics Foundations</h3>
               <p>
-                Establish your programming and version control foundations. Before writing data processing pipelines or training neural networks, master core Python scripting, relational database queries, and command-line terminal version control.
+                Establish your engineering core. Master SQL database queries, command line navigation, and git staging-commit loops to manage databases and code repositories.
               </p>
               
               <div class="track-tools">
                 <h4>Core tools used</h4>
                 <div class="tools-list">
-                  <a href="reader.html?topic=python-basics-guide" class="tool-badge">Python (Basics)</a>
                   <a href="reader.html?topic=sql-basics-guide" class="tool-badge">SQL (Queries)</a>
                   <a href="reader.html?topic=cli-git-basics-guide" class="tool-badge">Git & CLI (Terminal)</a>
                 </div>
@@ -207,8 +209,8 @@
                 <div class="skill-item">
                   <span class="skill-item-check">✓</span>
                   <div class="skill-item-text">
-                    <h5>Programming Control Flow</h5>
-                    <p>Write reusable Python code with variables, loops, list containers, and conditional switches.</p>
+                    <h5>Terminal Navigation</h5>
+                    <p>Navigate and manage file directories using command-line shell utilities.</p>
                   </div>
                 </div>
                 <div class="skill-item">
@@ -216,6 +218,58 @@
                   <div class="skill-item-text">
                     <h5>Relational SQL Queries</h5>
                     <p>Extract, filter, group, and aggregate database columns using keys and table joins.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="track-preview">
+              <div class="preview-card">
+                <span class="preview-tag">Milestone Project</span>
+                <h4>Git Staging Workflow & DB Queries</h4>
+                <p>Design a local relational schema structure, execute multi-table joins, and commit updates to a repository branch.</p>
+                <ul class="preview-list">
+                   <li>Formulate complex SQL queries.</li>
+                   <li>Manage Git version snapshots.</li>
+                   <li>Document query performance results.</li>
+                </ul>
+                <a href="#curriculum" class="btn btn-secondary">Explore Syllabus</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 0.2: Python Programming -->
+          <div class="track-pane" id="track-python">
+            <div class="track-info">
+              <h3><i>🐍</i> Python Programming</h3>
+              <p>
+                Build a solid programming foundation. Learn the standard scripting language of data science and analytics: control flows, structured collections, functional designs, OOP blueprints, and file handling.
+              </p>
+              
+              <div class="track-tools">
+                <h4>Core tools used</h4>
+                <div class="tools-list">
+                  <a href="reader.html?topic=python-syntax-variables" class="tool-badge">Variables & Syntax</a>
+                  <a href="reader.html?topic=python-control-structures" class="tool-badge">Control Flow</a>
+                  <a href="reader.html?topic=python-collections-datastructures" class="tool-badge">Collections</a>
+                  <a href="reader.html?topic=python-functions-oop" class="tool-badge">OOP & Functions</a>
+                  <a href="reader.html?topic=python-exceptions-files" class="tool-badge">Exceptions & Files</a>
+                </div>
+              </div>
+
+              <div class="skills-list">
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>Algorithmic Control Flow</h5>
+                    <p>Implement conditional logic branches and loop iterables to solve complex data parsing tasks.</p>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-item-check">✓</span>
+                  <div class="skill-item-text">
+                    <h5>Object-Oriented blue-printing</h5>
+                    <p>Encapsulate properties and behaviors inside Classes and Objects to write modular code libraries.</p>
                   </div>
                 </div>
               </div>
@@ -604,7 +658,8 @@
             <div class="calc-select-group">
               <label for="target-role" style="font-size: 0.9rem; font-weight:600; margin-bottom:8px; display:block;">Target Learning Path</label>
               <select id="target-role" class="calc-select">
-                <option value="basics">Basics Foundations Path (45 hrs)</option>
+                <option value="basics">Basics Foundations Path (30 hrs)</option>
+                <option value="python">Python Programming Path (80 hrs)</option>
                 <option value="math">Mathematical Foundations Path (50 hrs)</option>
                 <option value="statistics">Statistics & Probability (100 hrs)</option>
                 <option value="data-analysis">Data Analysis Path (180 hrs)</option>
@@ -679,7 +734,7 @@
                 <span class="accordion-num">00</span>
                 <div class="accordion-title">
                   <h3>Basics Foundations</h3>
-                  <p>Module 00 • 3 Lessons • Project 00</p>
+                  <p>Module 00 • 2 Lessons • Project 00</p>
                 </div>
               </div>
               <span class="accordion-icon">▼</span>
@@ -690,7 +745,6 @@
                   <div class="syllabus-lessons">
                     <h4>What you will learn</h4>
                     <div class="lessons-list">
-                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Python programming basics: variables, control flows, loops, containers</div>
                       <div class="lesson-item"><span class="lesson-item-bullet"></span> Relational database SQL queries: SELECT, WHERE, GROUP BY, joins</div>
                       <div class="lesson-item"><span class="lesson-item-bullet"></span> Command Line navigation & Git version control workflows</div>
                     </div>
@@ -698,9 +752,9 @@
                   <div class="syllabus-project">
                     <h4>Capstone Project</h4>
                     <div class="project-card">
-                      <h5>Local Data Pipeline Orchestrator</h5>
-                      <p>Write a local script that loads and structures retail transaction ledger CSVs, loading outputs into relational tables.</p>
-                      <span class="project-tag">⚡ Programming Core</span>
+                      <h5>Git Staging Workflow & DB Queries</h5>
+                      <p>Design a local relational schema structure, execute multi-table joins, and commit updates to a repository branch.</p>
+                      <span class="project-tag">⚡ SQL & Version Control</span>
                     </div>
                   </div>
                 </div>
@@ -714,8 +768,46 @@
               <div class="accordion-header-left">
                 <span class="accordion-num">01</span>
                 <div class="accordion-title">
+                  <h3>Python Programming Foundations</h3>
+                  <p>Module 01 • 5 Lessons • Project 01</p>
+                </div>
+              </div>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <div class="syllabus-grid">
+                  <div class="syllabus-lessons">
+                    <h4>What you will learn</h4>
+                    <div class="lessons-list">
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Variables & Primitive types (int, float, str, bool) & type casting</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Control flow: conditionals (if/elif/else), loops (for/while) & control statements</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Collections: Lists, Tuples, Dictionaries, Sets & comprehensions</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Functions & Object-Oriented Programming (OOP) classes, self & inheritance</div>
+                      <div class="lesson-item"><span class="lesson-item-bullet"></span> Exception handling (try-except) & file operations (with open context managers)</div>
+                    </div>
+                  </div>
+                  <div class="syllabus-project">
+                    <h4>Capstone Project</h4>
+                    <div class="project-card">
+                      <h5>Local Data Pipeline Orchestrator</h5>
+                      <p>Write a local script that loads and structures retail transaction ledger CSVs, loading outputs into relational SQLite tables.</p>
+                      <span class="project-tag">⚡ Python Programming</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Module 02 -->
+          <div class="accordion-item reveal">
+            <div class="accordion-header">
+              <div class="accordion-header-left">
+                <span class="accordion-num">02</span>
+                <div class="accordion-title">
                   <h3>Mathematical Foundations</h3>
-                  <p>Module 01 • 3 Lessons • Project 01</p>
+                  <p>Module 02 • 3 Lessons • Project 02</p>
                 </div>
               </div>
               <span class="accordion-icon">▼</span>
@@ -744,14 +836,14 @@
             </div>
           </div>
 
-          <!-- Accordion Module 02 -->
+          <!-- Accordion Module 03 -->
           <div class="accordion-item reveal">
             <div class="accordion-header">
               <div class="accordion-header-left">
-                <span class="accordion-num">02</span>
+                <span class="accordion-num">03</span>
                 <div class="accordion-title">
                   <h3>Probability & Statistics Foundations</h3>
-                  <p>Module 02 • 5 Lessons • Project 02</p>
+                  <p>Module 03 • 5 Lessons • Project 03</p>
                 </div>
               </div>
               <span class="accordion-icon">▼</span>
@@ -783,14 +875,14 @@
             </div>
           </div>
 
-          <!-- Accordion Module 03 -->
+          <!-- Accordion Module 04 -->
           <div class="accordion-item reveal">
             <div class="accordion-header">
               <div class="accordion-header-left">
-                <span class="accordion-num">03</span>
+                <span class="accordion-num">04</span>
                 <div class="accordion-title">
                   <h3>SQL & Python Clean-wrangling Pipelines</h3>
-                  <p>Module 03 • 3 Lessons • Project 03</p>
+                  <p>Module 04 • 3 Lessons • Project 04</p>
                 </div>
               </div>
               <span class="accordion-icon">▼</span>
@@ -822,14 +914,14 @@
             </div>
           </div>
 
-          <!-- Accordion Module 04 -->
+          <!-- Accordion Module 05 -->
           <div class="accordion-item reveal">
             <div class="accordion-header">
               <div class="accordion-header-left">
-                <span class="accordion-num">04</span>
+                <span class="accordion-num">05</span>
                 <div class="accordion-title">
                   <h3>Applied Machine Learning Models</h3>
-                  <p>Module 04 • 11 Lessons • Project 04</p>
+                  <p>Module 05 • 11 Lessons • Project 05</p>
                 </div>
               </div>
               <span class="accordion-icon">▼</span>
@@ -863,14 +955,14 @@
             </div>
           </div>
 
-          <!-- Accordion Module 05 -->
+          <!-- Accordion Module 06 -->
           <div class="accordion-item reveal">
             <div class="accordion-header">
               <div class="accordion-header-left">
-                <span class="accordion-num">05</span>
+                <span class="accordion-num">06</span>
                 <div class="accordion-title">
                   <h3>BI Analytics & Storytelling</h3>
-                  <p>Module 05 • 5 Lessons • Project 05</p>
+                  <p>Module 06 • 5 Lessons • Project 06</p>
                 </div>
               </div>
               <span class="accordion-icon">▼</span>

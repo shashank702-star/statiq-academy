@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python File Handling & Exceptions | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Python Programming Lesson</span>
+    <h1>Python File Handling & Exceptions</h1>
+    <p>Data engineering pipelines must interact with the file system (reading CSVs, JSONs, or txt logs) and run robust exception handling blocks to prevent program crashes when encountering corrupt inputs.</p>
+
+    <h2>1. Exception Handling: try, except, and finally</h2>
+    <p>Exceptions are runtime errors (e.g. division by zero, missing keys, or file-not-found). Use a <code>try-except</code> block to catch errors and execute fallback operations. The optional <code>finally</code> block executes code regardless of whether an exception occurred.</p>
+    <pre><code># Exception handling
+divisor = 0
+
+try:
+    result = 100 / divisor
+    print(f"Result: {result}")
+except ZeroDivisionError as e:
+    print(f"[ERROR] Cannot divide: {e}")
+    result = 0.0  # Fallback value
+finally:
+    print("Execution attempt complete.") # Runs always</code></pre>
+
+    <h2>2. File I/O: The with open() Context Manager</h2>
+    <p>Always open files using the <code>with</code> context manager. It automatically closes the file stream when the indented block is exited, protecting system memory resources and preventing lock files.</p>
+    <ul>
+      <li><strong>"r"</strong>: Read mode (default). Throws error if file does not exist.</li>
+      <li><strong>"w"</strong>: Write mode (overwrites file content).</li>
+      <li><strong>"a"</strong>: Append mode (adds content to the end of the file).</li>
+    </ul>
+    <pre><code># Writing and Reading Text Files
+filename = "pipeline_logs.txt"
+
+# Write mode
+with open(filename, "w", encoding="utf-8") as f:
+    f.write("Pipeline started at 12:00\n")
+    f.write("Task successfully finished.\n")
+
+# Read mode
+with open(filename, "r", encoding="utf-8") as f:
+    content = f.read()
+    print("Log File Content:\n" + content)</code></pre>
+
+    <h2>3. Reading CSVs using built-in csv module</h2>
+    <p>CSV (Comma-Separated Values) is the most standard flat data storage format. Python's built-in <code>csv</code> module helps parse headers and rows seamlessly.</p>
+    <pre><code># Reading CSV records
+import csv
+
+# Mock read CSV
+csv_filename = "mock_users.csv"
+
+# First let's create it for demonstration
+with open(csv_filename, "w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f)
+    writer.writerow(["user_id", "email", "status"])
+    writer.writerow(["101", "user1@statiq.com", "Active"])
+    writer.writerow(["102", "user2@statiq.com", "Pending"])
+
+# Parsing with DictReader (returns rows as dictionaries mapping column headers to cell values)
+with open(csv_filename, "r", encoding="utf-8") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        print(f"User {row['user_id']} ({row['email']}) is {row['status']}")</code></pre>
+  </div>
+</body>
+</html>

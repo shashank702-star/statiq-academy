@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Collections & Data Structures | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Python Programming Lesson</span>
+    <h1>Python Collections & Data Structures</h1>
+    <p>Collections store multiple items under a single variable name. Choosing the right data structure (List, Dictionary, Tuple, or Set) is critical for memory and algorithm efficiency in data pipelines.</p>
+
+    <h2>1. Lists: Ordered & Mutable Sequences</h2>
+    <p>Lists are declared using square brackets <code>[ ]</code>. They maintain order, can contain duplicate items, and allow mutations (adding, updating, or deleting values).</p>
+    <h3>Slicing Lists</h3>
+    <p>You can extract a sub-segment of a list using slice syntax: <code>list[start:stop:step]</code> (excludes stop index).</p>
+    <pre><code># Lists and slicing
+skills = ["Python", "SQL", "Tableau", "Git"]
+skills.append("dbt")      # Add item: ["Python", "SQL", "Tableau", "Git", "dbt"]
+
+# Slicing
+first_two = skills[0:2]   # ["Python", "SQL"]
+last_item = skills[-1]    # "dbt"
+every_other = skills[::2] # ["Python", "Tableau", "dbt"]
+
+print(skills)</code></pre>
+
+    <h2>2. Dictionaries: Key-Value Maps</h2>
+    <p>Dictionaries are declared using curly braces <code>{ }</code>. They store key-value pairs (hash maps), allowing fast retrievals by keys. Keys must be unique and immutable (such as strings or numbers).</p>
+    <pre><code># Dictionaries
+student = {
+    "id": 1084,
+    "name": "Alex",
+    "track": "Data Science",
+    "is_graduated": False
+}
+
+# Lookup
+print(student["name"])      # Alex
+
+# Mutation & Addition
+student["is_graduated"] = True
+student["graduation_year"] = 2026
+
+# Iterate over dict
+for key, val in student.items():
+    print(f"{key}: {val}")</code></pre>
+
+    <h2>3. Tuples & Sets</h2>
+    <ul>
+      <li><strong>Tuples</strong>: Declared using parentheses <code>( )</code>. They are ordered sequences that are **immutable** (cannot be modified after creation), making them faster and safer for fixed configurations.</li>
+      <li><strong>Sets</strong>: Declared using curly braces <code>{ }</code> without key mappings. They contain **unique elements only** and are unordered, supporting fast membership tests and set math (unions, intersections).</li>
+    </ul>
+    <pre><code># Tuples (Immutable)
+coordinates = (37.7749, -122.4194)
+# coordinates[0] = 38.0 # Raises TypeError: tuple object does not support item assignment
+
+# Sets (Unique elements)
+active_ids = {101, 102, 103, 101, 103}
+print(active_ids) # Outputs: {101, 102, 103} (duplicates removed)</code></pre>
+
+    <h2>4. List Comprehensions</h2>
+    <p>List comprehensions provide a concise syntax to construct new lists from existing iterables. They are common in data cleaning for inline transformations.</p>
+    <div class="formula-block">
+      New_List = [ expression for item in iterable if condition ]
+    </div>
+    <pre><code># List comprehensions
+raw_salaries = [50000, 75000, 110000, 40000]
+
+# Scale salaries above 45000 by 10%
+adjusted_salaries = [s * 1.10 for s in raw_salaries if s > 45000]
+print(adjusted_salaries) # [55000.0, 82500.0, 121000.0]</code></pre>
+  </div>
+</body>
+</html>

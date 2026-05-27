@@ -177,7 +177,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     switch (track) {
       case 'basics':
-        totalHours = 45;
+        totalHours = 30;
+        milestones = 0;
+        break;
+      case 'python':
+        totalHours = 80;
         milestones = 1;
         break;
       case 'math':
@@ -454,12 +458,44 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "https://www.statlearning.com/"
     },
     {
-      title: "Python Programming Basics",
+      title: "Python Syntax & Variables",
       category: "notes",
-      description: "A fundamental overview of Python variables, primitive data types, conditionals, loops, lists, dictionaries, and reusable functions.",
-      tags: ["Python", "Basics", "Syntax"],
+      description: "Detailed notes on Python primitive types (int, float, str, bool), variable declaration, type casting, and printing with f-strings.",
+      tags: ["Python", "Programming", "Syntax"],
       downloadText: "Open Study Notes",
-      link: "reader.html?topic=python-basics-guide"
+      link: "reader.html?topic=python-syntax-variables"
+    },
+    {
+      title: "Python Control Structures",
+      category: "notes",
+      description: "Detailed notes on Python comparison/logical operators, conditional branches (if-elif-else), loops (for, while), and loop control keywords.",
+      tags: ["Python", "Programming", "Control Flow"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=python-control-structures"
+    },
+    {
+      title: "Python Collections & Data Structures",
+      category: "notes",
+      description: "Detailed notes on Python lists (slicing, methods), tuples, dictionaries, sets (unions, intersections), and list comprehensions.",
+      tags: ["Python", "Programming", "Collections"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=python-collections-datastructures"
+    },
+    {
+      title: "Python OOP & Functions",
+      category: "notes",
+      description: "Detailed notes on defining Python functions, variable scoping, classes, objects, initializers (__init__), class methods, and inheritance.",
+      tags: ["Python", "Programming", "OOP"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=python-functions-oop"
+    },
+    {
+      title: "Python File Handling & Exceptions",
+      category: "notes",
+      description: "Detailed notes on Python exception handling (try-except-finally) and reading/writing text or CSV files using context managers.",
+      tags: ["Python", "Programming", "Files"],
+      downloadText: "Open Study Notes",
+      link: "reader.html?topic=python-exceptions-files"
     },
     {
       title: "SQL Basics Foundations",

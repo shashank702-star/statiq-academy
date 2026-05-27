@@ -9,48 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
       moduleId: "mod-0",
       lessons: [
         {
-          title: "Python Programming Basics",
-          id: "python-basics-guide",
-          file: "content/python-basics-guide.html",
-          type: "notes",
-          readTime: 5,
-          quiz: [
-            {
-              q: "Which data type in Python stores key-value pairs representing records?",
-              options: [
-                "List",
-                "Dictionary",
-                "Tuple",
-                "Set"
-              ],
-              answer: 1,
-              explain: "Dictionaries in Python store mapping pairs defined as {key: value}, which are ideal for structured data records."
-            },
-            {
-              q: "What does the code block range(5) yield in a Python for-loop?",
-              options: [
-                "Numbers 1 to 5 inclusive.",
-                "Numbers 0 to 4 inclusive.",
-                "A list containing five random float decimals.",
-                "An array of string tokens."
-              ],
-              answer: 1,
-              explain: "range(n) starts from 0 and stops at n-1, yielding numbers 0, 1, 2, 3, and 4."
-            },
-            {
-              q: "How do you declare a parameter default value in a Python function definition?",
-              options: [
-                "By writing parameter := default inside the body.",
-                "By assigning values directly in the def statement: def func(param=default).",
-                "By using the global keyword inside functions.",
-                "Python does not support parameter default values."
-              ],
-              answer: 1,
-              explain: "Default values are assigned directly inside the def header parameter list using the '=' sign."
-            }
-          ]
-        },
-        {
           title: "SQL Basics Foundations",
           id: "sql-basics-guide",
           file: "content/sql-basics-guide.html",
@@ -137,8 +95,224 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     {
-      moduleTitle: "Mathematical Foundations",
+      moduleTitle: "Python Programming Foundations",
       moduleId: "mod-1",
+      lessons: [
+        {
+          title: "Python Syntax & Variables",
+          id: "python-syntax-variables",
+          file: "content/python-syntax-variables.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "What is the output of type(3 / 2) in Python 3?",
+              options: [
+                "int",
+                "float",
+                "double",
+                "class 'division'"
+              ],
+              answer: 1,
+              explain: "In Python 3, the division operator '/' always returns a float, even if the division is even. Use '//' for floor division."
+            },
+            {
+              q: "Which variable name is invalid in Python?",
+              options: [
+                "_my_var",
+                "my_var_2",
+                "2_my_var",
+                "MY_VAR"
+              ],
+              answer: 2,
+              explain: "Variable names in Python cannot start with a number. They must start with a letter or an underscore."
+            },
+            {
+              q: "How do you print x in a print statement using an f-string?",
+              options: [
+                "print(f\"x is {x}\")",
+                "print(\"x is {x}\")",
+                "print(f\"x is %x\")",
+                "print(f\"x is x\")"
+              ],
+              answer: 0,
+              explain: "F-strings in Python are prefixed with 'f' or 'F' before the opening quote, and expressions inside curly braces '{}' are evaluated at runtime."
+            }
+          ]
+        },
+        {
+          title: "Python Control Structures",
+          id: "python-control-structures",
+          file: "content/python-control-structures.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "Which keyword is used to skip the rest of the current loop iteration and move to the next one?",
+              options: [
+                "break",
+                "continue",
+                "pass",
+                "skip"
+              ],
+              answer: 1,
+              explain: "The 'continue' statement skips the rest of the code inside the loop for the current iteration and goes directly to the next iteration."
+            },
+            {
+              q: "What is the correct syntax for checking if x is between 10 and 20 inclusive in Python?",
+              options: [
+                "if 10 <= x <= 20:",
+                "if 10 <= x and <= 20:",
+                "if x >= 10 or x <= 20:",
+                "if x in range(10, 20):"
+              ],
+              answer: 0,
+              explain: "Python supports chained comparison operators, making 10 <= x <= 20 a valid and clean expression."
+            },
+            {
+              q: "In a Python loop, when does the else block associated with a for or while loop execute?",
+              options: [
+                "When the loop condition is False, unless terminated by a break statement.",
+                "Every time an iteration completes.",
+                "Only if the loop never starts.",
+                "Only if a break statement is executed."
+              ],
+              answer: 0,
+              explain: "The loop else block runs only when the loop completes naturally without being interrupted by a break statement."
+            }
+          ]
+        },
+        {
+          title: "Python Collections & Data Structures",
+          id: "python-collections-datastructures",
+          file: "content/python-collections-datastructures.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "Which collection type does not allow duplicate elements and is unordered?",
+              options: [
+                "List",
+                "Tuple",
+                "Set",
+                "Dictionary"
+              ],
+              answer: 2,
+              explain: "A Set is an unordered collection of unique elements. Duplicates are automatically removed."
+            },
+            {
+              q: "How do you append the element 4 to the end of list my_list = [1, 2, 3]?",
+              options: [
+                "my_list.add(4)",
+                "my_list.append(4)",
+                "my_list.push(4)",
+                "my_list.insert(4)"
+              ],
+              answer: 1,
+              explain: "Lists use append(x) to add elements to the end. add() is used for sets, and insert(index, x) is for specific index insertion."
+            },
+            {
+              q: "What is the result of the list comprehension [x**2 for x in range(4) if x % 2 == 0]?",
+              options: [
+                "[0, 4]",
+                "[0, 1, 4, 9]",
+                "[1, 9]",
+                "[0, 2]"
+              ],
+              answer: 0,
+              explain: "For range(4) (0, 1, 2, 3), the even numbers are 0 and 2. Squaring them yields [0**2, 2**2] which is [0, 4]."
+            }
+          ]
+        },
+        {
+          title: "Python OOP & Functions",
+          id: "python-functions-oop",
+          file: "content/python-functions-oop.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "How is inheritance specified in Python when defining a subclass?",
+              options: [
+                "class SubClass extends ParentClass:",
+                "class SubClass(ParentClass):",
+                "class SubClass: ParentClass",
+                "class SubClass implements ParentClass:"
+              ],
+              answer: 1,
+              explain: "Inheritance is defined in Python by passing the parent class name inside parentheses after the subclass name in the class definition."
+            },
+            {
+              q: "What does the self parameter represent inside a Python class method definition?",
+              options: [
+                "The class constructor itself.",
+                "The specific instance of the class calling the method.",
+                "A reserved keyword that cannot be renamed.",
+                "The global variable namespace."
+              ],
+              answer: 1,
+              explain: "self represents the instance object that called the method, allowing access to its attributes and other methods. While traditionally named 'self', it is technically just the first parameter name."
+            },
+            {
+              q: "What is the output of a function that has no return statement, or just a bare return?",
+              options: [
+                "None",
+                "null",
+                "0",
+                "False"
+              ],
+              answer: 0,
+              explain: "If a Python function does not reach an explicit return statement with a value, it implicitly returns None."
+            }
+          ]
+        },
+        {
+          title: "Python File Handling & Exceptions",
+          id: "python-exceptions-files",
+          file: "content/python-exceptions-files.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "Which block in a try-except-else-finally chain is guaranteed to execute whether an exception is raised or not?",
+              options: [
+                "except",
+                "else",
+                "finally",
+                "try"
+              ],
+              answer: 2,
+              explain: "The finally block always runs, making it ideal for clean-up tasks like closing database connections or files."
+            },
+            {
+              q: "Why is the statement with open(\"data.txt\", \"r\") as file: preferred for opening files over file = open(...)?",
+              options: [
+                "It reads the file faster.",
+                "It automatically closes the file, even if an exception occurs inside the block.",
+                "It opens files in binary mode by default.",
+                "It parses the file content into a JSON object."
+              ],
+              answer: 1,
+              explain: "The with statement utilizes a context manager which ensures resource cleanup (like closing the file descriptor) is handled automatically."
+            },
+            {
+              q: "What exception is raised when trying to divide a number by zero in Python?",
+              options: [
+                "DivisionError",
+                "ZeroDivisionError",
+                "ValueError",
+                "ArithmeticException"
+              ],
+              answer: 1,
+              explain: "Python raises a ZeroDivisionError when a division or modulo by zero is performed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      moduleTitle: "Mathematical Foundations",
+      moduleId: "mod-2",
       lessons: [
         {
           title: "Linear Algebra Foundations",
@@ -270,7 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       moduleTitle: "Probability & Statistics Foundations",
-      moduleId: "mod-2",
+      moduleId: "mod-3",
       lessons: [
         {
           title: "Probability Theory & Basics",
@@ -486,7 +660,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       moduleTitle: "SQL & Python Clean-wrangling Pipelines",
-      moduleId: "mod-3",
+      moduleId: "mod-4",
       lessons: [
         {
           title: "Advanced SQL Optimization",
@@ -618,7 +792,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       moduleTitle: "Applied Machine Learning Models",
-      moduleId: "mod-4",
+      moduleId: "mod-5",
       lessons: [
         {
           title: "Linear Regression Foundations",
@@ -1086,7 +1260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       moduleTitle: "BI Analytics & Storytelling",
-      moduleId: "mod-5",
+      moduleId: "mod-6",
       lessons: [
         {
           title: "Tableau Calculated Fields & LODs",

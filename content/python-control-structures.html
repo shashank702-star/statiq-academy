@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Control Structures | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Python Programming Lesson</span>
+    <h1>Python Control Structures</h1>
+    <p>Control structures dictate the order in which code statements are executed. Python uses comparison statements to branching logical decisions and loops to repeat instructions efficiently.</p>
+
+    <h2>1. Conditionals: if, elif, and else</h2>
+    <p>Conditional blocks evaluate expressions that yield Booleans (<code>True</code> or <code>False</code>). Python uses the <code>if</code>, <code>elif</code> (else if), and <code>else</code> keywords to define conditional code paths.</p>
+    <pre><code># Conditional statements
+performance_rating = 4.2
+
+if performance_rating >= 4.5:
+    bonus_multiplier = 0.15
+elif performance_rating >= 4.0:
+    bonus_multiplier = 0.10
+else:
+    bonus_multiplier = 0.05
+
+print(f"Bonus: {bonus_multiplier * 100}%") # Bonus: 10.0%</code></pre>
+
+    <h2>2. Comparison & Logical Operators</h2>
+    <p>Multiple boolean expressions can be evaluated together using logical operators:</p>
+    <ul>
+      <li><strong>Comparison Operators</strong>: <code>==</code> (equals), <code>!=</code> (not equal), <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>.</li>
+      <li><strong>Logical Operators</strong>: <code>and</code> (both must be true), <code>or</code> (at least one must be true), <code>not</code> (inverts value).</li>
+    </ul>
+    <pre><code># Combining conditions
+revenue = 120000
+profit_margin = 0.18
+
+if revenue > 100000 and profit_margin >= 0.15:
+    print("Company meets the High-Efficiency status.")
+else:
+    print("Company does not meet status.")</code></pre>
+
+    <h2>3. Loops: for, while, and range</h2>
+    <p>Loops run a code block multiple times:</p>
+    <ul>
+      <li><strong>for loops</strong>: Iterate over a sequence (such as a list, string, or range of numbers).</li>
+      <li><strong>while loops</strong>: Run as long as a specified condition remains <code>True</code>.</li>
+      <li><strong>range(start, stop, step)</strong>: Generates a sequence of integers (excludes stop value).</li>
+    </ul>
+    <pre><code># For loop with range
+for i in range(1, 4):
+    print(f"Processing batch {i}...")
+
+# While loop
+countdown = 3
+while countdown > 0:
+    print(f"Ticks left: {countdown}")
+    countdown -= 1</code></pre>
+
+    <h2>4. Loop Control: break, continue, and pass</h2>
+    <ul>
+      <li><strong>break</strong>: Terminates the loop immediately.</li>
+      <li><strong>continue</strong>: Skips the rest of the current iteration and moves to the next one.</li>
+      <li><strong>pass</strong>: A null statement used as a placeholder where syntax requires code but no action is needed.</li>
+    </ul>
+    <pre><code># Control keywords in loops
+numbers = [1, 2, -99, 4, 5]
+
+for n in numbers:
+    if n == -99:
+        print("Encountered corrupt value. Stopping loop.")
+        break  # Exit loop
+    if n % 2 == 0:
+        continue  # Skip even numbers
+    print(f"Odd positive number: {n}")</code></pre>
+  </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Syntax & Variables | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Python Programming Lesson</span>
+    <h1>Python Syntax & Variables</h1>
+    <p>Python is an interpreted, high-level, dynamically typed language. Its clean syntax relies on indentation rather than brackets or semicolons, making it readable and standard for data science, analytics, and software engineering.</p>
+
+    <h2>1. Variables and Dynamic Typing</h2>
+    <p>In Python, you do not declare a variable's data type explicitly. The type is inferred at runtime when a value is assigned. Variable names are case-sensitive and must start with a letter or underscore.</p>
+    <pre><code># Dynamic variable declarations
+age = 28               # Inferred as Integer (int)
+salary = 85400.75      # Inferred as Floating-point (float)
+name = "Taylor"        # Inferred as String (str)
+is_active = True       # Inferred as Boolean (bool)
+
+# You can check types with the type() function
+print(type(age))       # &lt;class 'int'&gt;
+print(type(name))      # &lt;class 'str'&gt;</code></pre>
+
+    <h2>2. Basic Data Types & Casting</h2>
+    <p>Python supports several primitive data types. Sometimes, you must explicitly convert one type to another (casting):</p>
+    <ul>
+      <li><strong>int()</strong>: Casts floats or compatible strings to integers (truncates decimals).</li>
+      <li><strong>float()</strong>: Casts integers or compatible strings to floating-point numbers.</li>
+      <li><strong>str()</strong>: Converts any data type (numbers, booleans) to a string representation.</li>
+    </ul>
+    <pre><code># Casting examples
+str_price = "199.99"
+price = float(str_price)   # Cast string to float: 199.99
+
+item_count = "15"
+count = int(item_count)    # Cast string to integer: 15
+
+# Type conversion error safety
+try:
+    invalid_cast = int("hello")
+except ValueError as e:
+    print(f"Casting failed: {e}")</code></pre>
+
+    <h2>3. String Formatting & Printing</h2>
+    <p>The standard way to interpolate variables into printed text is using **f-strings** (formatted string literals). Prefix a string with <code>f</code> or <code>F</code> and write variables directly inside curly braces <code>{ }</code>.</p>
+    <pre><code># f-string interpolation
+first_name = "Jane"
+last_name = "Doe"
+score = 98.456
+
+# Standard f-string
+print(f"Student: {first_name} {last_name}")
+
+# Padded decimals formatting
+print(f"Final Score: {score:.2f}%") # Renders to: Final Score: 98.46%</code></pre>
+  </div>
+</body>
+</html>
