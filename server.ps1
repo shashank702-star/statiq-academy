@@ -17,51 +17,59 @@ try {
     Start-Process "http://localhost:$port/"
 
     while ($listener.IsListening) {
-        $context = $listener.GetContext()
-        $request = $context.Request
-        $response = $context.Response
+        try {
+            $context = $listener.GetContext()
+            $request = $context.Request
+            $response = $context.Response
 
-        $urlPath = $request.Url.LocalPath
-        # Fallback to index.html
-        if ($urlPath -eq "/" -or $urlPath -eq "") {
-            $urlPath = "/index.html"
-        }
+            $urlPath = $request.Url.LocalPath
+            # Fallback to index.html
+            if ($urlPath -eq "/" -or $urlPath -eq "") {
+                $urlPath = "/index.html"
+            }
 
-        # Clean up path syntax
-        $urlPath = $urlPath.Replace("/", "\")
-        if ($urlPath.StartsWith("\")) {
-            $urlPath = $urlPath.Substring(1)
-        }
-        
-        $filePath = Join-Path $PSScriptRoot $urlPath
+            # Clean up path syntax
+            $urlPath = $urlPath.Replace("/", "\")
+            if ($urlPath.StartsWith("\")) {
+                $urlPath = $urlPath.Substring(1)
+            }
+            
+            $filePath = Join-Path $PSScriptRoot $urlPath
 
-        if (Test-Path $filePath -PathType Leaf) {
-            $bytes = [System.IO.File]::ReadAllBytes($filePath)
-            
-            # Identify MIME types
-            $ext = [System.IO.Path]::GetExtension($filePath).ToLower()
-            $contentType = "application/octet-stream"
-            
-            if ($ext -eq ".html" -or $ext -eq ".htm") { $contentType = "text/html; charset=utf-8" }
-            elseif ($ext -eq ".css") { $contentType = "text/css; charset=utf-8" }
-            elseif ($ext -eq ".js") { $contentType = "text/javascript; charset=utf-8" }
-            elseif ($ext -eq ".png") { $contentType = "image/png" }
-            elseif ($ext -eq ".jpg" -or $ext -eq ".jpeg") { $contentType = "image/jpeg" }
-            elseif ($ext -eq ".svg") { $contentType = "image/svg+xml; charset=utf-8" }
-            elseif ($ext -eq ".json") { $contentType = "application/json; charset=utf-8" }
-            
-            $response.ContentType = $contentType
-            $response.ContentLength64 = $bytes.Length
-            $response.OutputStream.Write($bytes, 0, $bytes.Length)
-        } else {
-            # 404 handler
-            $response.StatusCode = 404
-            $errBytes = [System.Text.Encoding]::UTF8.GetBytes("404 - File Not Found: $urlPath")
-            $response.ContentType = "text/plain"
-            $response.ContentLength64 = $errBytes.Length
-            $response.OutputStream.Write($errBytes, 0, $errBytes.Length)
+            if (Test-Path $filePath -PathType Leaf) {
+                $bytes = [System.IO.File]::ReadAllBytes($filePath)
+                
+                # Identify MIME types
+                $ext = [System.IO.Path]::GetExtension($filePath).ToLower()
+                $contentType = "application/octet-stream"
+                
+                if ($ext -eq ".html" -or $ext -eq ".htm") { $contentType = "text/html; charset=utf-8" }
+                elseif ($ext -eq ".css") { $contentType = "text/css; charset=utf-8" }
+                elseif ($ext -eq ".js") { $contentType = "text/javascript; charset=utf-8" }
+                elseif ($ext -eq ".png") { $contentType = "image/png" }
+                elseif ($ext -eq ".jpg" -or $ext -eq ".jpeg") { $contentType = "image/jpeg" }
+                elseif ($ext -eq ".svg") { $contentType = "image/svg+xml; charset=utf-8" }
+                elseif ($ext -eq ".json") { $contentType = "application/json; charset=utf-8" }
+                
+                $response.ContentType = $contentType
+                $response.ContentLength64 = $bytes.Length
+                $response.OutputStream.Write($bytes, 0, $bytes.Length)
+            } else {
+                # 404 handler
+                $response.StatusCode = 404
+                $errBytes = [System.Text.Encoding]::UTF8.GetBytes("404 - File Not Found: $urlPath")
+                $response.ContentType = "text/plain"
+                $response.ContentLength64 = $errBytes.Length
+                $response.OutputStream.Write($errBytes, 0, $errBytes.Length)
+            }
+            $response.Close()
         }
-        $response.Close()
+        catch {
+            Write-Host "Error processing request: $_" -ForegroundColor Red
+            if ($response) {
+                try { $response.Close() } catch {}
+            }
+        }
     }
 }
 catch {
