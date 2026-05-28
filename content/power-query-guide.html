@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Power Query & M-Language Transformations | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Data Visualization & BI Lesson</span>
+    <h1>Power Query & M-Language Transformations</h1>
+    <p>Power Query is the data preparation and ETL (Extract, Transform, Load) engine for Power BI, Excel, and other Microsoft services. It features a graphical user interface for transforming data, backed by the powerful, functional <strong>M-formula language</strong>.</p>
+
+    <h2>1. Power Query ETL & Query Folding</h2>
+    <p>Power Query acts as the gateway to your BI models. One of its most critical performance features is <strong>Query Folding</strong>.</p>
+    <div class="card">
+      <h3>⚡ What is Query Folding?</h3>
+      <p>Query Folding is the ability of Power Query to compile the steps you define in the graphical editor into a single, native database query (e.g. SQL SELECT with joins, filters, and groups) and execute it directly on the source server. This minimizes data transfer and uses the database engine's optimized speed.</p>
+      <p><strong>Actions that fold:</strong> Filtering rows (WHERE), selecting columns (SELECT), joining tables (JOIN), grouping rows (GROUP BY).</p>
+      <p><strong>Actions that break folding:</strong> Changing data types, merging columns from different sources, adding index columns, or writing custom M code that cannot be translated to SQL. Ensure non-folding steps are placed at the very end of your query.</p>
+    </div>
+
+    <h2>2. Data Transformations in Power Query</h2>
+    <p>Power Query provides GUI-driven steps that are converted to M code under the hood. Key transformations include:</p>
+    <ul>
+      <li><strong>Merge Queries</strong>: Joins two tables horizontally using key columns (equivalent to SQL JOINs). You can select Inner, Left Outer, Right Outer, Full Outer, or Anti-joins.</li>
+      <li><strong>Append Queries</strong>: Stacks two or more tables vertically (equivalent to SQL UNION ALL). Columns must have matching names and data types.</li>
+      <li><strong>Unpivot Columns</strong>: Translates crosstab/matrix data formats into flat tabular records. This is vital for BI dashboards, transforming columns like "Jan Sales", "Feb Sales", "Mar Sales" into a single "Month" column and "Sales" value column.</li>
+      <li><strong>Group By</strong>: Aggregates row values (Sum, Average, Min, Max, Count) based on categorical grouping columns.</li>
+    </ul>
+
+    <h2>3. The M-Formula Language Basics</h2>
+    <p>Every step in Power Query is written in **M** (Data Mashup Formula Language). M is a functional, case-sensitive language where variables are immutable.</p>
+    <pre><code># The let...in block structure of M
+let
+    // 1. Load CSV data source
+    Source = Csv.Document(File.Contents("C:\Ledger.csv"), [Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+    
+    // 2. Promote headers
+    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+    
+    // 3. Filter rows (equivalent to SQL WHERE)
+    FilteredRows = Table.SelectRows(PromotedHeaders, each ([Status] = "Completed")),
+    
+    // 4. Cast data types
+    TypedColumns = Table.TransformColumnTypes(FilteredRows, {{"Amount", type number}, {"Date", type date}}),
+    
+    // 5. Add custom column
+    AddTax = Table.AddColumn(TypedColumns, "TotalAmount", each [Amount] * 1.18, type number)
+in
+    AddTax</code></pre>
+
+    <h2>4. Parameterization & Dynamic Loading</h2>
+    <p>Parameters allow your queries to adapt dynamically without rewriting code. They are highly useful for altering file paths, database server endpoints, or filtering dates during deployment transfers:</p>
+    <pre><code># Example: Using a parameter 'ServerName' in a SQL connection
+let
+    Source = Sql.Database(ServerName, "SalesDB"),
+    SalesTable = Source{[Schema="dbo", Item="SalesTransactions"]}[Data]
+in
+    SalesTable</code></pre>
+  </div>
+</body>
+</html>

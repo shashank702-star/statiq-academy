@@ -3,138 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PowerBI DAX Modeling Guide | StatIQ Academy</title>
-  <style>
-    :root {
-      --bg-darkest: #0b0f19;
-      --bg-card: #1f2937;
-      --color-border: #374151;
-      --primary: #3b82f6;
-      --secondary: #10b981;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --font-main: 'Outfit', sans-serif;
-      --font-code: 'Fira Code', monospace;
-    }
-    body {
-      background-color: var(--bg-darkest);
-      color: var(--text-main);
-      font-family: var(--font-main);
-      line-height: 1.6;
-      margin: 0;
-      padding: 40px 20px;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    h1 {
-      font-size: 2.2rem;
-      border-bottom: 2px solid var(--color-border);
-      padding-bottom: 12px;
-      margin-bottom: 24px;
-      color: var(--primary);
-    }
-    h2 {
-      font-size: 1.5rem;
-      margin-top: 40px;
-      color: var(--secondary);
-      border-bottom: 1px solid var(--color-border);
-      padding-bottom: 8px;
-    }
-    p {
-      color: var(--text-muted);
-      font-size: 1rem;
-    }
-    pre {
-      background-color: #0d1117;
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
-      padding: 16px;
-      overflow-x: auto;
-    }
-    code {
-      font-family: var(--font-code);
-      font-size: 0.9rem;
-      color: #38bdf8;
-    }
-    .back-btn {
-      display: inline-block;
-      margin-bottom: 24px;
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .back-btn:hover {
-      text-decoration: underline;
-    }
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
-      padding: 24px;
-      margin: 24px 0;
-    }
-    .badge {
-      display: inline-block;
-      padding: 4px 10px;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid var(--secondary);
-      border-radius: 4px;
-      color: var(--secondary);
-      font-size: 0.8rem;
-      margin-bottom: 12px;
-    }
-  </style>
+  <title>Power BI DAX Semantic Modeling & Calculations | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <div class="container">
     <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
     <span class="badge">Business Intelligence Guide</span>
-    <h1>PowerBI DAX & Semantic Modeling</h1>
-    <p>A reference guide on DAX functions, Calculated Columns vs. Measures, filter contexts, and Time Intelligence expressions.</p>
+    <h1>Power BI DAX & Semantic Modeling</h1>
+    <p>A masterclass reference guide on semantic data modeling, DAX engine optimization, evaluation contexts, filter manipulation, time intelligence, and enterprise-grade Row-Level Security (RLS).</p>
 
     <div class="card">
-      <h3>📈 Semantic Data Modeling</h3>
-      <p>Data Analysis Expressions (DAX) is the formula language used throughout PowerBI to build contextual columns and metrics inside your star schema.</p>
+      <h3>📈 Semantic Data Modeling & Star Schemas</h3>
+      <p>Data Analysis Expressions (DAX) is the functional, query, and formula language that powers the Tabular Engine in Microsoft Power BI. Rather than just applying calculations, DAX operates directly on top of a semantic data model, which should ideally be designed as a <strong>Star Schema</strong>.</p>
     </div>
 
-    <h2>1. Calculated Columns vs. Measures</h2>
-    <p>Understanding when to use columns versus measures is critical for RAM optimization:</p>
+    <h2>1. Data Modeling: Fact Tables vs. Dimension Tables</h2>
+    <p>Building an efficient BI model requires separating transactional events from descriptive metadata:</p>
     <ul>
-      <li><strong>Calculated Column (Row Context)</strong>: Calculated row-by-row during data load. Consumes RAM. Used for slicing/filtering dimensions.</li>
-      <li><strong>Measure (Filter Context)</strong>: Computed dynamically on-the-fly when added to a visual. Optimized, ignores row context by default. Used for quantitative aggregation metrics.</li>
+      <li><strong>Fact Tables</strong>: Contain quantitative measurements or metrics (e.g., Sales Amount, Quantity, Costs) and foreign keys linking to dimensions. Fact tables are tall, narrow, and grow rapidly.</li>
+      <li><strong>Dimension Tables</strong>: Contain descriptive, attributes (e.g., Product Category, Customer Name, Store Region) used to filter, group, and slice facts. Dimension tables are short, wide, and unique.</li>
+      <li><strong>Active vs. Inactive Relationships</strong>: A fact table might have multiple date columns (e.g., <code>OrderDate</code>, <code>ShipDate</code>, <code>PaymentDate</code>) linking to the same Date dimension (role-playing dimension). Power BI only allows <strong>one active relationship</strong> at a time. The active relationship propagates filters automatically, while others remain inactive.
+      <pre><code>-- Activating an inactive relationship dynamically inside a measure
+ShipSales = CALCULATE(
+    SUM(Sales[sales_usd]),
+    USERELATIONSHIP(Sales[ShipDateKey], DateTable[DateKey])
+)</code></pre>
+      </li>
+      <li><strong>Cross-Filter Direction</strong>: Set relationship cross-filtering to <strong>Single</strong> by default. Using <strong>Both</strong> allows bidirectional filtering but causes performance degradation, ambiguity, and circular dependency hazards.</li>
     </ul>
 
-    <h2>2. The CALCULATE Function (Filter Modification)</h2>
-    <p><code>CALCULATE</code> is the most powerful function in DAX, allowing you to modify active filter contexts.</p>
-    <pre><code><span style="color: #6b7280; font-style: italic;">-- Calculate sales specifically for the Technology category</span>
-TechSales = CALCULATE(
-    SUM(Sales[sales_usd]),
-    Product[category] = "Technology"
-)
+    <h2>2. Row Context vs. Filter Context</h2>
+    <p>Every DAX expression is evaluated within one or both of the following evaluation contexts:</p>
+    <div class="card">
+      <h3>⚡ The Two Contexts</h3>
+      <p><strong>1. Row Context (Iterators & Calculated Columns)</strong>: The concept of the "current row." When you create a Calculated Column or use an iterator (e.g., <code>SUMX</code>, <code>FILTER</code>), DAX evaluates the expression row-by-row. <em>Row context does not automatically filter other tables or propagate across relationships.</em></p>
+      <p><strong>2. Filter Context (Measures & Visuals)</strong>: The set of active filters applied to the model. Filters propagate automatically from the 1-side of a relationship to the many-side. It is created by slicers, report filters, columns/rows in a visual, and modified via code.</p>
+      <p><strong>Context Transition</strong>: The conversion of a Row Context into a Filter Context. This happens automatically when you reference a measure inside a row context, or wrap a row calculation inside <code>CALCULATE</code>.
+      <pre><code>-- Calculated Column showing Context Transition (row context -> filter context)
+-- Without CALCULATE, this would sum the entire table. With CALCULATE, it transforms 
+-- the current row attributes into filters, summing only sales for this specific customer.
+CustomerTotalSales = CALCULATE(SUM(Sales[sales_usd]))</code></pre>
+      </p>
+    </div>
 
-<span style="color: #6b7280; font-style: italic;">-- Calculate sales ignoring all filters currently applied to the visual</span>
-AllSales = CALCULATE(
+    <h2>3. The CALCULATE Function (Filter Modification)</h2>
+    <p><code>CALCULATE</code> is the absolute gateway to advanced DAX, acting as the only function capable of creating, overriding, or modifying the active Filter Context.</p>
+    <pre><code>-- 1. Overriding a filter using ALL (Percentage of Total Sales)
+PctOfTotalSales = 
+VAR CurrentSales = SUM(Sales[sales_usd])
+VAR AllSales = CALCULATE(SUM(Sales[sales_usd]), ALL(Sales))
+RETURN
+    DIVIDE(CurrentSales, AllSales, 0)
+
+-- 2. Intersecting filters instead of overriding using KEEPFILTERS
+-- Keepfilters ensures that if the visual slices by 'Category', the category 
+-- is intersected with 'Technology' rather than overwritten.
+TechSalesKeep = CALCULATE(
     SUM(Sales[sales_usd]),
-    ALL(Sales)
+    KEEPFILTERS(Product[category] = "Technology")
 )</code></pre>
 
-    <h2>3. Related & Relationships (RELATED / RELATEDTABLE)</h2>
-    <p>Pull columns from lookup dimension tables into fact tables using active star-schema relationships.</p>
-    <pre><code><span style="color: #6b7280; font-style: italic;">-- Calculated Column in Fact table pulling segment from Customer dimension</span>
-CustomerSegmentColumn = RELATED(Customer[customer_segment])</code></pre>
-
-    <h2>4. Time Intelligence Expressions</h2>
-    <p>DAX contains specialized functions to compare year-over-year and month-over-month sales trends seamlessly.</p>
-    <pre><code><span style="color: #6b7280; font-style: italic;">-- Year-to-Date (YTD) Revenue</span>
+    <h2>4. Time Intelligence Expressions & Date Tables</h2>
+    <p>Time intelligence allows you to calculate year-over-year growth, running totals, and moving averages. To use time intelligence in DAX, you <strong>must</strong> have a dedicated, marked <strong>Date Table</strong> with continuous date ranges and no gaps.</p>
+    <pre><code>-- 1. Year-to-Date (YTD) cumulative total
 YTD_Revenue = TOTALYTD(SUM(Sales[sales_usd]), DateTable[Date])
 
-<span style="color: #6b7280; font-style: italic;">-- Revenue from the same period last year</span>
+-- 2. Same Period Last Year (YoY Compare)
 PriorYearRevenue = CALCULATE(
     SUM(Sales[sales_usd]),
     SAMEPERIODLASTYEAR(DateTable[Date])
+)
+
+-- 3. Custom period shifts (e.g., previous month sales)
+PrevMonthSales = CALCULATE(
+    SUM(Sales[sales_usd]),
+    DATEADD(DateTable[Date], -1, MONTH)
 )</code></pre>
+
+    <h2>5. Optimization with Variables (VAR / RETURN)</h2>
+    <p>Variables should be used in all non-trivial measures to improve code readability, simplify debugging, and boost processing performance.</p>
+    <div class="card">
+      <h3>🚀 Performance Benefit of Variables</h3>
+      <p>Variables are evaluated exactly <strong>once</strong> at the moment of definition. If a variable is referenced multiple times in the return block, the tabular engine uses the cached result instead of executing the underlying query multiple times.</p>
+      <pre><code>-- Optimized YoY Growth Calculation
+YoY_Growth_Pct = 
+VAR CurrentSales = SUM(Sales[sales_usd])
+VAR LastYearSales = CALCULATE(SUM(Sales[sales_usd]), SAMEPERIODLASTYEAR(DateTable[Date]))
+VAR SalesDelta = CurrentSales - LastYearSales
+RETURN
+    DIVIDE(SalesDelta, LastYearSales, 0)</code></pre>
+      <p><em>Note: Variables are evaluated in the context where they are declared, not where they are used.</em></p>
+    </div>
+
+    <h2>6. Row-Level Security (RLS)</h2>
+    <p>Row-Level Security restricts data access at the model layer for specific users based on their login credentials. RLS filters propagate through relationships just like normal filters.</p>
+    <ul>
+      <li><strong>Static RLS</strong>: Hardcoded filter rules applied to a role. For example, a role named "US_Sellers" would have a filter on the Customer table: <code>Customer[Country] = "United States"</code>.</li>
+      <li><strong>Dynamic RLS</strong>: Filters rows dynamically based on the identity of the logged-in user. This uses security functions:
+        <ul>
+          <li><code>USERNAME()</code>: Returns domain name and username (e.g., <code>DOMAIN\user</code>).</li>
+          <li><code>USERPRINCIPALNAME()</code>: Returns user email address (e.g., <code>user@company.com</code>). Critical for Power BI Service deployments.</li>
+        </ul>
+      </li>
+    </ul>
+    <pre><code>-- Dynamic RLS filter applied to the SalesRepresentative dimension table:
+-- Filters the table to rows matching the active logged-in Microsoft Entra ID email.
+SalesRepresentative[rep_email] = USERPRINCIPALNAME()</code></pre>
   </div>
 </body>
 </html>

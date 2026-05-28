@@ -1431,6 +1431,48 @@ document.addEventListener('DOMContentLoaded', () => {
           ]
         },
         {
+          title: "Power Query & M-Language Transformations",
+          id: "power-query-guide",
+          file: "content/power-query-guide.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "What is Query Folding in Power Query?",
+              options: [
+                "Converting data cleaning steps into native SQL queries executed on the database source server.",
+                "Collapsing visual charts in the dashboard view.",
+                "Creating multiple copies of the query to prevent data loss.",
+                "Compressing the file size of the PBIX document."
+              ],
+              answer: 0,
+              explain: "Query folding compiles transformations into SQL to execute on the source, minimizing data transfer and utilizing database optimization."
+            },
+            {
+              q: "Which Power Query action is equivalent to a SQL UNION ALL operation?",
+              options: [
+                "Merge Queries",
+                "Append Queries",
+                "Group By",
+                "Unpivot Columns"
+              ],
+              answer: 1,
+              explain: "Append Queries stacks tables vertically (like SQL UNION ALL), while Merge Queries joins them horizontally (like SQL JOIN)."
+            },
+            {
+              q: "Which syntax structure is used to define blocks and variables in the M-formula language?",
+              options: [
+                "try ... except",
+                "select ... from",
+                "let ... in",
+                "define ... run"
+              ],
+              answer: 2,
+              explain: "M-formula language utilizes 'let ... in' blocks where 'let' defines variables/steps and 'in' specifies the final output variable."
+            }
+          ]
+        },
+        {
           title: "PowerBI DAX Semantic Modeling",
           id: "powerbi-dax-guide",
           file: "content/powerbi-dax-guide.html",

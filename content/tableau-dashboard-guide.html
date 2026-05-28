@@ -4,135 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tableau Dashboard Design & Calculations Guide | StatIQ Academy</title>
-  <style>
-    :root {
-      --bg-darkest: #0b0f19;
-      --bg-card: #1f2937;
-      --color-border: #374151;
-      --primary: #3b82f6;
-      --secondary: #10b981;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --font-main: 'Outfit', sans-serif;
-      --font-code: 'Fira Code', monospace;
-    }
-    body {
-      background-color: var(--bg-darkest);
-      color: var(--text-main);
-      font-family: var(--font-main);
-      line-height: 1.6;
-      margin: 0;
-      padding: 40px 20px;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    h1 {
-      font-size: 2.2rem;
-      border-bottom: 2px solid var(--color-border);
-      padding-bottom: 12px;
-      margin-bottom: 24px;
-      color: var(--primary);
-    }
-    h2 {
-      font-size: 1.5rem;
-      margin-top: 40px;
-      color: var(--secondary);
-      border-bottom: 1px solid var(--color-border);
-      padding-bottom: 8px;
-    }
-    p {
-      color: var(--text-muted);
-      font-size: 1rem;
-    }
-    pre {
-      background-color: #0d1117;
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
-      padding: 16px;
-      overflow-x: auto;
-    }
-    code {
-      font-family: var(--font-code);
-      font-size: 0.9rem;
-      color: #38bdf8;
-    }
-    .back-btn {
-      display: inline-block;
-      margin-bottom: 24px;
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .back-btn:hover {
-      text-decoration: underline;
-    }
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
-      padding: 24px;
-      margin: 24px 0;
-    }
-    .badge {
-      display: inline-block;
-      padding: 4px 10px;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid var(--secondary);
-      border-radius: 4px;
-      color: var(--secondary);
-      font-size: 0.8rem;
-      margin-bottom: 12px;
-    }
-  </style>
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <div class="container">
     <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
     <span class="badge">Tableau Guide</span>
     <h1>Tableau Dashboard Design & Calculations</h1>
-    <p>A masterclass reference covering calculated fields, Level of Detail (LOD) calculations, Parameter Actions, and dashboard visual layouts.</p>
+    <p>A comprehensive masterclass reference covering Tableau Desktop architecture, logical relationships, Level of Detail (LOD) calculations, Table Calculations, and interactive dashboard design systems.</p>
+
+    <h2>1. Tableau Architecture & Data Modeling</h2>
+    <p>Modern Tableau uses a dual-layer data modeling system to query datasets efficiently:</p>
+    <ul>
+      <li><strong>Logical Layer (Relationships)</strong>: The default interface where you link tables using "noodles." Relationships defer joining tables until compile-time, dynamically selecting the correct SQL JOIN based on the fields used in the active visualization. This prevents record duplication (fan-out) hazards.</li>
+      <li><strong>Physical Layer (Joins & Unions)</strong>: Double-clicking a logical table opens the physical layer, where you can define hardcoded Inner, Left, Right, or Full Outer joins. Use this when you must merge tables at the physical source level.</li>
+      <li><strong>Live vs. Extract Connection</strong>: Live queries databases directly in real-time. Extracts pull data into local memory using Tableau's high-speed columnar data engine, **Hyper**, which optimizes memory caching for millions of rows.</li>
+    </ul>
+
+    <h2>2. Level of Detail (LOD) Expressions & Order of Operations</h2>
+    <p>Level of Detail expressions allow you to compute aggregations at specific dimensional granularities, independent of the fields dragged onto the visualization canvas.</p>
+    <pre><code># FIXED LOD: Aggregates value strictly at specified dimension, bypassing view layout filters
+{ FIXED [Region] : SUM([Sales]) }
+
+# INCLUDE LOD: Computes values at a lower (more detailed) granularity than what is displayed
+{ INCLUDE [Customer Name] : AVG([Order Profit]) }
+
+# EXCLUDE LOD: Computes values at a higher (less detailed) granularity than the active sheet
+{ EXCLUDE [Product Category] : SUM([Sales]) }</code></pre>
 
     <div class="card">
-      <h3>📈 Visual Storytelling with Data</h3>
-      <p>A great dashboard must be fast, readable, and action-oriented. Learn how to optimize query speeds and design UI layouts that executives can read in under 5 seconds.</p>
+      <h3>⚠️ Tableau Order of Operations</h3>
+      <p>Tableau evaluates query filters in a strict sequential order. Knowing this is crucial for making FIXED LODs respond to filters:</p>
+      <ol>
+        <li>Extract Filters</li>
+        <li>Data Source Filters</li>
+        <li>Context Filters (FIXED LODs evaluate *after* Context Filters)</li>
+        <li><strong>FIXED LOD Calculations</strong></li>
+        <li>Dimension Filters (FIXED LODs evaluate *before* Dimension Filters!)</li>
+        <li><strong>INCLUDE/EXCLUDE LOD Calculations</strong></li>
+        <li>Measure Filters</li>
+        <li>Table Calculations (e.g. running totals, ranks)</li>
+      </ol>
+      <p><strong>Tip:</strong> If a dimension filter is not updating a FIXED LOD, right-click the filter and select <strong>Add to Context</strong> to force it to evaluate before the LOD calculation.</p>
     </div>
 
-    <h2>1. Level of Detail (LOD) Calculations</h2>
-    <p>LOD expressions allow you to compute values at the source level and the visualization level simultaneously, ignoring filters when necessary.</p>
-    <pre><code><span style="color: #6b7280; font-style: italic;"># FIX: Calculate Lifetime Value per Customer ignoring viz details</span>
-{ FIXED [Customer ID] : SUM([Order Revenue]) }
-
-<span style="color: #6b7280; font-style: italic;"># EXCLUDE: Calculate Regional Sales ignoring specific Store details</span>
-{ EXCLUDE [Store Name] : SUM([Sales]) }</code></pre>
-
-    <h2>2. Parameter Actions for Interactive UX</h2>
-    <p>Parameters make charts dynamic. Set up **Parameter Actions** to let users hover or click on a chart mark to change the active metric displayed on another sheet.</p>
-    <pre><code><span style="color: #6b7280; font-style: italic;"># CASE calculation to swap metrics dynamically based on Parameter selection</span>
-CASE [Select Metric Parameter]
-  WHEN "Sales" THEN SUM([Sales])
-  WHEN "Profit" THEN SUM([Profit])
-  WHEN "Quantity" THEN SUM([Quantity])
-END</code></pre>
-
-    <h2>3. Table Calculations & Indexing</h2>
-    <p>Compute running totals, percentage differences, or ranks directly on the aggregated view without fetching raw database rows.</p>
-    <pre><code><span style="color: #6b7280; font-style: italic;"># Calculate Percent of Total Sales for current row</span>
+    <h2>3. Table Calculations</h2>
+    <p>Table calculations compute values on the local aggregated database returned to the visualization viewport, rather than querying raw rows from the server. They are defined by "Compute Using" settings (Addressing and Partitioning):</p>
+    <pre><code># Percentage of Total sales in view
 SUM([Sales]) / TOTAL(SUM([Sales]))
 
-<span style="color: #6b7280; font-style: italic;"># Rank customers based on Revenue</span>
-RANK(SUM([Sales]))</code></pre>
+# Running Sum calculation (cumulative total)
+RUNNING_SUM(SUM([Sales]))
 
-    <h2>4. Dashboard UI Layout Best Practices</h2>
-    <div class="card">
-      <h3>🎨 Visual Hierarchy Checklist</h3>
-      <ul>
-        <li><strong>F-Layout reading path</strong>: Place high-level KPI cards at the top-left, and detailed tables at the bottom-right.</li>
-        <li><strong>Limit Color Usage</strong>: Stick to a cohesive 3-color palette (e.g. Slate background, Blue highlights, and Red/Green indicator highlights). Avoid multi-colored rainbows.</li>
-        <li><strong>White Space</strong>: Leave at least 10px-15px padding between dashboard objects to let layout elements breathe.</li>
-      </ul>
-    </div>
+# Window average of sales across partition elements
+WINDOW_AVG(SUM([Sales]), -3, 0) # Average of last 3 rows + current row</code></pre>
+
+    <h2>4. Interactive UX: Parameter & Set Actions</h2>
+    <p>To create dynamic dashboards that feel alive, leverage actions to feed selection details back to variables:</p>
+    <ul>
+      <li><strong>Parameter Actions</strong>: Allow user mouse selections on one sheet to overwrite a parameter value, dynamically updating other sheets using that parameter (e.g. swapping between Sales/Profit views).</li>
+      <li><strong>Set Actions</strong>: Dynamically add or remove selected marks from a Set, enabling asymmetric drill-downs or highlighting related segments.</li>
+      <li><strong>Dynamic Zone Visibility</strong>: Hide or show containers dynamically based on boolean parameter values (ideal for toggling between chart types or filters panels).</li>
+    </ul>
+
+    <h2>5. Dashboard Design & Styling Systems</h2>
+    <ul>
+      <li><strong>Visual Hierarchy (Z-Layout)</strong>: Position primary KPIs at the top left, main interactive charts in the center, and granular tables at the bottom.</li>
+      <li><strong>Layout Containers</strong>: Always build dashboards using nested Horizontal and Vertical containers rather than floating objects to maintain layout responsiveness.</li>
+      <li><strong>Decluttering</strong>: Remove default gridlines, borders, and legends when possible. Place direct labels on charts to decrease cognitive strain.</li>
+    </ul>
   </div>
 </body>
 </html>

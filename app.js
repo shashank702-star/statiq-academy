@@ -666,10 +666,18 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "reader.html?topic=tensorflow-deep-learning"
     },
     {
+      title: "Power Query & M-Language Transformations",
+      category: "guide",
+      description: "A reference guide on Power Query ETL architecture, Query Folding rules, unpivoting, appending/merging queries, and M-language let-in syntax.",
+      tags: ["PowerBI", "Excel", "ETL", "M-Language"],
+      downloadText: "Read Study Guide",
+      link: "reader.html?topic=power-query-guide"
+    },
+    {
       title: "PowerBI DAX & Semantic Modeling",
       category: "guide",
-      description: "A reference guide on DAX functions, Calculated Columns vs. Measures, filter contexts, and Time Intelligence expressions.",
-      tags: ["PowerBI", "DAX", "Modeling"],
+      description: "A reference guide on DAX evaluation contexts, Star Schema modeling, CALCULATE overrides, time intelligence, variables, and Row-Level Security (RLS).",
+      tags: ["PowerBI", "DAX", "Modeling", "RLS"],
       downloadText: "Read Study Guide",
       link: "reader.html?topic=powerbi-dax-guide"
     },
