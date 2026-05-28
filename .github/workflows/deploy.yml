@@ -1,0 +1,68 @@
+name: StatIQ Academy CI/CD Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # 1. Run Verification and Verification Analysis
+  verify-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Start Local Web Server
+        run: |
+          python3 -m http.server 8080 &
+          sleep 2 # wait for server to bind to port
+
+      - name: Run Lesson Link Verification
+        shell: pwsh
+        run: pwsh scripts/verify_links.ps1
+
+      - name: Run Homepage Link Consistency Checks
+        shell: pwsh
+        run: pwsh scripts/verify_homepage_links.ps1
+
+      - name: Run Search Catalog Index Checks
+        shell: pwsh
+        run: pwsh scripts/verify_app_links.ps1
+
+      - name: Audit Orphan Content Files
+        shell: pwsh
+        run: pwsh scripts/verify_orphan_content.ps1
+
+  # 2. Deploy Static Site to GitHub Pages
+  deploy-to-pages:
+    needs: verify-and-test
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.' # Upload root folder containing index.html and style.css
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
