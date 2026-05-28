@@ -310,10 +310,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (track && slides.length > 0) {
     // Generate indicator dots
-    slides.forEach((_, idx) => {
+    slides.forEach((slide, idx) => {
       const dot = document.createElement('div');
       dot.classList.add('carousel-dot');
-      if (idx === 0) dot.classList.add('active');
+      if (idx === 0) {
+        dot.classList.add('active');
+        slide.classList.add('active');
+      }
       dot.addEventListener('click', () => goToSlide(idx));
       dotsContainer.appendChild(dot);
     });
@@ -322,6 +325,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateSlider = () => {
       track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === currentSlideIndex);
+      });
       dots.forEach((dot, idx) => {
         dot.classList.toggle('active', idx === currentSlideIndex);
       });
