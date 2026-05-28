@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R Programming & Statistical Computing | StatIQ Academy</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-btn">← Back to StatIQ Academy</a>
+    <span class="badge">Data Wrangling Guide</span>
+    <h1>R Programming & Statistical Computing</h1>
+    <p>A masterclass reference guide to the R programming language, covering syntax foundations, data frames, tidyverse data wrangling, ggplot2 graphics, statistical modeling, and reproducible research with R Markdown.</p>
+
+    <div class="card">
+      <h3>📊 The Statistical Computing Standard</h3>
+      <p>R is a language and environment designed specifically for statistical computing, data analysis, and graphics. Unlike general-purpose languages, R treats vectors and statistical distributions as first-class citizens, making it the preferred choice for academic research, clinical trials, and deep statistical modeling.</p>
+    </div>
+
+    <h2>1. R Core Syntax & Data Structures</h2>
+    <p>R uses the assignment operator <code>&lt;-</code> to assign values to variables. Core data structures include:</p>
+    <ul>
+      <li><strong>Vectors</strong>: The most basic data structure. Must contain elements of the same data type. Vectors are 1-indexed.
+        <pre><code># Declaring numeric and character vectors
+ages &lt;- c(25, 30, 35, 40)
+names &lt;- c("Alice", "Bob", "Charlie", "David")
+
+# Vectorized operation (adds 5 to all elements automatically)
+older_ages &lt;- ages + 5</code></pre>
+      </li>
+      <li><strong>Factors</strong>: Used to store categorical data with predefined levels (e.g. "Low", "Medium", "High").</li>
+      <li><strong>Lists</strong>: Heterogeneous collections containing elements of different types (e.g. vectors, matrices, or other lists).
+        <pre><code># Lists use double brackets [[]] for extracting elements
+my_list &lt;- list(title = "Metrics", values = c(8.5, 9.2, 7.8))
+my_title &lt;- my_list[[1]]      # Extracts "Metrics"
+my_vals &lt;- my_list$values     # Extracts vector</code></pre>
+      </li>
+      <li><strong>Data Frames</strong>: Tabular data structures where each column acts as a vector. This is R's native database structure.
+        <pre><code># Creating a data frame
+df &lt;- data.frame(Name = names, Age = ages)
+# Slicing: df[rows, columns]
+first_row &lt;- df[1, ]
+age_col &lt;- df[, "Age"]</code></pre>
+      </li>
+    </ul>
+
+    <h2>2. Data Wrangling with Tidyverse & dplyr</h2>
+    <p>The <strong>Tidyverse</strong> is a curated collection of R packages designed for data science. The <strong>dplyr</strong> package provides a grammar of data manipulation. R uses the pipe operator <code>%&gt;%</code> (magrittr) or the native pipe <code>|&gt;</code> (R 4.1+) to chain operations sequentially.</p>
+    <pre><code>library(tidyverse)
+
+# Cleaning and wrangling a dataset using dplyr pipes
+cleaned_data &lt;- raw_data %&gt;%
+  # 1. Filter rows (WHERE)
+  filter(sales_usd > 1000, region == "North") %&gt;%
+  
+  # 2. Select specific columns (SELECT)
+  select(customer_id, product_name, sales_usd, quantity) %&gt;%
+  
+  # 3. Create or modify columns (MUTATE)
+  mutate(price_per_unit = sales_usd / quantity) %&gt;%
+  
+  # 4. Group & Summarise (GROUP BY & Aggregations)
+  group_by(product_name) %&gt;%
+  summarise(
+    total_sales = sum(sales_usd),
+    avg_price = mean(price_per_unit),
+    transaction_count = n()
+  ) %&gt;%
+  
+  # 5. Sort results (ORDER BY)
+  arrange(desc(total_sales))</code></pre>
+
+    <h2>3. Data Visualization with ggplot2</h2>
+    <p>The <strong>ggplot2</strong> package implements the <em>Grammar of Graphics</em>, building plots in layers by mapping data variables to visual aesthetic attributes (x, y, color, size).</p>
+    <pre><code># Creating a scatter plot with a linear regression trend line
+ggplot(data = df, mapping = aes(x = Age, y = sales_usd, color = Region)) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE, color = "white") +
+  facet_wrap(~ ProductType) +
+  labs(
+    title = "Customer Spend vs. Age",
+    x = "Customer Age (Years)",
+    y = "Spend (USD)"
+  ) +
+  theme_minimal()</code></pre>
+
+    <h2>4. Statistical Modeling & Regression</h2>
+    <p>R excels at running linear models and extraction of statistical summaries. The <code>lm()</code> function fits linear regression models, modeling dependencies using formula notation <code>y ~ x</code>.</p>
+    <pre><code># Fitting a linear regression model: Spend predicted by Age and Income
+model &lt;- lm(spend_usd ~ age + annual_income, data = df)
+
+# Output summary containing Coefficients, R-squared, p-values, and F-statistic
+summary(model)
+
+# Running an Analysis of Variance (ANOVA)
+anova(model)
+
+# Hypothesis testing: Independent two-sample t-test
+t.test(spend_usd ~ group, data = df, alternative = "two.sided")</code></pre>
+
+    <h2>5. Reproducible Research (R Markdown & Quarto)</h2>
+    <p>R Markdown and Quarto integrate code execution, statistical outputs, plots, and markdown narrative into single document templates. This ensures analysis notebooks can be compiled dynamically into HTML, PDF, or Word files, making statistical reporting perfectly reproducible.</p>
+    <pre><code>```{r sales-analysis, message = FALSE, warning = FALSE}
+# Inside an R Markdown code block
+summary(lm(sales_usd ~ marketing_budget, data = ads_data))
+```</code></pre>
+
+    <div class="card">
+      <h3>📋 R Programming Quick Cheatsheet</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px;">
+        <div>
+          <h4>Core Operators</h4>
+          <ul>
+            <li><code>&lt;-</code> : Variable assignment</li>
+            <li><code>%&gt;%</code> or <code>|&gt;</code> : Pipe output to next function</li>
+            <li><code>$</code> : Extract column or list element</li>
+            <li><code>%in%</code> : Value matching in vector</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Core Functions</h4>
+          <ul>
+            <li><code>c(...)</code> : Combine/create vector</li>
+            <li><code>summary(x)</code> : Get statistical summary</li>
+            <li><code>str(x)</code> : Show structural layout of object</li>
+            <li><code>head(x, n)</code> : View first n rows</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

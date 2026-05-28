@@ -784,6 +784,14 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "reader.html?topic=polars-vs-pandas"
     },
     {
+      title: "R Programming & Statistical Computing Guide",
+      category: "guide",
+      description: "A reference guide to the R programming language, covering syntax foundations, data frames, tidyverse data wrangling, ggplot2 graphics, and statistical modeling.",
+      tags: ["R", "Tidyverse", "ggplot2", "Modeling", "Statistics"],
+      downloadText: "Read Study Guide",
+      link: "reader.html?topic=r-programming-guide"
+    },
+    {
       title: "dbt Core Setup & Fact Star Modeling",
       category: "guide",
       description: "Architecting logical database transformations, model dependencies, schema assertions, and modular pipeline deployment in Snowflake warehouses.",

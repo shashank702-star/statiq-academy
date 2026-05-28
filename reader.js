@@ -871,6 +871,48 @@ document.addEventListener('DOMContentLoaded', () => {
               explain: "Apache Arrow provides the memory-efficient columnar format shared by Polars, DuckDB, and Snowflake."
             }
           ]
+        },
+        {
+          title: "R Programming & Statistical Computing",
+          id: "r-programming-guide",
+          file: "content/r-programming-guide.html",
+          type: "notes",
+          readTime: 5,
+          quiz: [
+            {
+              q: "Which operator is the standard variable assignment operator in R?",
+              options: [
+                "=",
+                "<-",
+                "->",
+                "=="
+              ],
+              answer: 1,
+              explain: "Although '=' is supported in R for assignment, '<-' is the standard, idiomatic assignment operator. '->' is right-assignment, and '==' checks equality."
+            },
+            {
+              q: "Which dplyr verb is used to add new columns or transform existing columns in R?",
+              options: [
+                "select()",
+                "filter()",
+                "mutate()",
+                "summarise()"
+              ],
+              answer: 2,
+              explain: "mutate() creates new variables or transforms existing variables. select() keeps or drops columns, filter() keeps or drops rows, and summarise() aggregates data."
+            },
+            {
+              q: "What R function is used to fit a linear regression model?",
+              options: [
+                "linear_model()",
+                "lm()",
+                "regression()",
+                "fit()"
+              ],
+              answer: 1,
+              explain: "lm() is the native, built-in R function used to fit linear models (regression and ANOVA) using formula syntax like y ~ x."
+            }
+          ]
         }
       ]
     },
