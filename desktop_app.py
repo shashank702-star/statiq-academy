@@ -19,7 +19,10 @@ PORT = 8181
 
 def start_server():
     """Starts a lightweight HTTP server serving files from the project directory."""
-    os.chdir(EXE_DIR)
+    # Determine directory to serve. If index.html exists in BASE_DIR, use it (fully self-contained).
+    # Otherwise, fall back to EXE_DIR (thin executable running in project root).
+    serve_dir = BASE_DIR if os.path.exists(os.path.join(BASE_DIR, "index.html")) else EXE_DIR
+    os.chdir(serve_dir)
     Handler = http.server.SimpleHTTPRequestHandler
     
     # Allow port reuse to prevent address-already-in-use errors
@@ -27,7 +30,7 @@ def start_server():
     
     try:
         with socketserver.TCPServer(("", PORT), Handler) as httpd:
-            print(f"Serving locally at http://localhost:{PORT}")
+            print(f"Serving locally from {serve_dir} at http://localhost:{PORT}")
             httpd.serve_forever()
     except Exception as e:
         print(f"Server error or port already in use: {e}")
